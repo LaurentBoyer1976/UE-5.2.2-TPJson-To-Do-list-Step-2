@@ -1,0 +1,54 @@
+{
+  "skillsEvaluation": {
+    "skillsLevels": [
+      {
+        "idSkillsLevel": "1",
+        "level": "débutant",
+        "description": "Découverte des concepts de base",
+        "experienceRequired": "0-6 mois"
+      },
+      {
+        "idSkillsLevel": "2",
+        "level": "initié",
+        "description": "Compréhension des fondamentaux",
+        "experienceRequired": "6 mois - 1 an"
+      },
+      {
+        "idSkillsLevel": "3",
+        "level": "intermédiaire",
+        "description": "Application pratique autonome",
+        "experienceRequired": "1-2 ans"
+      },
+      {
+        "idSkillsLevel": "4",
+        "level": "confirmé",
+        "description": "Maîtrise des techniques avancées",
+        "experienceRequired": "2-3 ans"
+      },
+      {
+        "idSkillsLevel": "5",
+        "level": "avancé",
+        "description": "Expertise technique approfondie",
+        "experienceRequired": "3-5 ans"
+      },
+      {
+        "idSkillsLevel": "6",
+        "level": "expert",
+        "description": "Maîtrise complète et innovation",
+        "experienceRequired": "5+ ans"
+      },
+      {
+        "idSkillsLevel": "7",
+        "level": "expert confirmé",
+        "description": "Leadership technique et mentorat",
+        "experienceRequired": "7+ ans"
+      },
+      {
+        "idSkillsLevel": "8",
+        "level": "maître",
+        "description": "Référence dans le domaine",
+        "experienceRequired": "10+ ans"
+      }
+    ]
+  }
+  }

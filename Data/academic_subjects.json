@@ -1,0 +1,165 @@
+{"academicConfiguration": {
+"subjects": [
+{
+"idAcademicSubject": "1",
+"academicSubjectName": "HTML/CSS"
+},
+{
+"idAcademicSubject": "2",
+"academicSubjectName": "JavaScript"
+},
+{
+"idAcademicSubject": "3",
+"academicSubjectName": "Frameworks JavaScript (React, Vue.js)"
+},
+{
+"idAcademicSubject": "4",
+"academicSubjectName": "Développement Backend (Node.js, PHP)"
+},
+{
+"idAcademicSubject": "5",
+"academicSubjectName": "Bases de données (SQL, NoSQL)"
+},
+{
+"idAcademicSubject": "6",
+"academicSubjectName": "UX/UI Design"
+},
+{
+"idAcademicSubject": "7",
+"academicSubjectName": "Responsive Design et Mobile First"
+},
+{
+"idAcademicSubject": "8",
+"academicSubjectName": "Gestion de projet web (Agile, Scrum)"
+},
+{
+"idAcademicSubject": "9",
+"academicSubjectName": "Versioning (Git, GitHub)"
+},
+{
+"idAcademicSubject": "10",
+"academicSubjectName": "Accessibilité web (WCAG)"
+},
+{
+"idAcademicSubject": "11",
+"academicSubjectName": "SEO et Référencement"
+},
+{
+"idAcademicSubject": "12",
+"academicSubjectName": "APIs et Services Web (REST, GraphQL)"
+},
+{
+"idAcademicSubject": "13",
+"academicSubjectName": "Tests unitaires et intégration continue"
+},
+{
+"idAcademicSubject": "14",
+"academicSubjectName": "Sécurité web"
+},
+{
+"idAcademicSubject": "15",
+"academicSubjectName": "CMS et e-commerce (WordPress, Shopify)"
+},
+{
+"idAcademicSubject": "16",
+"academicSubjectName": "Hébergement et déploiement"
+},
+{
+"idAcademicSubject": "17",
+"academicSubjectName": "Veille technologique"
+},
+{
+"idAcademicSubject": "18",
+"academicSubjectName": "Droit du numérique et RGPD"
+},
+{
+"idAcademicSubject": "19",
+"academicSubjectName": "Communication professionnelle"
+},
+{
+"idAcademicSubject": "20",
+"academicSubjectName": "Anglais technique"
+},
+{
+"idAcademicSubject": "21",
+"academicSubjectName": "Projet tuteuré"
+},
+{
+"idAcademicSubject": "22",
+"academicSubjectName": "Stage en entreprise"
+},
+{
+"idAcademicSubject": "23",
+"academicSubjectName": "Mémoire professionnel"
+},
+{
+"idAcademicSubject": "24",
+"academicSubjectName": "Design graphique et logiciels (Photoshop, Illustrator)"
+},
+{
+"idAcademicSubject": "25",
+"academicSubjectName": "Identité visuelle et branding"
+},
+{
+"idAcademicSubject": "26",
+"academicSubjectName": "Théorie des couleurs et typographie"
+},
+{
+"idAcademicSubject": "27",
+"academicSubjectName": "Création d'icônes et illustrations"
+},
+{
+"idAcademicSubject": "28",
+"academicSubjectName": "Animation et motion design (After Effects)"
+},
+{
+"idAcademicSubject": "29",
+"academicSubjectName": "Prototypage et maquettage (Figma, Sketch)"
+},
+{
+"idAcademicSubject": "30",
+"academicSubjectName": "Photographie web et retouche d'images"
+},
+{
+"idAcademicSubject": "31",
+"academicSubjectName": "Marketing digital et stratégie web"
+},
+{
+"idAcademicSubject": "32",
+"academicSubjectName": "Réseaux sociaux et community management"
+},
+{
+"idAcademicSubject": "33",
+"academicSubjectName": "Content marketing et rédaction web"
+},
+{
+"idAcademicSubject": "34",
+"academicSubjectName": "E-mail marketing et automation"
+},
+{
+"idAcademicSubject": "35",
+"academicSubjectName": "Publicité en ligne (Google Ads, Facebook Ads)"
+},
+{
+"idAcademicSubject": "36",
+"academicSubjectName": "Analytics et mesure de performance (Google Analytics)"
+},
+{
+"idAcademicSubject": "37",
+"academicSubjectName": "Conversion et optimisation UX"
+},
+{
+"idAcademicSubject": "38",
+"academicSubjectName": "Influence marketing et partenariats"
+},
+{
+"idAcademicSubject": "39",
+"academicSubjectName": "Growth hacking et acquisition client"
+},
+{
+"idAcademicSubject": "40",
+"academicSubjectName": "Webmarketing et e-reputation"
+}
+]
+}
+}
