@@ -1,0 +1,435 @@
+{
+  "taskManagement": {
+    "tasks": [
+      {
+        "id": 1,
+        "libelle": "TP HTML/CSS: Création d'une page web responsive",
+        "date_de_creation": "2025-10-01T10:00:00Z",
+        "date_de_modification": "2025-10-01T10:00:00Z",
+        "date_de_completion": null,
+        "compteur_de_temps_passe(mn)": 120,
+        "description": "Créer une page web responsive en utilisant HTML5 et CSS3 avec les techniques de Flexbox et Grid.",
+        "assignation": "Justine",
+        "documentation": [
+          "https://developer.mozilla.org/fr/docs/Web/HTML",
+          "https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
+        ],
+        "fichiers_joints": [
+          "maquette-desktop.png",
+          "specifications.pdf"
+        ],
+        "idPriorite": "2",
+        "idTaskProgression": "3",
+        "idAcademicSubject": "1",
+        "idSkillsLevel": "2",
+        "idDifficultyRating": "1",
+        "to_do_list_associee": [
+          {
+            "ToDoA": [
+              {
+                "idToDoA": "A1",
+                "subTask": "Structure HTML",
+                "commentaire": "Créer la structure sémantique"
+              }
+            ],
+            "ToDoB": [
+              {
+                "idToDoB": "B1",
+                "subTask": "Styles CSS",
+                "commentaire": "Appliquer les styles responsive"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "libelle": "TP JavaScript: Gestion d'événements et DOM",
+        "date_de_creation": "2025-10-05T13:30:00Z",
+        "date_de_modification": "2025-10-08T14:45:00Z",
+        "date_de_completion": null,
+        "compteur_de_temps_passe(mn)": 180,
+        "description": "Développer une application interactive en JavaScript avec manipulation du DOM et gestion des événements utilisateur.",
+        "assignation": "Justine",
+        "documentation": [
+          "https://developer.mozilla.org/fr/docs/Web/JavaScript",
+          "https://javascript.info/"
+        ],
+        "fichiers_joints": [
+          "starter-code.js",
+          "mockup-interface.jpg"
+        ],
+        "idPriorite": "1",
+        "idTaskProgression": "2",
+        "idAcademicSubject": "2",
+        "idSkillsLevel": "3",
+        "idDifficultyRating": "2",
+        "to_do_list_associee": [
+          {
+            "ToDoA": [
+              {
+                "idToDoA": "A2",
+                "subTask": "Event Listeners",
+                "commentaire": "Ajouter les gestionnaires d'événements"
+              }
+            ],
+            "ToDoB": [
+              {
+                "idToDoB": "B2",
+                "subTask": "Manipulation DOM",
+                "commentaire": "Modifier dynamiquement les éléments"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "libelle": "documenter un préprocesseur CSS: Sass",
+        "date_de_creation": "2025-10-05T14:30:00Z",
+        "date_de_modification": "2025-10-08T16:45:00Z",
+        "date_de_completion": null,
+        "compteur_de_temps_passe(mn)": 110,
+        "description": "Documenter le préprocesseur Sass. Ses avantages, ses inconvénients.",
+        "assignation": "Justine",
+        "documentation": [
+          "https://sass-lang.com/documentation/syntax/",
+          "https://sass-lang.com/playground/"
+        ],
+        "fichiers_joints": [
+          "Style.sass",
+          "style.scss"
+        ],
+        "idPriorite": "3",
+        "idTaskProgression": "3",
+        "idAcademicSubject": "1",
+        "idSkillsLevel": "3",
+        "idDifficultyRating": "2",
+        "to_do_list_associee": [
+          {
+            "ToDoA": [
+              {
+                "idToDoA": "A2",
+                "subTask": "Variable Sass",
+                "commentaire": "Lister et comprendre la syntaxe des variables"
+              }
+            ],
+            "ToDoB": [
+              {
+                "idToDoB": "B2",
+                "subTask": "Mixins",
+                "commentaire": "Syntaxe, objectifs des mixins."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "priorityStatus": [
+      {
+        "idPriorite": "1",
+        "priorite": "Important"
+      },
+      {
+        "idPriorite": "2",
+        "priorite": "Haut"
+      },
+      {
+        "idPriorite": "3",
+        "priorite": "Moyen"
+      },
+      {
+        "idPriorite": "4",
+        "priorite": "Bas"
+      },
+      {
+        "idPriorite": "5",
+        "priorite": "Non important"
+      }
+    ],
+    "taskProgression": [
+      {
+        "idTaskProgression": "1",
+        "taskProgressionStatus": "Nouvelle tâche"
+      },
+      {
+        "idTaskProgression": "2",
+        "taskProgressionStatus": "conception"
+      },
+      {
+        "idTaskProgression": "3",
+        "taskProgressionStatus": "en cours"
+      },
+      {
+        "idTaskProgression": "4",
+        "taskProgressionStatus": "bloqué"
+      },
+      {
+        "idTaskProgression": "5",
+        "taskProgressionStatus": "en attente de validation"
+      },
+      {
+        "idTaskProgression": "6",
+        "taskProgressionStatus": "Terminé"
+      },
+      {
+        "idTaskProgression": "7",
+        "taskProgressionStatus": "Archivé"
+      }
+    ]
+  },
+  "academicConfiguration": {
+    "subjects": [
+      {
+        "idAcademicSubject": "1",
+        "academicSubjectName": "HTML/CSS"
+      },
+      {
+        "idAcademicSubject": "2",
+        "academicSubjectName": "JavaScript"
+      },
+      {
+        "idAcademicSubject": "3",
+        "academicSubjectName": "Frameworks JavaScript (React, Vue.js)"
+      },
+      {
+        "idAcademicSubject": "4",
+        "academicSubjectName": "Développement Backend (Node.js, PHP)"
+      },
+      {
+        "idAcademicSubject": "5",
+        "academicSubjectName": "Bases de données (SQL, NoSQL)"
+      },
+      {
+        "idAcademicSubject": "6",
+        "academicSubjectName": "UX/UI Design"
+      },
+      {
+        "idAcademicSubject": "7",
+        "academicSubjectName": "Responsive Design et Mobile First"
+      },
+      {
+        "idAcademicSubject": "8",
+        "academicSubjectName": "Gestion de projet web (Agile, Scrum)"
+      },
+      {
+        "idAcademicSubject": "9",
+        "academicSubjectName": "Versioning (Git, GitHub)"
+      },
+      {
+        "idAcademicSubject": "10",
+        "academicSubjectName": "Accessibilité web (WCAG)"
+      },
+      {
+        "idAcademicSubject": "11",
+        "academicSubjectName": "SEO et Référencement"
+      },
+      {
+        "idAcademicSubject": "12",
+        "academicSubjectName": "APIs et Services Web (REST, GraphQL)"
+      },
+      {
+        "idAcademicSubject": "13",
+        "academicSubjectName": "Tests unitaires et intégration continue"
+      },
+      {
+        "idAcademicSubject": "14",
+        "academicSubjectName": "Sécurité web"
+      },
+      {
+        "idAcademicSubject": "15",
+        "academicSubjectName": "CMS et e-commerce (WordPress, Shopify)"
+      },
+      {
+        "idAcademicSubject": "16",
+        "academicSubjectName": "Hébergement et déploiement"
+      },
+      {
+        "idAcademicSubject": "17",
+        "academicSubjectName": "Veille technologique"
+      },
+      {
+        "idAcademicSubject": "18",
+        "academicSubjectName": "Droit du numérique et RGPD"
+      },
+      {
+        "idAcademicSubject": "19",
+        "academicSubjectName": "Communication professionnelle"
+      },
+      {
+        "idAcademicSubject": "20",
+        "academicSubjectName": "Anglais technique"
+      },
+      {
+        "idAcademicSubject": "21",
+        "academicSubjectName": "Projet tuteuré"
+      },
+      {
+        "idAcademicSubject": "22",
+        "academicSubjectName": "Stage en entreprise"
+      },
+      {
+        "idAcademicSubject": "23",
+        "academicSubjectName": "Mémoire professionnel"
+      },
+      {
+        "idAcademicSubject": "24",
+        "academicSubjectName": "Design graphique et logiciels (Photoshop, Illustrator)"
+      },
+      {
+        "idAcademicSubject": "25",
+        "academicSubjectName": "Identité visuelle et branding"
+      },
+      {
+        "idAcademicSubject": "26",
+        "academicSubjectName": "Théorie des couleurs et typographie"
+      },
+      {
+        "idAcademicSubject": "27",
+        "academicSubjectName": "Création d'icônes et illustrations"
+      },
+      {
+        "idAcademicSubject": "28",
+        "academicSubjectName": "Animation et motion design (After Effects)"
+      },
+      {
+        "idAcademicSubject": "29",
+        "academicSubjectName": "Prototypage et maquettage (Figma, Sketch)"
+      },
+      {
+        "idAcademicSubject": "30",
+        "academicSubjectName": "Photographie web et retouche d'images"
+      },
+      {
+        "idAcademicSubject": "31",
+        "academicSubjectName": "Marketing digital et stratégie web"
+      },
+      {
+        "idAcademicSubject": "32",
+        "academicSubjectName": "Réseaux sociaux et community management"
+      },
+      {
+        "idAcademicSubject": "33",
+        "academicSubjectName": "Content marketing et rédaction web"
+      },
+      {
+        "idAcademicSubject": "34",
+        "academicSubjectName": "E-mail marketing et automation"
+      },
+      {
+        "idAcademicSubject": "35",
+        "academicSubjectName": "Publicité en ligne (Google Ads, Facebook Ads)"
+      },
+      {
+        "idAcademicSubject": "36",
+        "academicSubjectName": "Analytics et mesure de performance (Google Analytics)"
+      },
+      {
+        "idAcademicSubject": "37",
+        "academicSubjectName": "Conversion et optimisation UX"
+      },
+      {
+        "idAcademicSubject": "38",
+        "academicSubjectName": "Influence marketing et partenariats"
+      },
+      {
+        "idAcademicSubject": "39",
+        "academicSubjectName": "Growth hacking et acquisition client"
+      },
+      {
+        "idAcademicSubject": "40",
+        "academicSubjectName": "Webmarketing et e-reputation"
+      }
+    ]
+  },
+  "skillsEvaluation": {
+    "skillsLevels": [
+      {
+        "idSkillsLevel": "1",
+        "level": "débutant",
+        "description": "Découverte des concepts de base",
+        "experienceRequired": "0-6 mois"
+      },
+      {
+        "idSkillsLevel": "2",
+        "level": "initié",
+        "description": "Compréhension des fondamentaux",
+        "experienceRequired": "6 mois - 1 an"
+      },
+      {
+        "idSkillsLevel": "3",
+        "level": "intermédiaire",
+        "description": "Application pratique autonome",
+        "experienceRequired": "1-2 ans"
+      },
+      {
+        "idSkillsLevel": "4",
+        "level": "confirmé",
+        "description": "Maîtrise des techniques avancées",
+        "experienceRequired": "2-3 ans"
+      },
+      {
+        "idSkillsLevel": "5",
+        "level": "avancé",
+        "description": "Expertise technique approfondie",
+        "experienceRequired": "3-5 ans"
+      },
+      {
+        "idSkillsLevel": "6",
+        "level": "expert",
+        "description": "Maîtrise complète et innovation",
+        "experienceRequired": "5+ ans"
+      },
+      {
+        "idSkillsLevel": "7",
+        "level": "expert confirmé",
+        "description": "Leadership technique et mentorat",
+        "experienceRequired": "7+ ans"
+      },
+      {
+        "idSkillsLevel": "8",
+        "level": "maître",
+        "description": "Référence dans le domaine",
+        "experienceRequired": "10+ ans"
+      }
+    ],
+    "difficultyRatings": [
+      {
+        "idDifficultyRating": "1",
+        "estimatedDifficulty": "facile",
+        "note": "Niveau débutant - concepts de base",
+        "skillsLevelIds": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "idDifficultyRating": "2",
+        "estimatedDifficulty": "moyen",
+        "note": "Niveau intermédiaire - pratique régulière",
+        "skillsLevelIds": [
+          "3",
+          "4"
+        ]
+      },
+      {
+        "idDifficultyRating": "3",
+        "estimatedDifficulty": "difficile",
+        "note": "Niveau avancé - expertise technique",
+        "skillsLevelIds": [
+          "5",
+          "6"
+        ]
+      },
+      {
+        "idDifficultyRating": "4",
+        "estimatedDifficulty": "très difficile",
+        "note": "Niveau expert - maîtrise complète",
+        "skillsLevelIds": [
+          "7",
+          "8"
+        ]
+      }
+    ]
+  }
+}

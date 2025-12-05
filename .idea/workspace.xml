@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cffeea33-b9a7-45de-9728-bf5bb44ba32f" name="Changes" comment="Ajout des fichiers JS, constructor-factory-api-Json" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;LaurentBoyer1976&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/LaurentBoyer1976/UE-5.2-Dev-Front-end-fondamentaux-de-la-programmation.git&quot;,
+    &quot;accountId&quot;: &quot;6ebf10ae-e500-46d5-967c-fbb50a7d7d8d&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="36G4SKdVfgJFIqcqrqwxaiukH4a" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Laurent/Formation_dev/LPDWCA/UE 5.2 Dev Front-end fondamentaux de la programmation/UE 5.2.2 Langages JS API et initiation Framework JS/UE 5.2.2 TPJson To Do list Step 2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Settings.JavaScript",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Laurent\Formation_dev\LPDWCA\UE 5.2 Dev Front-end fondamentaux de la programmation\UE 5.2.2 Langages JS API et initiation Framework JS\UE 5.2.2 TPJson To Do list Step 2\JS\Patterns\factories" />
+      <recent name="C:\Users\Laurent\Formation_dev\LPDWCA\UE 5.2 Dev Front-end fondamentaux de la programmation\UE 5.2.2 Langages JS API et initiation Framework JS\UE 5.2.2 TPJson To Do list Step 2\Data" />
+      <recent name="C:\Users\Laurent\Formation_dev\LPDWCA\UE 5.2 Dev Front-end fondamentaux de la programmation\UE 5.2.2 Langages JS API et initiation Framework JS\UE 5.2.2 TPJson To Do list Step 2\JS" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-WS-252.28238.10" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cffeea33-b9a7-45de-9728-bf5bb44ba32f" name="Changes" comment="" />
+      <created>1764619572803</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1764619572803</updated>
+      <workItem from="1764619573962" duration="9613000" />
+      <workItem from="1764862718905" duration="6283000" />
+    </task>
+    <task id="LOCAL-00001" summary="Application style css structure grid.&#10;Affiner style, agencement et alignement du formulaire.">
+      <option name="closed" value="true" />
+      <created>1764629239494</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1764629239494</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Ajout des fichiers JS, constructor-factory-api-Json">
+      <option name="closed" value="true" />
+      <created>1764871745543</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1764871745543</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Application style css structure grid.&#10;Affiner style, agencement et alignement du formulaire." />
+    <MESSAGE value="Ajout des fichiers JS, constructor-factory-api-Json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout des fichiers JS, constructor-factory-api-Json" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

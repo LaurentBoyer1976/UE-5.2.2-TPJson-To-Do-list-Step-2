@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création de Tâche - To-Do List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            /* Correction de la syntaxe du dégradé CSS */
+            background: linear-gradient(145deg, #e7f7e7 0%, #d5e9d5 40%, #b8d4b8 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #2d5016;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        fieldset {
+            border: 1px solid #6ba368;
+            border-radius: 8px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        legend {
+            font-family: 'Playfair Display', serif;
+            color: #4a7c59;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 0 10px;
+            margin-left: -10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 700;
+            color: #2d5016;
+            font-size: 0.95em;
+        }
+
+        label .required {
+            color: #c0392b;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="datetime-local"],
+        input[type="number"],
+        textarea,
+        select {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #4a7c59;
+            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Validation Visuelle Email */
+        input[type="email"]:invalid:not(:placeholder-shown) {
+            border-color: #c0392b;
+            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
+        }
+
+        input[type="email"]:valid:not(:placeholder-shown) {
+            border-color: #4a7c59;
+            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
+        }
+
+        /* Boutons Radio */
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .radio-item label {
+            font-weight: normal;
+            color: #333;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            accent-color: #2d5016;
+        }
+
+        /* Encart de dépôt de fichier (PDF) */
+        .file-upload-group {
+            border: 2px dashed #6ba368;
+            background-color: #f9fff9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .file-upload-group label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #2d5016;
+        }
+        
+        .file-upload-group input[type="file"] {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border: 1px solid #4a7c59;
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Boutons de formulaire */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        input[type="submit"] {
+            background-color: #2d5016;
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1f360e;
+            transform: translateY(-1px);
+        }
+
+        input[type="reset"] {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-add {
+            padding: 8px 15px;
+            background: #4a7c59;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            align-self: flex-start;
+            transition: background 0.3s;
+        }
+
+        .btn-add:hover {
+            background: #2d5016;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            fieldset {
+                grid-template-columns: 1fr;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nouvelle Tâche</h1>
+        
+        <form action="traitement.php" method="POST" enctype="multipart/form-data">
+            
+            <fieldset>
+                <legend>Personne en charge</legend>
+                
+                <div class="form-group">
+                    <label for="assignation">Nom et Prénom <span class="required">*</span></label>
+                    <input type="text" id="assignation" name="assignation" required placeholder="Ex : Laurent Boyer">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Adresse E-mail <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder=" Ex : nom.prenom@exemple.com">
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <label for="libelle">Nom de la tâche <span class="required">*</span></label>
+                <input type="text" id="libelle" name="libelle" required placeholder="Ex: TP HTML/CSS">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description </label>
+                <textarea id="description" name="description" rows="4" placeholder="Décrivez ici les objectifs et les étapes cette nouvelle tâche..."></textarea>
+            </div>
+
+            <fieldset>
+                <legend>Planification et Échéance</legend>
+                
+                <div class="form-group">
+                    <label for="date_echeance">Date d'échéance </label>
+                    <input type="datetime-local" id="date_echeance" name="date_echeance">
+                </div>
+                
+                <div class="form-group">
+                    <label for="priorite">Priorité <span class="required">*</span></label>
+                    <select id="priorite" name="idPriorite"> 
+                        <optgroup label="Urgent">
+                            <option value="1">Important & Urgent</option>
+                            <option value="2">Haut</option>
+                        </optgroup>
+                        <optgroup label="Normal">
+                            <option value="3" selected>Moyen</option>
+                            <option value="4">Bas</option>
+                        </optgroup>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date_creation">Date de création</label>
+                    <input type="datetime-local" id="date_creation" name="date_creation" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="temps_passe">Temps passé (minutes)</label>
+                    <input type="number" id="temps_passe" name="temps_passe" min="0" value="0" placeholder="0">
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <label>Statut de progression <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="prog1" name="idTaskProgression" value="1" checked required>
+                        <label for="prog1">Nouvelle tâche</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="prog3" name="idTaskProgression" value="3" required>
+                        <label for="prog3">En cours</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="prog4" name="idTaskProgression" value="4" required>
+                        <label for="prog4">Bloqué</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="prog6" name="idTaskProgression" value="6" required>
+                        <label for="prog6">Terminé</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group file-upload-group">
+                <label for="document_pdf">📥 Déposer un document PDF</label>
+                <input type="file" id="document_pdf" name="document_pdf[]" accept=".pdf" multiple>
+            </div>
+
+            <div class="form-group">
+                <label>Liens de documentation</label>
+                <div class="file-list" id="doc-list">
+                    <input type="url" name="documentation[]" placeholder="https://exemple.com/doc1">
+                </div>
+                <button type="button" class="btn-add" onclick="ajouterDoc()">+ Ajouter un lien</button>
+            </div>
+
+            <div class="btn-group">
+                <input type="reset" value="Réinitialiser">
+                <input type="submit" value="Créer la tâche">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function setCreationDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hour = String(now.getHours()).padStart(2, '0');
+            const minute = String(now.getMinutes()).padStart(2, '0');
+            
+            document.getElementById('date_creation').value = `${year}-${month}-${day}T${hour}:${minute}`;
+        }
+        setCreationDate();
+
+        function ajouterDoc() {
+            const docList = document.getElementById('doc-list');
+            const newInput = document.createElement('input');
+            newInput.type = 'url';
+            newInput.name = 'documentation[]';
+            newInput.placeholder = 'https://exemple.com/doc';
+            docList.appendChild(newInput);
+        }
+    </script>
+</body>
+</html>
