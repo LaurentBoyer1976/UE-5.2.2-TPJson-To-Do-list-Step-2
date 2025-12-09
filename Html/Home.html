@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Laurent Boyer">
+    <meta name="description" content="Application de gestion de tâches - To Do List">
+    <meta name="keywords" content="TO do list, tâche, priorité, gestion de projet">
+    <title>To-Do List - Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(145deg, #e7f7e7 0%, #d5e9d5 40%, #b8d4b8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-size: 3em;
+        }
+
+        .subtitle {
+            color: #4a7c59;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            font-size: 1.05em;
+        }
+
+        .actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: #2d5016;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1f360e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(45, 80, 22, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #4a7c59;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #356642;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 124, 89, 0.3);
+        }
+
+        .icon {
+            font-size: 1.5em;
+        }
+
+        .features {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .feature {
+            padding: 20px;
+            background: #f9fff9;
+            border-radius: 8px;
+            border-left: 4px solid #4a7c59;
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            color: #2d5016;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .stats {
+            margin-top: 40px;
+            padding: 20px;
+            background: #e7f7e7;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #2d5016;
+        }
+
+        .stats-text {
+            color: #4a7c59;
+            font-size: 1.1em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1.05em;
+            }
+            
+            .description {
+                font-size: 1em;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 30px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .subtitle {
+                font-size: 1em;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1em;
+            }
+            
+            .feature {
+                padding: 15px;
+            }
+            
+            .feature-icon {
+                font-size: 1.8em;
+            }
+            
+            .stats-number {
+                font-size: 1.8em;
+            }
+            
+            .stats-text {
+                font-size: 1em;
+            }
+        }
+    </style>
+
+    <script>
+        // Afficher le nombre de tâches enregistrées
+        window.onload = function() {
+            let tasksCount = 0;
+            let storedTasks = localStorage.getItem("tasksData");
+            
+            if (storedTasks) {
+                try {
+                    let tasksList = JSON.parse(storedTasks);
+                    tasksCount = tasksList.length;
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du localStorage:", error);
+                }
+            }
+            
+            document.getElementById('taskCount').textContent = tasksCount;
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" style="display:inline-block;margin-bottom:15px;color:#4a7c59;text-decoration:none;font-weight:600;">← Retour à l'index</a>
+        <h1>📋 To-Do List</h1>
+        <p class="subtitle">Application de Gestion de Tâches</p>
+        
+        <p class="description">
+            Bienvenue dans votre application de gestion de tâches. Créez, organisez et suivez vos tâches 
+            en toute simplicité avec un système de priorités, de statuts et de suivi du temps.
+        </p>
+
+        <div class="stats">
+            <span class="stats-number" id="taskCount">0</span>
+            <span class="stats-text">tâche(s) enregistrée(s)</span>
+        </div>
+
+        <div class="actions">
+            <a href="Form-ToDoList.html" class="btn btn-primary">
+                <span class="icon">➕</span>
+                Créer une nouvelle tâche
+            </a>
+            <a href="TasksSummary.html" class="btn btn-secondary">
+                <span class="icon">📊</span>
+                Voir toutes les tâches
+            </a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">✍️</div>
+                <h3>Création simple</h3>
+                <p>Formulaire intuitif pour créer vos tâches avec toutes les informations nécessaires</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Priorités</h3>
+                <p>Classez vos tâches par importance : urgent, haut, moyen ou bas</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h3>Suivi</h3>
+                <p>Suivez la progression de vos tâches et le temps passé sur chacune</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💾</div>
+                <h3>Sauvegarde locale</h3>
+                <p>Vos données sont stockées dans votre navigateur, aucun compte requis</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

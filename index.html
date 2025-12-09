@@ -1,398 +1,62 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Catherine et Laurent">
-    <meta name="description" content="Page de saisie des tâches d'une to do list">
-    <meta name="keywords" content="TO do list, tâche, priorité">
-    <title>Création de Tâche - To-Do List: Le formulaire</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>To-Do List — Index</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-   <!-- <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            /* Correction de la syntaxe du dégradé CSS */
-            background: linear-gradient(145deg, #e7f7e7 0%, #d5e9d5 40%, #b8d4b8 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-        }
-
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            color: #2d5016;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        fieldset {
-            border: 1px solid #6ba368;
-            border-radius: 8px;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        legend {
-            font-family: 'Playfair Display', serif;
-            color: #4a7c59;
-            font-size: 1.2em;
-            font-weight: bold;
-            padding: 0 10px;
-            margin-left: -10px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        label {
-            font-weight: 700;
-            color: #2d5016;
-            font-size: 0.95em;
-        }
-
-        label .required {
-            color: #c0392b;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="datetime-local"],
-        input[type="number"],
-        textarea,
-        select {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1em;
-            font-family: inherit;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: #4a7c59;
-            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* Validation Visuelle Email */
-        input[type="email"]:invalid:not(:placeholder-shown) {
-            border-color: #c0392b;
-            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
-        }
-
-        input[type="email"]:valid:not(:placeholder-shown) {
-            border-color: #4a7c59;
-            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
-        }
-
-        /* Boutons Radio */
-        .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-
-        .radio-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .radio-item label {
-            font-weight: normal;
-            color: #333;
-            cursor: pointer;
-        }
-
-        input[type="radio"] {
-            accent-color: #2d5016;
-        }
-
-        /* Encart de dépôt de fichier (PDF) */
-        .file-upload-group {
-            border: 2px dashed #6ba368;
-            background-color: #f9fff9;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .file-upload-group label {
-            display: block;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            color: #2d5016;
-        }
-
-        .file-upload-group input[type="file"] {
-            display: block;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 300px;
-            padding: 10px;
-            border: 1px solid #4a7c59;
-            background-color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Boutons de formulaire */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        input[type="submit"], input[type="reset"] {
-            padding: 14px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-        }
-
-        input[type="submit"] {
-            background-color: #2d5016;
-            color: white;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #1f360e;
-            transform: translateY(-1px);
-        }
-
-        input[type="reset"] {
-            background-color: #e0e0e0;
-            color: #333;
-        }
-
-        .btn-add {
-            padding: 8px 15px;
-            background: #4a7c59;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            align-self: flex-start;
-            transition: background 0.3s;
-        }
-
-        .btn-add:hover {
-            background: #2d5016;
-        }
-
+    <style>
+        body{font-family:'Lato',sans-serif;background:#f4f9f4;padding:40px 20px;color:#223}
+        .card{max-width:980px;margin:0 auto;background:#fff;border-radius:10px;padding:28px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+        h1{font-family:'Playfair Display',serif;color:#2d5016;margin-bottom:6px;font-size:2em}
+        p.lead{color:#4a7c59;margin-bottom:18px;font-size:1.05em}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px}
+        a.tile{display:block;padding:18px;border-radius:8px;background:#f9fff9;color:#2d5016;text-decoration:none;font-weight:700;border:1px solid #e6f1e6;transition:all .3s ease}
+        a.tile:hover{transform:translateY(-4px);box-shadow:0 6px 18px rgba(45,80,22,.08);background:#eaf7ea}
+        footer{margin-top:18px;text-align:center;color:#7a8a7a;font-size:.9em}
+        footer a{color:#4a7c59;text-decoration:none}
+        footer a:hover{text-decoration:underline}
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            fieldset {
-                grid-template-columns: 1fr;
-            }
-            .btn-group {
-                flex-direction: column;
-            }
+            body{padding:20px 15px}
+            .card{padding:20px}
+            h1{font-size:1.6em}
+            p.lead{font-size:1em}
+            .grid{grid-template-columns:1fr;gap:10px}
+            a.tile{padding:15px;font-size:0.95em}
+            footer{font-size:0.85em}
         }
-    </style> -->
+        
+        @media (max-width: 480px) {
+            body{padding:15px 10px}
+            .card{padding:15px;border-radius:8px}
+            h1{font-size:1.4em}
+            a.tile{padding:12px}
+        }
+    </style>
 </head>
 <body>
-<main>
-    <header>
-        <h1>Nouvelle Tâche</h1>
-    </header>
-    <article>
-        <h2>Créer une nouvelle tâche</h2>
-        <section class="form-group">
-            <form action="#" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="">
-                <fieldset>
-                    <legend>Personne en charge:</legend>
-                    <label for="assignation">Nom et prénom</label>
-                    <input type="text" id="assignation" name="assignation">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
-                </fieldset>
-                <fieldset>
-                    <legend>Libellé et description:</legend>
-                    <label for="libelle">Description</label>
-                    <input type="text" id="libelle" name="libelle">
-                    <label for="acadamicSubject"></label>
-                    <select id="acadamicSubject" name="acadamicSubject">
-                        <option value="">choisir</option>
-                        <option value="1" data-category="Développement Web" data-description="Structure et style des pages web.">HTML/CSS</option>
-                        <option value="2" data-category="Développement Web" data-description="Langage de programmation côté client.">JavaScript</option>
-                        <option value="3" data-category="Développement Web" data-description="Bibliothèques modernes pour interfaces utilisateur.">Frameworks JavaScript (React, Vue.js)</option>
-                        <option value="4" data-category="Développement Web" data-description="Logique serveur et gestion des données.">Développement Backend (Node.js, PHP)</option>
-                        <option value="5" data-category="Développement Web" data-description="Gestion et requête des données.">Bases de données (SQL, NoSQL)</option>
-                        <option value="7" data-category="Développement Web" data-description="Adaptation aux différents appareils.">Responsive Design et Mobile First</option>
-                        <option value="12" data-category="Développement Web" data-description="Échanges de données entre services.">APIs et Services Web (REST, GraphQL)</option>
-                        <option value="13" data-category="Développement Web" data-description="Qualité du code et déploiement automatisé.">Tests unitaires et intégration continue</option>
-                        <option value="14" data-category="Développement Web" data-description="Protection contre les menaces.">Sécurité web</option>
-                        <option value="15" data-category="Développement Web" data-description="Outils de gestion de contenu et de vente en ligne.">CMS et e-commerce (WordPress, Shopify)</option>
-                        <option value="16" data-category="Développement Web" data-description="Mise en ligne et maintenance du site.">Hébergement et déploiement</option>
+    <div class="card">
+        <h1>To-Do List — Index</h1>
+        <p class="lead">Navigation vers les pages de travail et les versions par étape (2A / 3B / 3C / 3D).</p>
 
-                        <option value="6" data-category="UX/Design" data-description="Expérience utilisateur et conception d'interfaces.">UX/UI Design</option>
-                        <option value="24" data-category="UX/Design" data-description="Logiciels de création visuelle.">Design graphique et logiciels (Photoshop, Illustrator)</option>
-                        <option value="25" data-category="UX/Design" data-description="Création de l'image de marque.">Identité visuelle et branding</option>
-                        <option value="26" data-category="UX/Design" data-description="Principes fondamentaux du visuel.">Théorie des couleurs et typographie</option>
-                        <option value="27" data-category="UX/Design" data-description="Éléments graphiques et illustrations.">Création d'icônes et illustrations</option>
-                        <option value="28" data-category="UX/Design" data-description="Mouvement et effets visuels.">Animation et motion design (After Effects)</option>
-                        <option value="29" data-category="UX/Design" data-description="Maquettes interactives et conception.">Prototypage et maquettage (Figma, Sketch)</option>
-                        <option value="30" data-category="UX/Design" data-description="Optimisation des images pour le web.">Photographie web et retouche d'images</option>
+        <div class="grid">
+            <a class="tile" href="Html/Home.html">Accueil (Html/Home.html)</a>
+            <a class="tile" href="Html/Form-ToDoList.html">Formulaire (Html/Form-ToDoList.html) — version JS (outil)</a>
+            <a class="tile" href="Html/TasksSummary.html">Récapitulatif (Html/TasksSummary.html)</a>
 
-                        <option value="8" data-category="Gestion/Transverse" data-description="Méthodes de travail collaboratives.">Gestion de projet web (Agile, Scrum)</option>
-                        <option value="9" data-category="Gestion/Transverse" data-description="Suivi des modifications de code.">Versioning (Git, GitHub)</option>
-                        <option value="10" data-category="Gestion/Transverse" data-description="Règles pour un web inclusif.">Accessibilité web (WCAG)</option>
-                        <option value="17" data-category="Gestion/Transverse" data-description="Suivi des nouveautés technologiques.">Veille technologique</option>
-                        <option value="18" data-category="Gestion/Transverse" data-description="Législation et protection des données.">Droit du numérique et RGPD</option>
-                        <option value="19" data-category="Gestion/Transverse" data-description="Interactions en milieu professionnel.">Communication professionnelle</option>
-                        <option value="20" data-category="Gestion/Transverse" data-description="Vocabulaire spécifique au domaine.">Anglais technique</option>
-                        <option value="21" data-category="Gestion/Transverse" data-description="Projet pédagogique encadré.">Projet tuteuré</option>
-                        <option value="22" data-category="Gestion/Transverse" data-description="Expérience professionnelle en entreprise.">Stage en entreprise</option>
-                        <option value="23" data-category="Gestion/Transverse" data-description="Document de synthèse d'expérience.">Mémoire professionnel</option>
+            <a class="tile" href="Etapes/2A_Formulaire_HTML_CSS/Form-ToDoList-2A.html">Étape 2A — Formulaire (HTML/CSS seulement)</a>
+            <a class="tile" href="Etapes/3B_Enregistrement_localStorage/Form-ToDoList-3B.html">Étape 3B — Formulaire + Enregistrement (localStorage)</a>
+            <a class="tile" href="Etapes/3C_Affichage_Taches/TasksSummary-3C.html">Étape 3C — Affichage des tâches (récapitulatif)</a>
+            <a class="tile" href="Etapes/3D_Mise_a_jour_Archivage/TasksSummary-3D.html">Étape 3D — Mise à jour / Archivage</a>
+        </div>
 
-                        <option value="11" data-category="Marketing Digital" data-description="Optimisation pour les moteurs de recherche.">SEO et Référencement</option>
-                        <option value="31" data-category="Marketing Digital" data-description="Planification des actions en ligne.">Marketing digital et stratégie web</option>
-                        <option value="32" data-category="Marketing Digital" data-description="Gestion de la présence sur les plateformes sociales.">Réseaux sociaux et community management</option>
-                        <option value="33" data-category="Marketing Digital" data-description="Création de contenu pertinent.">Content marketing et rédaction web</option>
-                        <option value="34" data-category="Marketing Digital" data-description="Campagnes par e-mail et automatisation.">E-mail marketing et automation</option>
-                        <option value="35" data-category="Marketing Digital" data-description="Campagnes payantes en ligne.">Publicité en ligne (Google Ads, Facebook Ads)</option>
-                        <option value="36" data-category="Marketing Digital" data-description="Mesure de l'audience et des performances.">Analytics et mesure de performance (Google Analytics)</option>
-                        <option value="37" data-category="Marketing Digital" data-description="Optimisation des chemins de conversion UX.">Conversion et optimisation UX</option>
-                        <option value="38" data-category="Marketing Digital" data-description="Partenariats avec des influenceurs.">Influence marketing et partenariats</option>
-                        <option value="39" data-category="Marketing Digital" data-description="Techniques d'acquisition et de croissance rapide.">Growth hacking et acquisition client</option>
-                        <option value="40" data-category="Marketing Digital" data-description="Promotion et gestion de la réputation en ligne.">Webmarketing et e-reputation</option>
-                    </select>
-                    <label for="skillsLevel">Niveau de Compétence :</label>
-                    <select id="skillsLevel" name="skillsLevel">
-                        <option value="1" data-description="Découverte des concepts de base" data-experience="0-6 mois">débutant</option>
-                        <option value="2" data-description="Compréhension des fondamentaux" data-experience="6 mois - 1 an">initié</option>
-                        <option value="3" data-description="Application pratique autonome" data-experience="1-2 ans">intermédiaire</option>
-                        <option value="4" data-description="Maîtrise des techniques avancées" data-experience="2-3 ans">confirmé</option>
-                        <option value="5" data-description="Expertise technique approfondie" data-experience="3-5 ans">avancé</option>
-                        <option value="6" data-description="Maîtrise complète et innovation" data-experience="5+ ans">expert</option>
-                        <option value="7" data-description="Leadership technique et mentorat" data-experience="7+ ans">expert confirmé</option>
-                        <option value="8" data-description="Référence dans le domaine" data-experience="10+ ans">maître</option>
-                    </select>
-                    <label for="difficultyRating">Difficulté Estimée :</label>
-                    <select id="difficultyRating" name="difficultyRating">
-                        <option value="1" data-note="Niveau débutant - concepts de base">facile</option>
-                        <option value="2" data-note="Niveau intermédiaire - pratique régulière">moyen</option>
-                        <option value="3" data-note="Niveau avancé - expertise technique">difficile</option>
-                        <option value="4" data-note="Niveau expert - maîtrise complète">très difficile</option>
-                    </select>
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" rows="5"></textarea>
-                    <label for="taskProgression">Progression de la Tâche :</label>
-                    <select id="taskProgression" name="taskProgression">
-                        <option value="1">Nouvelle tâche</option>
-                        <option value="2">conception</option>
-                        <option value="3">en cours</option>
-                        <option value="4">bloqué</option>
-                        <option value="5">en attente de validation</option>
-                        <option value="6">Terminé</option>
-                        <option value="7">Archivé</option>
-                    </select>
-                </fieldset>
-                <fieldset>
-                    <legend>Planification et échéance:</legend>
-                    <label for="priorityStatus">Statut de Priorité :</label>
-                    <select id="priorityStatus" name="priorityStatus">
-                        <option value="1">Important</option>
-                        <option value="2">Haut</option>
-                        <option value="3">Moyen</option>
-                        <option value="4">Bas</option>
-                        <option value="5">Non important</option>
-                    </select>
-                    <label for="date_de_completion">Date échéance</label>
-                    <input type="date" id="date_de_completion" name="date_de_completion">
-                    <label for="timer"></label>
-                    <input type="number" id="timer" name="timer">
-                </fieldset>
-                <fieldset class="documentation-group">
-                    <legend>Documentation et Fichiers</legend>
-
-                    <div class="form-group file-upload-group">
-                        <label for="fichiers_joints">📥 Déposer des Fichiers Joints</label>
-                        <input type="file" id="fichiers_joints" name="fichiers_joints[]" multiple>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="docFileUrl">Liens de documentation (URL)</label>
-                        <div class="file-list" id="doc-list">
-                            <input id="docFileUrl" type="url" name="documentation[]" placeholder="https://exemple.com/doc1">
-                        </div>
-                        <button type="button" class="btn-add" onclick="ajouterDoc()">+ Ajouter un lien</button>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Sous-Tâches Associées (to_do_list_associee)</legend>
-                    <div class="subtask-group">
-                        <h3>To Do A (Préparation/Structure)</h3>
-                        <div class="subtask-list" id="todo-a-list">
-                            <div class="subtask-item">
-                                <label for="subTaskA"></label>
-                                <input id="subTaskA" type="text" name="subTaskA[]" placeholder="SubTask (Ex: Structure HTML)">
-                                <label>
-                                    <textarea  name="commentaireA[]" placeholder="Commentaire (Ex: Créer la structure sémantique)"></textarea>
-                                </label>
-                            </div>
-                            <button type="button" class="btn-add" onclick="ajouterToDoA()">+ Ajouter ToDo A</button>
-                        </div>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Validation de la tâche:</legend>
-                    <div class="btn-group">
-                        <input type="reset" value="Réinitialiser">
-                        <input type="submit" value="Créer la tâche">
-                    </div>
-                </fieldset>
-            </form>
-        </section>
-    </article>
-</main>
-
+        <footer>
+            <div>Fichiers originaux : <a href="Html/Form-ToDoList.html">Html/Form-ToDoList.html</a> — <a href="Html/TasksSummary.html">Html/TasksSummary.html</a></div>
+            <div style="margin-top:8px">Documentation et reviews dans le dossier <strong>Etapes/</strong></div>
+        </footer>
+    </div>
 </body>
 </html>
+                        

@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cffeea33-b9a7-45de-9728-bf5bb44ba32f" name="Changes" comment="refactor du fichier json séparation des preoccupations de chaque fichier.">
-      <change afterPath="$PROJECT_DIR$/Data/difficultyRating.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/priorityStatus.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/subTask.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/subTaskDataPattern.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/taskDataPattern.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/taskProgression.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JS/utilities/idGenerator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Style/baseStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Style/formStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Form-ToDoList.html" beforeDir="false" afterPath="$PROJECT_DIR$/Html/Form-ToDoList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/step1E.html" beforeDir="false" afterPath="$PROJECT_DIR$/Html/step1E.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/subTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/subTask.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Html/Form-ToDoList.html" beforeDir="false" afterPath="$PROJECT_DIR$/Html/Form-ToDoList.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +89,7 @@
       <workItem from="1764862718905" duration="6283000" />
       <workItem from="1764947044835" duration="8302000" />
       <workItem from="1765224108469" duration="4033000" />
-      <workItem from="1765263966896" duration="1965000" />
+      <workItem from="1765263966896" duration="2368000" />
     </task>
     <task id="LOCAL-00001" summary="Application style css structure grid.&#10;Affiner style, agencement et alignement du formulaire.">
       <option name="closed" value="true" />
