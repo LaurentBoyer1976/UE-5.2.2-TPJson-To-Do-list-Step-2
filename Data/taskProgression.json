@@ -1,0 +1,32 @@
+{
+  "taskProgression": [
+    {
+      "idTaskProgression": "1",
+      "taskProgressionStatus": "Nouvelle tâche"
+    },
+    {
+      "idTaskProgression": "2",
+      "taskProgressionStatus": "conception"
+    },
+    {
+      "idTaskProgression": "3",
+      "taskProgressionStatus": "en cours"
+    },
+    {
+      "idTaskProgression": "4",
+      "taskProgressionStatus": "bloqué"
+    },
+    {
+      "idTaskProgression": "5",
+      "taskProgressionStatus": "en attente de validation"
+    },
+    {
+      "idTaskProgression": "6",
+      "taskProgressionStatus": "Terminé"
+    },
+    {
+      "idTaskProgression": "7",
+      "taskProgressionStatus": "Archivé"
+    }
+  ]
+}

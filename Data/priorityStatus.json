@@ -1,0 +1,10 @@
+{
+  "priorityStatus": [
+    { "idPriorite": 1, "priorite": "Important" },
+    { "idPriorite": 2, "priorite": "Haut" },
+    { "idPriorite": 3, "priorite": "Moyen" },
+    { "idPriorite": 4, "priorite": "Bas" },
+    { "idPriorite": 5, "priorite": "Non important" }
+  ]
+}
+

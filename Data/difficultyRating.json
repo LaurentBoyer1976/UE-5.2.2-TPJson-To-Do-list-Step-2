@@ -1,0 +1,40 @@
+{
+  "difficultyRatings": [
+    {
+      "idDifficultyRating": "1",
+      "estimatedDifficulty": "facile",
+      "note": "Niveau débutant - concepts de base",
+      "skillsLevelIds": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "idDifficultyRating": "2",
+      "estimatedDifficulty": "moyen",
+      "note": "Niveau intermédiaire - pratique régulière",
+      "skillsLevelIds": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "idDifficultyRating": "3",
+      "estimatedDifficulty": "difficile",
+      "note": "Niveau avancé - expertise technique",
+      "skillsLevelIds": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "idDifficultyRating": "4",
+      "estimatedDifficulty": "très difficile",
+      "note": "Niveau expert - maîtrise complète",
+      "skillsLevelIds": [
+        "7",
+        "8"
+      ]
+    }
+  ]
+}
