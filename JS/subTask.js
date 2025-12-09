@@ -17,7 +17,7 @@ const subTask = () => {
                                     <textarea  name="commentaireA[]" placeholder="Commentaire (Ex: Créer la structure sémantique)"></textarea>
                                 </label>
                             </div>
-                            <button type="button" class="btn-add" onclick="ajouterToDo()">+ Ajouter sous-tâche</button>
+                            <button type="button" class="btn-add" onclick="addSubTask()">+ Ajouter sous-tâche</button>
                         </div>
                     </div>
                </fieldset>

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "taskId": {
+    "type": "integer",
+    "description": "identifiant de la tâche principale"
+  },
+  "subTaskId":{
+    "type": "string",
+    "description": "identifiant de la sous-tâches."
+  },
+  "id": {
+    "type": "integer",
+    "description": "Identifiant complet de la sous-tâche, créé par la concaténation des IDs de la tâche principale et de la sous-tâche. Format suggéré : '{taskId}-{subtaskId}'. Exemple : '123-124'."
+  },
+  "subTaskLibelle":{
+    "type": "string",
+    "description": "titre de la sous tâche"
+  },
+  "subTaskDescription": {
+    "type": "string",
+    "description": "description de la sous-tâche"
+  }
+}

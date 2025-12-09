@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Task",
+  "description": "Schéma de validation pour un objet de tâche unique.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Identifiant unique de la tâche."
+    },
+    "libelle": {
+      "type": "string",
+      "description": "Titre ou nom court de la tâche."
+    },
+    "date_de_creation": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date de création au format ISO 8601 (UTC)."
+    },
+    "date_de_modification": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date de la dernière modification."
+    },
+    "date_de_completion": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Date de complétion ou null si non terminée."
+    },
+    "compteur_de_temps_passe(mn)": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Temps passé sur la tâche en minutes."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description détaillée de la tâche."
+    },
+    "assignation": {
+      "type": "string",
+      "description": "Nom de la personne assignée."
+    },
+    "documentation": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "url"
+      },
+      "description": "Liste des URLs de documentation (doivent être des URLs valides)."
+    },
+    "fichiers_joints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Liste des noms de fichiers joints."
+    },
+    "idPriorite": {
+      "type": "string",
+      "description": "ID de priorité, référencé dans priorityStatus.json.",
+      "pattern": "^[1-5]$"
+    },
+    "idTaskProgression": {
+      "type": "string",
+      "description": "ID du statut de progression.",
+      "pattern": "^[1-7]$"
+    },
+    "idAcademicSubject": {
+      "type": "string",
+      "description": "ID du sujet académique."
+    },
+    "idSkillsLevel": {
+      "type": "string",
+      "description": "ID du niveau de compétence requis."
+    },
+    "idDifficultyRating": {
+      "type": "string",
+      "description": "ID de la difficulté estimée."
+    },
+    "subTask_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "ID de sous-tâche, ex: A1, B3."
+      },
+      "description": "Liste des IDs de sous-tâches associées."
+    }
+  },
+  "required": [
+    "id",
+    "libelle",
+    "date_de_creation",
+    "description",
+    "assignation",
+    "idPriorite",
+    "idTaskProgression",
+    "idAcademicSubject",
+    "idSkillsLevel",
+    "idDifficultyRating"
+  ],
+  "additionalProperties": false
+}

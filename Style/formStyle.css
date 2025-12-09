@@ -1,0 +1,104 @@
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+
+/* Boutons Radio */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+
+
+/* Encart de dépôt de fichier (PDF) */
+.file-upload-group {
+    border: 2px dashed #6ba368;
+    background-color: #f9fff9;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.file-upload-group label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #2d5016;
+}
+
+.file-upload-group input[type="file"] {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border: 1px solid #4a7c59;
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Boutons de formulaire */
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+
+.btn-add {
+    padding: 8px 15px;
+    background: #4a7c59;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    align-self: flex-start;
+    transition: background 0.3s;
+}
+
+.btn-add:hover {
+    background: #2d5016;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    fieldset {
+        grid-template-columns: 1fr;
+    }
+    .btn-group {
+        flex-direction: column;
+    }
+}

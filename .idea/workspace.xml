@@ -4,13 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cffeea33-b9a7-45de-9728-bf5bb44ba32f" name="Changes" comment="Ajout des fichiers JS, constructor-factory-api-Json">
-      <change afterPath="$PROJECT_DIR$/Data/academic_subjects.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/skills_evaluation.json" afterDir="false" />
+    <list default="true" id="cffeea33-b9a7-45de-9728-bf5bb44ba32f" name="Changes" comment="refactor du fichier json séparation des preoccupations de chaque fichier.">
+      <change afterPath="$PROJECT_DIR$/Data/difficultyRating.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/priorityStatus.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/subTask.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/subTaskDataPattern.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/taskDataPattern.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/taskProgression.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JS/utilities/idGenerator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Style/baseStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Style/formStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/step1D.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/tasksData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Patterns/factories/selectProgressionFactory.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Patterns/factories/selectProgressionFactory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Form-ToDoList.html" beforeDir="false" afterPath="$PROJECT_DIR$/Html/Form-ToDoList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/step1E.html" beforeDir="false" afterPath="$PROJECT_DIR$/Html/step1E.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/subTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/subTask.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,27 +55,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Laurent/Formation_dev/LPDWCA/UE 5.2 Dev Front-end fondamentaux de la programmation/UE 5.2.2 Langages JS API et initiation Framework JS/UE 5.2.2 TPJson To Do list Step 2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "AtomSelectConfig",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Laurent/Formation_dev/LPDWCA/UE 5.2 Dev Front-end fondamentaux de la programmation/UE 5.2.2 Langages JS API et initiation Framework JS/UE 5.2.2 TPJson To Do list Step 2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AtomSelectConfig&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Laurent\Formation_dev\LPDWCA\UE 5.2 Dev Front-end fondamentaux de la programmation\UE 5.2.2 Langages JS API et initiation Framework JS\UE 5.2.2 TPJson To Do list Step 2\Html" />
       <recent name="C:\Users\Laurent\Formation_dev\LPDWCA\UE 5.2 Dev Front-end fondamentaux de la programmation\UE 5.2.2 Langages JS API et initiation Framework JS\UE 5.2.2 TPJson To Do list Step 2\Data" />
       <recent name="C:\Users\Laurent\Formation_dev\LPDWCA\UE 5.2 Dev Front-end fondamentaux de la programmation\UE 5.2.2 Langages JS API et initiation Framework JS\UE 5.2.2 TPJson To Do list Step 2\JS\Patterns\factories" />
       <recent name="C:\Users\Laurent\Formation_dev\LPDWCA\UE 5.2 Dev Front-end fondamentaux de la programmation\UE 5.2.2 Langages JS API et initiation Framework JS\UE 5.2.2 TPJson To Do list Step 2\JS" />
@@ -76,7 +87,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-WS-252.28238.10" />
+        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-WS-253.28294.332" />
       </set>
     </attachedChunks>
   </component>
@@ -89,7 +100,9 @@
       <updated>1764619572803</updated>
       <workItem from="1764619573962" duration="9613000" />
       <workItem from="1764862718905" duration="6283000" />
-      <workItem from="1764947044835" duration="4493000" />
+      <workItem from="1764947044835" duration="8302000" />
+      <workItem from="1765224108469" duration="4033000" />
+      <workItem from="1765263966896" duration="1965000" />
     </task>
     <task id="LOCAL-00001" summary="Application style css structure grid.&#10;Affiner style, agencement et alignement du formulaire.">
       <option name="closed" value="true" />
@@ -115,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764947135930</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor du fichier json séparation des preoccupations de chaque fichier.">
+      <option name="closed" value="true" />
+      <created>1764952700438</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764952700438</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,7 +156,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Application style css structure grid.&#10;Affiner style, agencement et alignement du formulaire." />
     <MESSAGE value="Ajout des fichiers JS, constructor-factory-api-Json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout des fichiers JS, constructor-factory-api-Json" />
+    <MESSAGE value="refactor du fichier json séparation des preoccupations de chaque fichier." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor du fichier json séparation des preoccupations de chaque fichier." />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

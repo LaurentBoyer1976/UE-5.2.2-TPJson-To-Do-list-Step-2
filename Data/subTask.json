@@ -1,0 +1,34 @@
+{
+  "subtasks": [
+    {
+      "id": "A1",
+      "libelle": "Structure HTML",
+      "description": "Créer la structure sémantique de la page web."
+    },
+    {
+      "id": "B1",
+      "libelle": "Styles CSS",
+      "description": "Appliquer les styles responsive en utilisant Flexbox et Grid."
+    },
+    {
+      "id": "A2",
+      "libelle": "Event Listeners",
+      "description": "Ajouter les gestionnaires d'événements JavaScript nécessaires."
+    },
+    {
+      "id": "B2",
+      "libelle": "Manipulation DOM",
+      "description": "Modifier dynamiquement les éléments via JavaScript."
+    },
+    {
+      "id": "A3",
+      "libelle": "Variables Sass",
+      "description": "Lister et comprendre la syntaxe des variables Sass, y compris leur portée."
+    },
+    {
+      "id": "B3",
+      "libelle": "Mixins Sass",
+      "description": "Syntaxe et objectifs des mixins, avec un exemple d'utilisation."
+    }
+  ]
+}
