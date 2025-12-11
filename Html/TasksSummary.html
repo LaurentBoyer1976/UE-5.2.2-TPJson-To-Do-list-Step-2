@@ -396,11 +396,11 @@ body {
                 
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="8" class="no-tasks">
-                            <div class="no-tasks-icon">📋</div>
+                        <td colspan="11" class="empty-state">
+                            <div class="empty-state__icon">📋</div>
                             <h2>${message}</h2>
                             <p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>
-                            ${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn">Créer une tâche</a>' : ''}
+                            ${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn-primary">Créer une tâche</a>' : ''}
                         </td>
                     </tr>
                 `;
@@ -467,7 +467,7 @@ body {
                     
                     statusButtons += `
                         <button 
-                            class="status-btn ${activeClass}" 
+                            class="btn-icon ${activeClass}" 
                             data-task-id="${task.id}" 
                             data-status-id="${status.idTaskProgression}"
                             onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')"
@@ -490,7 +490,7 @@ body {
                 htmlContent += `
                     <tr data-task-id="${task.id}">
                         <td><strong>${task.libelle}</strong></td>
-                        <td class="description-cell">${task.description || 'Aucune description'}</td>
+                        <td class="cell-description">${task.description || 'Aucune description'}</td>
                         <td>${task.assignation}</td>
                         <td>${subjectLabel}</td>
                         <td>
@@ -516,7 +516,7 @@ body {
                         <td>${task["compteur_de_temps_passe(mn)"] || 0} min</td>
                         <td>${dateFormatted}</td>
                         <td>
-                            <div class="status-buttons">
+                            <div class="actions-group">
                                 ${statusButtons}
                             </div>
                         </td>
@@ -572,7 +572,7 @@ body {
                     <tr>
                         <td><strong>${taskLibelle}</strong></td>
                         <td>${subtask.subTaskLibelle}</td>
-                        <td class="description-cell">${subtask.subTaskDescription || 'Aucune description'}</td>
+                        <td class="cell-description">${subtask.subTaskDescription || 'Aucune description'}</td>
                     </tr>
                 `;
             });
@@ -580,8 +580,8 @@ body {
             if (subtasksCount === 0) {
                 subtasksHtml = `
                     <tr>
-                        <td colspan="3" class="no-tasks">
-                            <div class="no-tasks-icon">📝</div>
+                        <td colspan="3" class="empty-state">
+                            <div class="empty-state__icon">📝</div>
                             <p>Aucune sous-tâche enregistrée</p>
                         </td>
                     </tr>
@@ -684,7 +684,7 @@ body {
             `;
             
             // Mettre à jour les boutons d'action
-            const actionsCell = row.cells[7]; // Colonne "Actions"
+            const actionsCell = row.cells[10]; // Colonne "Actions"
             let statusButtons = '';
             
             taskProgressionList.forEach(status => {
@@ -694,7 +694,7 @@ body {
                 
                 statusButtons += `
                     <button 
-                        class="status-btn ${activeClass}" 
+                        class="btn-icon ${activeClass}" 
                         data-task-id="${task.id}" 
                         data-status-id="${status.idTaskProgression}"
                         onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')"
@@ -705,7 +705,7 @@ body {
                 `;
             });
             
-            actionsCell.innerHTML = `<div class="status-buttons">${statusButtons}</div>`;
+            actionsCell.innerHTML = `<div class="actions-group">${statusButtons}</div>`;
             
             console.log("✅ Ligne mise à jour");
         }
@@ -721,7 +721,7 @@ body {
             currentFilter = filter;
             
             // Mettre à jour l'apparence des boutons de filtre
-            document.querySelectorAll('.filter-btn').forEach(btn => {
+            document.querySelectorAll('.btn-filter').forEach(btn => {
                 btn.classList.remove('active');
             });
             
@@ -741,7 +741,7 @@ body {
         
                 <nav class="toolbar">
                     <div class="toolbar__counter" id="taskCount">0 tâche(s) enregistrée(s)</div>
-                    <div class="filter-buttons">
+                    <div class="toolbar__filters">
                         <button class="btn-filter active" onclick="filterTasks('all')">Toutes</button>
                         <button class="btn-filter" onclick="filterTasks('6')">Terminées</button>
                         <button class="btn-filter" onclick="filterTasks('7')">Archivées</button>
