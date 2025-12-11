@@ -6,7 +6,7 @@
     <title>Récapitulatif des Tâches - To-Do List</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
-    <style>
+      <style>
        /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -24,7 +24,7 @@
         /* --- LAYOUT --- */
         .app-container {
             width: 100%;
-            max-width: 1600px;
+            max-width: 1600px; /* Largeur standardisée */
             margin: 0 auto;
             background: white;
             border-radius: 12px;
@@ -113,6 +113,16 @@
             transform: translateY(-2px);
         }
 
+        .link-back {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #4a7c59;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .link-back:hover { color: #2d5016; text-decoration: underline; }
+
         /* --- TABLEAU --- */
         .subtasks-section {
             margin-top: 40px;
@@ -184,6 +194,38 @@
         .skills-4 { background-color: #c0392b; color: white; }
         .difficulty-2 { background-color: #1abc9c; color: white; }
         .difficulty-5 { background-color: #8e44ad; color: white; }
+
+        /* --- ACTIONS (Icônes) --- */
+        .actions-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .btn-icon {
+            padding: 5px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            background-color: white;
+            transition: all 0.2s;
+        }
+
+        .btn-icon:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .btn-icon:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Couleurs boutons actifs */
+        .btn-icon.active-1 { background-color: #3498db; color: white; border-color: #3498db; }
+        .btn-icon.active-2, .btn-icon.active-3 { background-color: #f39c12; color: white; border-color: #f39c12; }
+        .btn-icon.active-4 { background-color: #e74c3c; color: white; border-color: #e74c3c; }
+        .btn-icon.active-5 { background-color: #9b59b6; color: white; border-color: #9b59b6; }
+        .btn-icon.active-6 { background-color: #27ae60; color: white; border-color: #27ae60; }
+        .btn-icon.active-7 { background-color: #95a5a6; color: white; border-color: #95a5a6; }
 
         /* --- EMPTY STATE --- */
         .empty-state {
@@ -280,7 +322,7 @@
             generateTasksTable();
         }
         
-       function generateTasksTable(filter = 'all') {
+function generateTasksTable(filter = 'all') {
             const tbody = document.getElementById('tasksTableBody');
             const taskCount = document.getElementById('taskCount');
             
@@ -297,8 +339,8 @@
             
             if (filteredTasks.length === 0) {
                 const message = filter === 'all' ? 'Aucune tâche active' : filter === '6' ? 'Aucune tâche terminée' : 'Aucune tâche archivée';
-                // CORRECTION : colspan passe à 13 (Titre à Actions = 13 colonnes)
-                tbody.innerHTML = `<tr><td colspan="13" class="empty-state"><div class="empty-state__icon">📋</div><h2>${message}</h2><p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn-primary">Créer une tâche</a>' : ''}</td></tr>`;
+                // CORRECTION : colspan passe à 12 (car il n'y a pas la colonne Actions)
+                tbody.innerHTML = `<tr><td colspan="12" class="empty-state"><div class="empty-state__icon">📋</div><h2>${message}</h2><p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn-primary">Créer une tâche</a>' : ''}</td></tr>`;
                 return;
             }
             
@@ -318,16 +360,7 @@
                 let difficultyLabel = difficulty ? difficulty.difficultyRating : 'N/A';
                 
                 
-                // --- 1. GESTION DES BOUTONS D'ACTIONS (DÉPLACÉ AU DÉBUT) ---
-                let statusButtons = '';
-                taskProgressionList.forEach(status => {
-                    const isActive = status.idTaskProgression == task.idTaskProgression;
-                    const activeClass = isActive ? `active-${status.idTaskProgression}` : '';
-                    const disabled = isActive ? 'disabled' : '';
-                    statusButtons += `<button class="btn-icon ${activeClass}" data-task-id="${task.id}" data-status-id="${status.idTaskProgression}" onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')" ${disabled} title="${status.taskProgressionStatus}">${getStatusIcon(status.idTaskProgression)}</button>`;
-                });
-                
-                // --- 2. GESTION DES LIENS (Utilisation de classes CSS) ---
+                // --- GESTION DES LIENS (Utilisation de classes CSS) ---
                 let linksHtml = '<span class="empty-content">-</span>';
                 if (task.documentation && task.documentation.length > 0) {
                     linksHtml = task.documentation.map(link => 
@@ -335,7 +368,7 @@
                     ).join(''); 
                 }
 
-                // --- 3. GESTION DES FICHIERS (Utilisation de classes CSS) ---
+                // --- GESTION DES FICHIERS (Utilisation de classes CSS) ---
                 let filesHtml = '<span class="empty-content">-</span>';
                 if (task.fichiers_joints && task.fichiers_joints.length > 0) {
                     filesHtml = task.fichiers_joints.map(file => 
@@ -343,7 +376,7 @@
                     ).join('');
                 }
 
-                // --- 4. GÉNÉRATION HTML (Une seule fois) ---
+                // --- GÉNÉRATION HTML CORRIGÉE (12 colonnes) ---
                 htmlContent += `
                     <tr data-task-id="${task.id}">
                         <td><strong>${task.libelle}</strong></td>
@@ -355,11 +388,12 @@
                         <td><span class="badge priority-${task.idPriorite}">${priorityLabel}</span></td>
                         <td><span class="badge status-${task.idTaskProgression}">${progressLabel}</span></td>
                         <td>${task["compteur_de_temps_passe(mn)"] || 0} min</td>                        
-                        <td class="cell-small">${linksHtml}</td>
-                        <td class="cell-small">${filesHtml}</td>                        
+                        
+                        <td ><div class="actions-group">${linksHtml}</div></td> 
+                        <td ><div class="actions-group">${filesHtml}</div></td>
+                        
                         <td>${dateFormatted}</td>
-                        <td><div class="actions-group">${statusButtons}</div></td>
-                    </tr>
+                        </tr>
                 `;
             });
             

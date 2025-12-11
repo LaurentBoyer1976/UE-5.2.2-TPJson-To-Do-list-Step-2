@@ -467,6 +467,16 @@
             }
         });
         
+           const fileInput = document.getElementById('document_pdf');
+        let fichiers_joints = [];
+        
+        if (fileInput.files.length > 0) {
+            for (let i = 0; i < fileInput.files.length; i++) {
+                // On récupère le nom du fichier depuis l'objet File (FileList)
+                fichiers_joints.push(fileInput.files[i].name);
+            }
+        }
+
         let tasksList = [];
         let existingTasks = localStorage.getItem("tasksData");
         if (existingTasks) tasksList = JSON.parse(existingTasks);
@@ -497,7 +507,7 @@
             description: description,
             assignation: assignation,
             documentation: documentation,
-            fichiers_joints: [],
+            fichiers_joints: fichiers_joints,
             idPriorite: idPriorite,
             idTaskProgression: idTaskProgression,
             idAcademicSubject: idAcademicSubject,

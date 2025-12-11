@@ -292,8 +292,8 @@ function generateTasksTable(filter = 'all') {
             
             if (filteredTasks.length === 0) {
                 const message = filter === 'all' ? 'Aucune tâche active' : filter === '6' ? 'Aucune tâche terminée' : 'Aucune tâche archivée';
-                // CORRECTION : colspan passe à 13 (Titre à Actions = 13 colonnes)
-                tbody.innerHTML = `<tr><td colspan="13" class="empty-state"><div class="empty-state__icon">📋</div><h2>${message}</h2><p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn-primary">Créer une tâche</a>' : ''}</td></tr>`;
+                // CORRECTION : colspan passe à 12 (car il n'y a pas la colonne Actions)
+                tbody.innerHTML = `<tr><td colspan="12" class="empty-state"><div class="empty-state__icon">📋</div><h2>${message}</h2><p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn-primary">Créer une tâche</a>' : ''}</td></tr>`;
                 return;
             }
             
@@ -312,8 +312,7 @@ function generateTasksTable(filter = 'all') {
                 let difficulty = difficultyRatingList.find(d => d.idDifficultyRating == task.idDifficultyRating);
                 let difficultyLabel = difficulty ? difficulty.difficultyRating : 'N/A';
                 
-                
-                // --- 1. GESTION DES BOUTONS D'ACTIONS (DÉPLACÉ AU DÉBUT) ---
+                // --- 1. GESTION DES BOUTONS D'ACTIONS (PLACÉ ICI EN PREMIER) ---
                 let statusButtons = '';
                 taskProgressionList.forEach(status => {
                     const isActive = status.idTaskProgression == task.idTaskProgression;
@@ -322,7 +321,7 @@ function generateTasksTable(filter = 'all') {
                     statusButtons += `<button class="btn-icon ${activeClass}" data-task-id="${task.id}" data-status-id="${status.idTaskProgression}" onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')" ${disabled} title="${status.taskProgressionStatus}">${getStatusIcon(status.idTaskProgression)}</button>`;
                 });
                 
-                // --- 2. GESTION DES LIENS (Utilisation de classes CSS) ---
+                // --- GESTION DES LIENS (Utilisation de classes CSS) ---
                 let linksHtml = '<span class="empty-content">-</span>';
                 if (task.documentation && task.documentation.length > 0) {
                     linksHtml = task.documentation.map(link => 
@@ -330,7 +329,7 @@ function generateTasksTable(filter = 'all') {
                     ).join(''); 
                 }
 
-                // --- 3. GESTION DES FICHIERS (Utilisation de classes CSS) ---
+                // --- GESTION DES FICHIERS (Utilisation de classes CSS) ---
                 let filesHtml = '<span class="empty-content">-</span>';
                 if (task.fichiers_joints && task.fichiers_joints.length > 0) {
                     filesHtml = task.fichiers_joints.map(file => 
@@ -338,7 +337,7 @@ function generateTasksTable(filter = 'all') {
                     ).join('');
                 }
 
-                // --- 4. GÉNÉRATION HTML (Une seule fois) ---
+                // --- GÉNÉRATION HTML CORRIGÉE (12 colonnes) ---
                 htmlContent += `
                     <tr data-task-id="${task.id}">
                         <td><strong>${task.libelle}</strong></td>
@@ -350,11 +349,13 @@ function generateTasksTable(filter = 'all') {
                         <td><span class="badge priority-${task.idPriorite}">${priorityLabel}</span></td>
                         <td><span class="badge status-${task.idTaskProgression}">${progressLabel}</span></td>
                         <td>${task["compteur_de_temps_passe(mn)"] || 0} min</td>                        
-                        <td class="cell-small">${linksHtml}</td>
-                        <td class="cell-small">${filesHtml}</td>                        
+                        
+                        <td><div class="actions-group">${linksHtml}</div></td> 
+                        <td><div class="actions-group">${filesHtml}</div></td>
+                        
                         <td>${dateFormatted}</td>
                         <td><div class="actions-group">${statusButtons}</div></td>
-                    </tr>
+                        </tr>
                 `;
             });
             
