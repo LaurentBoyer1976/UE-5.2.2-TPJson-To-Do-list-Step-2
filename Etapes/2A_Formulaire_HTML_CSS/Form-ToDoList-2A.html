@@ -7,12 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* CSS IDENTIQUE (Compact & Robuste) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Lato', sans-serif;
             background: linear-gradient(145deg, #e7f7e7 0%, #d5e9d5 40%, #b8d4b8 100%);
@@ -20,309 +16,82 @@
             padding: 20px;
             color: #333;
         }
-
         .container {
             max-width: 900px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            padding: 30px;
         }
-
         h1 {
             font-family: 'Playfair Display', serif;
             color: #2d5016;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-size: 2.2em;
         }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
+        form { display: flex; flex-direction: column; gap: 15px; }
         fieldset {
             border: 1px solid #6ba368;
             border-radius: 8px;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            padding: 15px;
         }
-
+        .fieldset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px;
+        }
         legend {
             font-family: 'Playfair Display', serif;
             color: #4a7c59;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: bold;
             padding: 0 10px;
             margin-left: -10px;
+            margin-bottom: 10px;
         }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        label {
-            font-weight: 700;
-            color: #2d5016;
-            font-size: 0.95em;
-        }
-
-        label .required {
-            color: #c0392b;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="datetime-local"],
-        input[type="number"],
-        input[type="date"],
-        textarea,
-        select {
-            padding: 12px 15px;
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        label { font-weight: 700; color: #2d5016; font-size: 0.9em; }
+        label .required { color: #c0392b; }
+        input[type="text"], input[type="email"], input[type="datetime-local"], input[type="number"], input[type="date"], textarea, select {
+            padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 6px;
-            font-size: 1em;
+            font-size: 0.95em;
             font-family: inherit;
             transition: all 0.3s ease;
+            width: 100%;
         }
-
         input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: #4a7c59;
             box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
         }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* Validation Visuelle Email */
-        input[type="email"]:invalid:not(:placeholder-shown) {
-            border-color: #c0392b;
-            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
-        }
-
-        input[type="email"]:valid:not(:placeholder-shown) {
-            border-color: #4a7c59;
-            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
-        }
-
-        /* Boutons Radio */
-        .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-
-        .radio-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .radio-item label {
-            font-weight: normal;
-            color: #333;
-            cursor: pointer;
-        }
-
-        input[type="radio"] {
-            accent-color: #2d5016;
-        }
-
-        /* Encart de dépôt de fichier (PDF) */
+        textarea { resize: vertical; min-height: 80px; }
+        input[type="email"]:invalid:not(:placeholder-shown) { border-color: #c0392b; }
+        input[type="email"]:valid:not(:placeholder-shown) { border-color: #4a7c59; }
         .file-upload-group {
-            border: 2px dashed #6ba368;
-            background-color: #f9fff9;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
+            border: 2px dashed #6ba368; background-color: #f9fff9; padding: 15px; border-radius: 8px; text-align: center;
         }
-
-        .file-upload-group label {
-            display: block;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            color: #2d5016;
+        .file-upload-group label { margin-bottom: 10px; font-size: 1em; color: #2d5016; }
+        .file-upload-group input[type="file"] { padding: 5px; font-size: 0.9em; }
+        .btn-group { display: flex; gap: 10px; margin-top: 10px; }
+        input[type="submit"], input[type="reset"], .btn {
+            padding: 10px 20px; border: none; border-radius: 8px; font-size: 0.95em; font-weight: 700; cursor: pointer; transition: all 0.3s ease; flex: 1; text-align: center; text-decoration: none;
         }
-        
-        .file-upload-group input[type="file"] {
-            display: block;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 300px;
-            padding: 10px;
-            border: 1px solid #4a7c59;
-            background-color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Boutons de formulaire */
-        .btn-group  {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .btn{
-            padding: 14px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-        }
-
-        input[type="submit"], input[type="reset"] {
-            padding: 14px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-        }
-
-        input[type="submit"] {
-            background-color: #2d5016;
-            color: white;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #1f360e;
-            transform: translateY(-1px);
-        }
-
-        input[type="reset"] {
-            background-color: #e0e0e0;
-            color: #333;
-        }
-
-        input[type="reset"]:hover {
-            background-color: #d0d0d0;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 40px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            text-align: center;
-            color: #555;
-            font-size: 0.9em;
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-
-        footer strong {
-            color: #2d5016;
-        }
-
-        /* Styles pour les sous-tâches */
-        .subtask-item {
-            margin-bottom: 15px;
-            padding: 15px;
-            background: #f9fff9;
-            border: 1px solid #d5e9d5;
-            border-radius: 8px;
-        }
-
-        .subtask-title {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .subtask-desc {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 0.95em;
-            resize: vertical;
-        }
-
-        .subtask-desc:focus {
-            border-color: #2d5016;
-            outline: none;
-        }
-
-        /* Responsive Design */
+        input[type="submit"] { background-color: #2d5016; color: white; }
+        input[type="submit"]:hover { background-color: #1f360e; transform: translateY(-1px); }
+        input[type="reset"] { background-color: #e0e0e0; color: #333; }
+        .btn { background-color: #4a7c59; color: white; }
+        .btn:hover { background-color: #2d5016; }
+        footer { margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-align: center; color: #555; font-size: 0.85em; }
+        .subtask-item { margin-bottom: 10px; padding: 10px; background: #f9fff9; border: 1px solid #d5e9d5; border-radius: 8px; }
+        .info-text { margin-top: 5px; font-size: 0.85em; color: #666; }
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            fieldset {
-                grid-template-columns: 1fr;
-                padding: 15px;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-            }
-            
-            input[type="submit"], 
-            input[type="reset"], 
-            button[type="button"] {
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                padding: 15px;
-                border-radius: 8px;
-            }
-            
-            h1 {
-                font-size: 1.5em;
-            }
-            
-            legend {
-                font-size: 1.05em;
-            }
-            
-            input[type="text"],
-            input[type="email"],
-            textarea,
-            select {
-                font-size: 0.95em;
-                padding: 10px;
-            }
-            
-            .file-upload-group {
-                padding: 15px;
-            }
-        }
-
-        /* Texte d'information */
-        .info-text {
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: #666;
+            .container { padding: 15px; }
+            .btn-group { flex-direction: column; }
+            .fieldset-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -330,20 +99,19 @@
     <div class="container">
         <h1>📋 Nouvelle Tâche</h1>
         
-        
         <form id="taskForm" action="#" method="POST" enctype="multipart/form-data">
             
             <fieldset>
                 <legend>👤 Informations Personnelles</legend>
-                
-                <div class="form-group">
-                    <label for="assignation">Nom et Prénom <span class="required">*</span></label>
-                    <input type="text" id="assignation" name="assignation" required placeholder="Votre nom complet">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+                <div class="fieldset-grid">
+                    <div class="form-group">
+                        <label for="assignation">Nom et Prénom <span class="required">*</span></label>
+                        <input type="text" id="assignation" name="assignation" required placeholder="Votre nom complet">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+                    </div>
                 </div>
             </fieldset>
 
@@ -360,99 +128,103 @@
                     <textarea id="description" name="description" placeholder="Détaillez votre tâche ici..."></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="date_echeance">Date d'échéance</label>
-                    <input type="date" id="date_echeance" name="date_echeance">
-                </div>
+                <div class="fieldset-grid">
+                    <div class="form-group">
+                        <label for="date_echeance">Date d'échéance</label>
+                        <input type="date" id="date_echeance" name="date_echeance">
+                    </div>
 
-                <div class="form-group">
-                    <label for="duree">Durée estimée (en minutes)</label>
-                    <input type="number" id="duree" name="duree" min="0" step="15" value="60">
+                    <div class="form-group">
+                        <label for="duree">Durée estimée (en minutes)</label>
+                        <input type="number" id="duree" name="duree" min="0" step="15" value="60">
+                    </div>
                 </div>
             </fieldset>
 
             <fieldset>
                 <legend>⚙️ Configuration</legend>
+                <div class="fieldset-grid">
+                    <div class="form-group">
+                        <label for="priorityStatus">Priorité <span class="required">*</span></label>
+                        <select id="priorityStatus" name="priorityStatus" required>
+                            <option value="">-- Sélectionnez une priorité --</option>
+                            <option value="1">1 - Important & Urgent</option>
+                            <option value="2">2 - Important mais pas urgent</option>
+                            <option value="3">3 - Moyen</option>
+                            <option value="4">4 - Bas</option>
+                            <option value="5">5 - Non important & Non urgent</option>
+                        </select>
+                    </div>
 
-                <fieldset class="form-group">
-                    <label for="priorityStatus">Priorité <span class="required">*</span></label>
-                    <select id="priorityStatus" name="priorityStatus" required>
-                        <option value="">-- Sélectionnez une priorité --</option>
-                        <option value="1">1 - Important & Urgent</option>
-                        <option value="2">2 - Important mais pas urgent</option>
-                        <option value="3">3 - Moyen</option>
-                        <option value="4">4 - Bas</option>
-                        <option value="5">5 - Non important & Non urgent</option>
-                    </select>
-                </fieldset>
+                    <div class="form-group">
+                        <label for="taskProgression">Statut de la tâche</label>
+                        <select id="taskProgression" name="taskProgression">
+                            <option value="1" selected>1 - Nouvelle tâche</option>
+                            <option value="2">2 - Conception</option>
+                            <option value="3">3 - En cours</option>
+                            <option value="4">4 - Bloqué</option>
+                            <option value="5">5 - En attente de validation</option>
+                            <option value="6">6 - Terminé</option>
+                            <option value="7">7 - Archivé</option>
+                        </select>
+                    </div>
 
-                <fieldset class="form-group">
-                    <label for="taskProgression">Statut de la tâche</label>
-                    <select id="taskProgression" name="taskProgression">
-                        <option value="1" selected>1 - Nouvelle tâche</option>
-                        <option value="2">2 - Conception</option>
-                        <option value="3">3 - En cours</option>
-                        <option value="4">4 - Bloqué</option>
-                        <option value="5">5 - En attente de validation</option>
-                        <option value="6">6 - Terminé</option>
-                        <option value="7">7 - Archivé</option>
-                    </select>
-                </fieldset>
+                    <div class="form-group">
+                        <label for="academicSubject">Sujet Académique</label>
+                        <select id="academicSubject" name="academicSubject">
+                            <option value="">-- Sélectionnez un sujet --</option>
+                            <option value="1">HTML/CSS</option>
+                            <option value="2">JavaScript</option>
+                            <option value="3">Python</option>
+                            <option value="4">PHP</option>
+                            <option value="5">Base de données</option>
+                            <option value="6">Algorithmes</option>
+                            <option value="7">UX/UI Design</option>
+                            <option value="8">Gestion de projet</option>
+                            <option value="9">SEO</option>
+                            <option value="10">Cybersécurité</option>
+                        </select>
+                    </div>
 
-                <fieldset class="form-group">
-                    <label for="academicSubject">Sujet Académique</label>
-                    <select id="academicSubject" name="academicSubject">
-                        <option value="">-- Sélectionnez un sujet --</option>
-                        <option value="1">HTML/CSS</option>
-                        <option value="2">JavaScript</option>
-                        <option value="3">Python</option>
-                        <option value="4">PHP</option>
-                        <option value="5">Base de données</option>
-                        <option value="6">Algorithmes</option>
-                        <option value="7">UX/UI Design</option>
-                        <option value="8">Gestion de projet</option>
-                        <option value="9">SEO</option>
-                        <option value="10">Cybersécurité</option>
-                    </select>
-                </fieldset>
+                    <div class="form-group">
+                        <label for="skillsLevel">Niveau de compétence</label>
+                        <select id="skillsLevel" name="skillsLevel">
+                            <option value="1">1 - Débutant</option>
+                            <option value="2" selected>2 - Intermédiaire</option>
+                            <option value="3">3 - Avancé</option>
+                            <option value="4">4 - Expert</option>
+                        </select>
+                    </div>
 
-                <fieldset class="form-group">
-                    <label for="skillsLevel">Niveau de compétence</label>
-                    <select id="skillsLevel" name="skillsLevel">
-                        <option value="1">1 - Débutant</option>
-                        <option value="2" selected>2 - Intermédiaire</option>
-                        <option value="3">3 - Avancé</option>
-                        <option value="4">4 - Expert</option>
-                    </select>
-                </fieldset>
-
-                <fieldset class="form-group">
-                    <label for="difficultyRating">Difficulté estimée</label>
-                    <select id="difficultyRating" name="difficultyRating">
-                        <option value="1">1 - Facile</option>
-                        <option value="2">2 - Moyen</option>
-                        <option value="3">3 - Difficile</option>
-                        <option value="4">4 - Très difficile</option>
-                    </select>
-                </fieldset>
+                    <div class="form-group">
+                        <label for="difficultyRating">Difficulté estimée</label>
+                        <select id="difficultyRating" name="difficultyRating">
+                            <option value="1">1 - Facile</option>
+                            <option value="2">2 - Moyen</option>
+                            <option value="3">3 - Difficile</option>
+                            <option value="4">4 - Très difficile</option>
+                        </select>
+                    </div>
+                </div>
             </fieldset>
 
             <fieldset>
                 <legend>🔗 Documentation</legend>
-                
-                <div class="form-group">
-                    <label for="doc1">Lien de documentation 1</label>
-                    <input type="url" id="doc1" name="doc1" placeholder="https://exemple.com">
-                </div>
+                <div class="fieldset-grid">
+                    <div class="form-group">
+                        <label for="doc1">Lien de documentation 1</label>
+                        <input type="url" id="doc1" name="doc1" placeholder="https://exemple.com">
+                    </div>
 
-                <div class="form-group">
-                    <label for="doc2">Lien de documentation 2</label>
-                    <input type="url" id="doc2" name="doc2" placeholder="https://exemple.com">
-                </div>
+                    <div class="form-group">
+                        <label for="doc2">Lien de documentation 2</label>
+                        <input type="url" id="doc2" name="doc2" placeholder="https://exemple.com">
+                    </div>
 
-                <div class="form-group">
-                    <label for="doc3">Lien de documentation 3</label>
-                    <input type="url" id="doc3" name="doc3" placeholder="https://exemple.com">
+                    <div class="form-group">
+                        <label for="doc3">Lien de documentation 3</label>
+                        <input type="url" id="doc3" name="doc3" placeholder="https://exemple.com">
+                    </div>
                 </div>
             </fieldset>
 
@@ -479,7 +251,7 @@
             </fieldset>
 
             <fieldset>
-                <legend>�📎 Fichiers Joints</legend>
+                <legend>📎 Fichiers Joints</legend>
                 
                 <div class="file-upload-group">
                     <label for="fichiers">Télécharger des fichiers (PDF, images, documents)</label>

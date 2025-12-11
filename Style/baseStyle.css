@@ -48,7 +48,7 @@ legend {
 }
 input[type="text"],
 input[type="email"],
-input[type="datetime-local"],
+input[type="datetime"],
 input[type="number"],
 textarea,
 select {

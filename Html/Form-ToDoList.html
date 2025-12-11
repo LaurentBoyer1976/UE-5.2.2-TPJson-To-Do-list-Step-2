@@ -7,342 +7,113 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* CSS IDENTIQUE (Compact & Robuste) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Lato', sans-serif;
-            /* Correction de la syntaxe du dégradé CSS */
             background: linear-gradient(145deg, #e7f7e7 0%, #d5e9d5 40%, #b8d4b8 100%);
             min-height: 100vh;
             padding: 20px;
             color: #333;
         }
-
         .container {
             max-width: 900px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            padding: 30px;
         }
-
         h1 {
             font-family: 'Playfair Display', serif;
             color: #2d5016;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-size: 2.2em;
         }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
+        form { display: flex; flex-direction: column; gap: 15px; }
         fieldset {
             border: 1px solid #6ba368;
             border-radius: 8px;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            padding: 15px;
         }
-
+        .fieldset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px;
+        }
         legend {
             font-family: 'Playfair Display', serif;
             color: #4a7c59;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: bold;
             padding: 0 10px;
             margin-left: -10px;
+            margin-bottom: 10px;
         }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        label {
-            font-weight: 700;
-            color: #2d5016;
-            font-size: 0.95em;
-        }
-
-        label .required {
-            color: #c0392b;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="datetime-local"],
-        input[type="number"],
-        textarea,
-        select {
-            padding: 12px 15px;
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        label { font-weight: 700; color: #2d5016; font-size: 0.9em; }
+        label .required { color: #c0392b; }
+        input[type="text"], input[type="email"], input[type="datetime-local"], input[type="number"], input[type="date"], textarea, select {
+            padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 6px;
-            font-size: 1em;
+            font-size: 0.95em;
             font-family: inherit;
             transition: all 0.3s ease;
+            width: 100%;
         }
-
         input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: #4a7c59;
             box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
         }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* Validation Visuelle Email */
-        input[type="email"]:invalid:not(:placeholder-shown) {
-            border-color: #c0392b;
-            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
-        }
-
-        input[type="email"]:valid:not(:placeholder-shown) {
-            border-color: #4a7c59;
-            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
-        }
-
-        /* Boutons Radio */
+        textarea { resize: vertical; min-height: 80px; }
+        input[type="email"]:invalid:not(:placeholder-shown) { border-color: #c0392b; }
+        input[type="email"]:valid:not(:placeholder-shown) { border-color: #4a7c59; }
         .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border: 1px solid #eee;
+            display: flex; flex-wrap: wrap; gap: 15px;
+            padding: 8px 12px;
+            background: #f8f9fa; border-radius: 8px; border: 1px solid #eee;
         }
-
-        .radio-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .radio-item label {
-            font-weight: normal;
-            color: #333;
-            cursor: pointer;
-        }
-
-        input[type="radio"] {
-            accent-color: #2d5016;
-        }
-
-        /* Encart de dépôt de fichier (PDF) */
+        .radio-item { display: flex; align-items: center; gap: 5px; }
+        .radio-item label { font-weight: normal; color: #333; cursor: pointer; font-size: 0.95em; }
+        input[type="radio"] { accent-color: #2d5016; }
         .file-upload-group {
-            border: 2px dashed #6ba368;
-            background-color: #f9fff9;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
+            border: 2px dashed #6ba368; background-color: #f9fff9; padding: 15px; border-radius: 8px; text-align: center;
         }
-
-        .file-upload-group label {
-            display: block;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            color: #2d5016;
+        .file-upload-group label { margin-bottom: 10px; font-size: 1em; color: #2d5016; }
+        .file-upload-group input[type="file"] { padding: 5px; font-size: 0.9em; }
+        .btn-group { display: flex; gap: 10px; margin-top: 10px; }
+        input[type="submit"], input[type="reset"], button[type="button"], .btn {
+            padding: 10px 20px; border: none; border-radius: 8px; font-size: 0.95em; font-weight: 700; cursor: pointer; transition: all 0.3s ease; flex: 1; text-align: center; text-decoration: none;
         }
-        
-        .file-upload-group input[type="file"] {
-            display: block;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 300px;
-            padding: 10px;
-            border: 1px solid #4a7c59;
-            background-color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Boutons de formulaire */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        input[type="submit"], input[type="reset"], button[type="button"] {
-            padding: 14px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-        }
-
-        input[type="submit"], button[type="button"] {
-            background-color: #2d5016;
-            color: white;
-        }
-
-        input[type="submit"]:hover, button[type="button"]:hover {
-            background-color: #1f360e;
-            transform: translateY(-1px);
-        }
-
-        input[type="reset"] {
-            background-color: #e0e0e0;
-            color: #333;
-        }
-
+        input[type="submit"], button[type="button"] { background-color: #2d5016; color: white; }
+        input[type="submit"]:hover, button[type="button"]:hover { background-color: #1f360e; transform: translateY(-1px); }
+        input[type="reset"] { background-color: #e0e0e0; color: #333; }
+        .btn { background-color: #4a7c59; color: white; }
+        .btn:hover { background-color: #2d5016; }
         .btn-add {
-            padding: 8px 15px;
-            background: #4a7c59;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            align-self: flex-start;
-            transition: background 0.3s;
+            padding: 6px 12px; background: #4a7c59; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.85em; align-self: flex-start; transition: background 0.3s; margin-top: 5px; flex: initial;
         }
-
-        .btn-add:hover {
-            background: #2d5016;
-        }
-
-        /* Lien vers le récapitulatif */
+        .btn-add:hover { background: #2d5016; }
         .view-tasks-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background-color: #4a7c59;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: all 0.3s ease;
+            display: inline-block; margin-bottom: 20px; padding: 8px 16px; background-color: #4a7c59; color: white; text-decoration: none; border-radius: 8px; font-weight: 700; transition: all 0.3s ease; font-size: 0.9em;
         }
-
-        .view-tasks-link:hover {
-            background-color: #2d5016;
-            transform: translateY(-2px);
-        }
-
-        /* Lien de retour à l'index */
+        .view-tasks-link:hover { background-color: #2d5016; transform: translateY(-2px); }
         .back-link {
-            display: inline-block;
-            margin-bottom: 15px;
-            color: #4a7c59;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            display: inline-block; margin-bottom: 10px; color: #4a7c59; text-decoration: none; font-weight: 600; font-size: 0.9em;
         }
-
-        .back-link:hover {
-            color: #2d5016;
-            text-decoration: underline;
-        }
-
-        /* Styles pour les sous-tâches */
-        .subtask-item {
-            margin-bottom: 15px;
-            padding: 15px;
-            background: #f9fff9;
-            border: 1px solid #d5e9d5;
-            border-radius: 8px;
-        }
-
-        .subtask-title {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .subtask-desc {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 0.95em;
-            resize: vertical;
-        }
-
-        .subtask-desc:focus {
-            border-color: #2d5016;
-            outline: none;
-        }
-
-        /* Responsive Design */
+        .back-link:hover { color: #2d5016; text-decoration: underline; }
+        .subtask-item { margin-bottom: 10px; padding: 10px; background: #f9fff9; border: 1px solid #d5e9d5; border-radius: 8px; }
+        .subtask-title { width: 100%; margin-bottom: 5px; }
+        .subtask-desc { width: 100%; min-height: 40px; }
+        footer { margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-align: center; color: #555; font-size: 0.85em; }
+        .info-text { margin-top: 5px; font-size: 0.85em; color: #666; }
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            fieldset {
-                grid-template-columns: 1fr;
-                padding: 15px;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-            }
-            
-            input[type="submit"], 
-            input[type="reset"], 
-            button[type="button"] {
-                width: 100%;
-            }
-            
-            .view-tasks-link {
-                text-align: center;
-                padding: 12px 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                padding: 15px;
-                border-radius: 8px;
-            }
-            
-            h1 {
-                font-size: 1.5em;
-            }
-            
-            legend {
-                font-size: 1.05em;
-            }
-            
-            input[type="text"],
-            input[type="email"],
-            input[type="datetime-local"],
-            input[type="number"],
-            textarea,
-            select {
-                font-size: 0.95em;
-                padding: 10px;
-            }
-            
-            .file-upload-group {
-                padding: 15px;
-            }
+            .container { padding: 15px; }
+            .btn-group { flex-direction: column; }
+            .fieldset-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -351,141 +122,132 @@
         <a href="../index.html" class="back-link">← Retour à l'index</a>
         <h1>Nouvelle Tâche</h1>
         
-        <!-- Lien vers la page de récapitulatif -->
         <a href="TasksSummary.html" class="view-tasks-link">📋 Voir toutes les tâches</a>
         
         <form id="taskForm" action="traitement.php" method="POST" enctype="multipart/form-data">
             
             <fieldset>
                 <legend>Personne en charge</legend>
-                
-                <div class="form-group">
-                    <label for="assignation">Nom et Prénom <span class="required">*</span></label>
-                    <input type="text" id="assignation" name="assignation" required placeholder="Ex : Laurent Boyer">
-                </div>
+                <div class="fieldset-grid">
+                    <div class="form-group">
+                        <label for="assignation">Nom et Prénom <span class="required">*</span></label>
+                        <input type="text" id="assignation" name="assignation" required placeholder="Ex : Laurent Boyer">
+                    </div>
 
-                <div class="form-group">
-                    <label for="email">Adresse E-mail <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required placeholder=" Ex : nom.prenom@exemple.com">
+                    <div class="form-group">
+                        <label for="email">Adresse E-mail <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder=" Ex : nom.prenom@exemple.com">
+                    </div>
                 </div>
             </fieldset>
 
-            <fieldset class="form-group">
+            <div class="form-group">
                 <label for="libelle">Nom de la tâche <span class="required">*</span></label>
                 <input type="text" id="libelle" name="libelle" required placeholder="Ex: TP HTML/CSS">
-            </fieldset>
+            </div>
 
-            <fieldset class="form-group">
+            <div class="form-group">
                 <label for="description">Description </label>
                 <textarea id="description" name="description" rows="4" placeholder="Décrivez ici les objectifs et les étapes cette nouvelle tâche..."></textarea>
-            </fieldset>
+            </div>
 
             <fieldset>
                 <legend>Planification et Échéance</legend>
-                
-                <fieldset class="form-group">
-                    <label for="date_echeance">Date d'échéance </label>
-                    <input type="datetime-local" id="date_echeance" name="date_echeance">
-                </fieldset>
-                
-                <fieldset class="form-group">
-                    <label for="priorite">Priorité <span class="required">*</span></label>
-                    <select id="priorite" name="idPriorite">
-                        <option>Choisir une priorité</option> 
-                        <optgroup label="Urgent">
-                            <option value="1">Important & Urgent</option>
-                            <option value="2">Haut</option>
-                        </optgroup>
-                        <optgroup label="Normal">
-                            <option value="3">Moyen</option>
-                            <option value="4">Bas</option>
-                        </optgroup>
-                    </select>
-                </fieldset>
-                
-                <div class="form-group">
-                    <label for="date_creation">Date de création</label>
-                    <input type="datetime-local" id="date_creation" name="date_creation" readonly>
-                </div>
-                
-                <div class="form-group">
-                    <label for="temps_passe">Temps passé (minutes)</label>
-                    <input type="number" id="temps_passe" name="temps_passe" min="0" value="0" placeholder="0">
+                <div class="fieldset-grid">
+                    <div class="form-group">
+                        <label for="date_echeance">Date d'échéance </label>
+                        <input type="date" id="date_echeance" name="date_echeance">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="priorite">Priorité <span class="required">*</span></label>
+                        <select id="priorite" name="idPriorite">
+                            <option>Choisir une priorité</option> 
+                            <optgroup label="Urgent">
+                                <option value="1">Important & Urgent</option>
+                                <option value="2">Haut</option>
+                            </optgroup>
+                            <optgroup label="Normal">
+                                <option value="3">Moyen</option>
+                                <option value="4">Bas</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date_creation">Date de création</label>
+                        <input type="date" id="date_creation" name="date_creation" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="temps_passe">Temps passé (minutes)</label>
+                        <input type="number" id="temps_passe" name="temps_passe" min="0" value="0" placeholder="0">
+                    </div>
                 </div>
             </fieldset>
 
             <fieldset class="form-group">
+                <legend>Statut</legend>
                 <label>Statut de progression <span class="required">*</span></label>
                 <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" id="prog1" name="idTaskProgression" value="1" checked required>
-                        <label for="prog1">Nouvelle tâche</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" id="prog3" name="idTaskProgression" value="3" required>
-                        <label for="prog3">En cours</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" id="prog4" name="idTaskProgression" value="4" required>
-                        <label for="prog4">Bloqué</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" id="prog6" name="idTaskProgression" value="6" required>
-                        <label for="prog6">Terminé</label>
-                    </div>
+                    <div class="radio-item"><input type="radio" id="prog1" name="idTaskProgression" value="1" checked required><label for="prog1">Nouvelle tâche</label></div>
+                    <div class="radio-item"><input type="radio" id="prog3" name="idTaskProgression" value="3" required><label for="prog3">En cours</label></div>
+                    <div class="radio-item"><input type="radio" id="prog4" name="idTaskProgression" value="4" required><label for="prog4">Bloqué</label></div>
+                    <div class="radio-item"><input type="radio" id="prog6" name="idTaskProgression" value="6" required><label for="prog6">Terminé</label></div>
                 </div>
             </fieldset>
 
             <fieldset>
                 <legend>Catégorisation</legend>
-                
-                <fieldset class="form-group">
-                    <label for="academic_subject">Sujet académique <span class="required">*</span></label>
-                    <select id="academic_subject" name="academic_subject" required>
-                        <option value="">-- Sélectionnez un sujet --</option>
-                        <option value="1">HTML/CSS</option>
-                        <option value="2">JavaScript</option>
-                        <option value="3">Frameworks JavaScript (React, Vue.js)</option>
-                        <option value="4">Développement Backend (Node.js, PHP)</option>
-                        <option value="5">Bases de données (SQL, NoSQL)</option>
-                        <option value="6">UX/UI Design</option>
-                        <option value="7">Responsive Design et Mobile First</option>
-                        <option value="8">Gestion de projet web (Agile, Scrum)</option>
-                        <option value="9">Versioning (Git, GitHub)</option>
-                        <option value="10">Accessibilité web (WCAG)</option>
-                        <option value="11">SEO et Référencement</option>
-                        <option value="12">APIs et Services Web (REST, GraphQL)</option>
-                    </select>
-                </fieldset>
+                <div class="fieldset-grid">
+                    <div class="form-group">
+                        <label for="academic_subject">Sujet académique <span class="required">*</span></label>
+                        <select id="academic_subject" name="academic_subject" required>
+                            <option value="">-- Sélectionnez un sujet --</option>
+                            <option value="1">HTML/CSS</option>
+                            <option value="2">JavaScript</option>
+                            <option value="3">Frameworks JavaScript (React, Vue.js)</option>
+                            <option value="4">Développement Backend (Node.js, PHP)</option>
+                            <option value="5">Bases de données (SQL, NoSQL)</option>
+                            <option value="6">UX/UI Design</option>
+                            <option value="7">Responsive Design et Mobile First</option>
+                            <option value="8">Gestion de projet web (Agile, Scrum)</option>
+                            <option value="9">Versioning (Git, GitHub)</option>
+                            <option value="10">Accessibilité web (WCAG)</option>
+                            <option value="11">SEO et Référencement</option>
+                            <option value="12">APIs et Services Web (REST, GraphQL)</option>
+                        </select>
+                    </div>
 
-                <fieldset class="form-group">
-                    <label for="skills_level">Niveau de compétence <span class="required">*</span></label>
-                    <select id="skills_level" name="skills_level" required>
-                        <option value="">-- Sélectionnez un niveau --</option>
-                        <option value="1">Débutant</option>
-                        <option value="2">Intermédiaire</option>
-                        <option value="3">Avancé</option>
-                        <option value="4">Expert</option>
-                    </select>
-                </fieldset>
+                    <div class="form-group">
+                        <label for="skills_level">Niveau de compétence <span class="required">*</span></label>
+                        <select id="skills_level" name="skills_level" required>
+                            <option value="">-- Sélectionnez un niveau --</option>
+                            <option value="1">Débutant</option>
+                            <option value="2">Intermédiaire</option>
+                            <option value="3">Avancé</option>
+                            <option value="4">Expert</option>
+                        </select>
+                    </div>
 
-                <fieldset class="form-group">                    
-                    <label for="difficulty_rating">Difficulté estimée <span class="required">*</span></label>
-                    <select id="difficulty_rating" name="difficulty_rating" required>
-                        <option value="">-- Sélectionnez une difficulté --</option>
-                        <option value="1">Très facile</option>
-                        <option value="2">Facile</option>
-                        <option value="3">Moyen</option>
-                        <option value="4">Difficile</option>
-                        <option value="5">Très difficile</option>
-                    </select>
-                </fieldset>
+                    <div class="form-group">                    
+                        <label for="difficulty_rating">Difficulté estimée <span class="required">*</span></label>
+                        <select id="difficulty_rating" name="difficulty_rating" required>
+                            <option value="">-- Sélectionnez une difficulté --</option>
+                            <option value="1">Très facile</option>
+                            <option value="2">Facile</option>
+                            <option value="3">Moyen</option>
+                            <option value="4">Difficile</option>
+                            <option value="5">Très difficile</option>
+                        </select>
+                    </div>
+                </div>
             </fieldset>
 
-            <fieldset class="form-group file-upload-group">
+            <div class="form-group file-upload-group">
                 <label for="document_pdf">📥 Déposer un document PDF</label>
                 <input type="file" id="document_pdf" name="document_pdf[]" accept=".pdf" multiple>
-            </fieldset>
+            </div>
 
             <fieldset class="form-group">
                 <label>📋 Sous-tâches</label>
@@ -519,10 +281,8 @@
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const day = String(now.getDate()).padStart(2, '0');
-            const hour = String(now.getHours()).padStart(2, '0');
-            const minute = String(now.getMinutes()).padStart(2, '0');
-            
-            document.getElementById('date_creation').value = `${year}-${month}-${day}T${hour}:${minute}`;
+            // MODIFICATION JS : Format AAAA-MM-JJ uniquement
+            document.getElementById('date_creation').value = `${year}-${month}-${day}`;
         }
         setCreationDate();
 
@@ -537,60 +297,37 @@
 
         function ajouterSousTache() {
             const subtaskList = document.getElementById('subtask-list');
-            
-            // Créer un conteneur pour la sous-tâche
             const subtaskItem = document.createElement('div');
             subtaskItem.className = 'subtask-item';
-            
-            // Créer l'input pour le titre
             const inputTitle = document.createElement('input');
             inputTitle.type = 'text';
             inputTitle.name = 'subtask[]';
             inputTitle.placeholder = 'Nom de la sous-tâche';
             inputTitle.className = 'subtask-title';
-            
-            // Créer le textarea pour la description
             const inputDesc = document.createElement('textarea');
             inputDesc.name = 'subtaskDescription[]';
             inputDesc.placeholder = 'Description de la sous-tâche (optionnel)';
             inputDesc.rows = 2;
             inputDesc.className = 'subtask-desc';
-            
-            // Ajouter les éléments au conteneur
             subtaskItem.appendChild(inputTitle);
             subtaskItem.appendChild(inputDesc);
-            
-            // Ajouter le conteneur à la liste
             subtaskList.appendChild(subtaskItem);
         }
 
-        /**
-         * Fonction pour sauvegarder une tâche dans le localStorage
-         * Étape 3B : Enregistrer une tâche dans le localStorage
-         */
         function saveTask() {
             console.log("🚀 Début de la fonction saveTask()");
-            
-            // 1. Lecture des champs du formulaire
-            console.log("📋 Étape 1 : Lecture des champs du formulaire");
             
             let libelle = document.getElementById('libelle').value;
             let description = document.getElementById('description').value;
             let assignation = document.getElementById('assignation').value;
             let date_creation = document.getElementById('date_creation').value;
-            let date_echeance = document.getElementById('date_echeance').value;
             let temps_passe = document.getElementById('temps_passe').value;
             let idPriorite = document.getElementById('priorite').value;
-            
-            // Récupération de la valeur du bouton radio sélectionné pour la progression
             let idTaskProgression = document.querySelector('input[name="idTaskProgression"]:checked').value;
-            
-            // Récupération des nouvelles catégories
             let idAcademicSubject = document.getElementById('academic_subject').value;
             let idSkillsLevel = document.getElementById('skills_level').value;
             let idDifficultyRating = document.getElementById('difficulty_rating').value;
             
-            // Récupération des sous-tâches avec leurs descriptions
             let subtaskInputs = document.querySelectorAll('input[name="subtask[]"]');
             let subtaskDescInputs = document.querySelectorAll('textarea[name="subtaskDescription[]"]');
             let subtasks = [];
@@ -604,7 +341,6 @@
                 }
             });
             
-            // Récupération des liens de documentation
             let documentationInputs = document.querySelectorAll('input[name="documentation[]"]');
             let documentation = [];
             documentationInputs.forEach(input => {
@@ -613,54 +349,17 @@
                 }
             });
             
-            console.log("📝 Données du formulaire :");
-            console.log("  - Libellé :", libelle);
-            console.log("  - Description :", description);
-            console.log("  - Assignation :", assignation);
-            console.log("  - Date création :", date_creation);
-            console.log("  - Priorité :", idPriorite);
-            console.log("  - Progression :", idTaskProgression);
-            console.log("  - Sujet académique :", idAcademicSubject);
-            console.log("  - Niveau de compétence :", idSkillsLevel);
-            console.log("  - Difficulté :", idDifficultyRating);
-            console.log("  - Sous-tâches :", subtasks);
-            console.log("  - Documentation :", documentation);
-            
-            // 2. Initialiser la liste des tâches
-            console.log("\n📦 Étape 2 : Vérification du localStorage");
-            
             let tasksList = [];
-            
-            // Vérifier si des tâches existent déjà dans le localStorage
             let existingTasks = localStorage.getItem("tasksData");
+            if (existingTasks) tasksList = JSON.parse(existingTasks);
             
-            if (existingTasks) {
-                console.log("✅ Des tâches existent déjà dans le localStorage");
-                // Convertir la chaîne JSON en tableau JavaScript
-                tasksList = JSON.parse(existingTasks);
-                console.log("📊 Nombre de tâches existantes :", tasksList.length);
-            } else {
-                console.log("ℹ️ Aucune tâche dans le localStorage, création d'une nouvelle liste");
-            }
-            
-            // 3. Créer une nouvelle tâche
-            console.log("\n🆕 Étape 3 : Création de la nouvelle tâche");
-            
-            // Déterminer l'ID de la nouvelle tâche (nombre d'éléments + 1)
             let newId = tasksList.length + 1;
-            console.log("🔢 ID de la nouvelle tâche :", newId);
-            
-            // Convertir date_creation au format ISO 8601 (UTC)
             let dateCreationISO = new Date(date_creation).toISOString();
             
-            // Créer l'objet représentant la nouvelle tâche
             let subTaskIds = [];
-            
-            // Créer les sous-tâches autonomes avec leurs IDs
             let subtasksToStore = subtasks.map((subtask, index) => {
                 const subtaskId = `${newId}-${index + 1}`;
                 subTaskIds.push(subtaskId);
-                
                 return {
                     taskId: newId,
                     subTaskId: `${index + 1}`,
@@ -683,67 +382,29 @@
                 fichiers_joints: [],
                 idPriorite: idPriorite,
                 idTaskProgression: idTaskProgression,
-                // Valeurs récupérées des listes déroulantes
                 idAcademicSubject: idAcademicSubject,
                 idSkillsLevel: idSkillsLevel,
                 idDifficultyRating: idDifficultyRating,
                 subTask_ids: subTaskIds,
-                subtasks: subtasksToStore  // Sous-tâches complètes avec IDs
+                subtasks: subtasksToStore
             };
             
-            console.log("✨ Nouvelle tâche créée :");
-            console.log(newTask);
-            
-            // 4. Ajouter la tâche à la liste
-            console.log("\n➕ Étape 4 : Ajout de la tâche à la liste");
-            
             tasksList.push(newTask);
-            console.log("📊 Nombre total de tâches :", tasksList.length);
+            localStorage.setItem("tasksData", JSON.stringify(tasksList));
             
-            // 5. Enregistrer dans le localStorage
-            console.log("\n💾 Étape 5 : Enregistrement dans le localStorage");
-            
-            // Convertir le tableau en chaîne JSON
-            let tasksJSON = JSON.stringify(tasksList);
-            console.log("📄 Données JSON à enregistrer :", tasksJSON);
-            
-            // Enregistrer dans le localStorage
-            localStorage.setItem("tasksData", tasksJSON);
-            console.log("✅ Données enregistrées dans le localStorage avec la clé 'tasksData'");
-            
-            // Enregistrer les sous-tâches séparément si elles existent
             if (subtasksToStore.length > 0) {
                 let existingSubtasks = [];
                 const storedSubtasks = localStorage.getItem("subtasksData");
-                if (storedSubtasks) {
-                    existingSubtasks = JSON.parse(storedSubtasks);
-                }
-                
-                // Ajouter les nouvelles sous-tâches
+                if (storedSubtasks) existingSubtasks = JSON.parse(storedSubtasks);
                 existingSubtasks.push(...subtasksToStore);
-                
-                // Sauvegarder dans le localStorage
                 localStorage.setItem("subtasksData", JSON.stringify(existingSubtasks));
-                console.log(`✅ ${subtasksToStore.length} sous-tâche(s) enregistrée(s) séparément`);
             }
-            
-            // 6. Réinitialiser le formulaire
-            console.log("\n🔄 Étape 6 : Réinitialisation du formulaire");
             
             document.getElementById('taskForm').reset();
-            console.log("✅ Formulaire réinitialisé");
-            
-            // Remettre la date de création (car reset() l'efface aussi)
             setCreationDate();
             
-            // Message de confirmation avec proposition de voir toutes les tâches
             let viewTasks = confirm('✅ Tâche créée avec succès !\n\nID: ' + newId + '\nLibellé: ' + libelle + '\n\nVoulez-vous voir toutes les tâches ?');
-            
-            if (viewTasks) {
-                window.location.href = 'TasksSummary.html';
-            }
-            
-            console.log("🎉 Fonction saveTask() terminée avec succès !");
+            if (viewTasks) window.location.href = 'TasksSummary.html';
         }
     </script>
 </body>
