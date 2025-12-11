@@ -157,6 +157,63 @@
             color: white;
         }
 
+        /* Badges de niveau de compétence */
+        .skills-1 {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .skills-2 {
+            background-color: #9b59b6;
+            color: white;
+        }
+
+        .skills-3 {
+            background-color: #e67e22;
+            color: white;
+        }
+
+        .skills-4 {
+            background-color: #c0392b;
+            color: white;
+        }
+
+        /* Badges de difficulté */
+        .difficulty-1 {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .difficulty-2 {
+            background-color: #1abc9c;
+            color: white;
+        }
+
+        .difficulty-3 {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .difficulty-4 {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .difficulty-5 {
+            background-color: #8e44ad;
+            color: white;
+        }
+
+        /* Colonne description */
+        .description-cell {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 0.9em;
+            color: #666;
+        }
+
         /* Badges de progression */
         .status-1 {
             background-color: #3498db;
@@ -323,14 +380,23 @@
             }
 
             table {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
+                display: table;
+                width: 100%;
             }
             
             th, td {
-                font-size: 0.85em;
+                padding: 8px 5px;
+                font-size: 0.8em;
+                word-wrap: break-word;
+            }
+            
+            .description-cell {
+                max-width: 150px;
+            }
+            
+            .badge {
+                font-size: 0.7em;
+                padding: 3px 8px;
             }
             
             .status-buttons {
@@ -369,6 +435,21 @@
                 font-size: 0.8em;
             }
             
+            /* Réduire encore plus pour petit mobile */
+            th, td {
+                padding: 6px 3px;
+                font-size: 0.75em;
+            }
+            
+            .description-cell {
+                max-width: 100px;
+            }
+            
+            .badge {
+                font-size: 0.65em;
+                padding: 2px 6px;
+            }
+            
             .status-btn {
                 padding: 3px 6px;
                 font-size: 0.6em;
@@ -383,6 +464,8 @@
         let priorityList = [];
         let taskProgressionList = [];
         let academicSubjectsList = [];
+        let skillsLevelList = [];
+        let difficultyRatingList = [];
         let currentFilter = 'all'; // Filtre actuel : 'all', '6' (terminées), '7' (archivées)
         
         // B) Lecture des tâches depuis localStorage
@@ -415,36 +498,72 @@
         };
         
         /**
-         * Charge les données de référence depuis les fichiers JSON
+         * Charge les données de référence (intégrées directement dans le code)
+         * Utilisation uniquement du localStorage - pas de fetch()
          */
-        async function loadReferenceData() {
+        function loadReferenceData() {
             console.log("📥 Chargement des données de référence...");
             
-            try {
-                // Charger les données de priorité
-                const priorityResponse = await fetch('../Data/priorityStatus.json');
-                const priorityData = await priorityResponse.json();
-                priorityList = priorityData.priorityStatus;
-                console.log("✅ Priorités chargées :", priorityList);
-                
-                // Charger les données de progression
-                const progressResponse = await fetch('../Data/taskProgression.json');
-                const progressData = await progressResponse.json();
-                taskProgressionList = progressData.taskProgression;
-                console.log("✅ Statuts de progression chargés :", taskProgressionList);
-                
-                // Charger les sujets académiques
-                const subjectsResponse = await fetch('../Data/academic_subjects.json');
-                const subjectsData = await subjectsResponse.json();
-                academicSubjectsList = subjectsData.academicConfiguration.subjects;
-                console.log("✅ Sujets académiques chargés :", academicSubjectsList);
-                
-                // Maintenant que tout est chargé, générer le tableau
-                generateTasksTable();
-                
-            } catch (error) {
-                console.error("❌ Erreur lors du chargement des données de référence :", error);
-            }
+            // Données de priorité (intégrées directement)
+            priorityList = [
+                { "idPriorite": "1", "priorite": "Important" },
+                { "idPriorite": "2", "priorite": "Haut" },
+                { "idPriorite": "3", "priorite": "Moyen" },
+                { "idPriorite": "4", "priorite": "Bas" },
+                { "idPriorite": "5", "priorite": "Non important" }
+            ];
+            console.log("✅ Priorités chargées :", priorityList);
+            
+            // Données de progression (intégrées directement)
+            taskProgressionList = [
+                { "idTaskProgression": "1", "taskProgressionStatus": "Nouvelle tâche" },
+                { "idTaskProgression": "2", "taskProgressionStatus": "conception" },
+                { "idTaskProgression": "3", "taskProgressionStatus": "en cours" },
+                { "idTaskProgression": "4", "taskProgressionStatus": "bloqué" },
+                { "idTaskProgression": "5", "taskProgressionStatus": "en attente de validation" },
+                { "idTaskProgression": "6", "taskProgressionStatus": "Terminé" },
+                { "idTaskProgression": "7", "taskProgressionStatus": "Archivé" }
+            ];
+            console.log("✅ Statuts de progression chargés :", taskProgressionList);
+            
+            // Sujets académiques (intégrés directement)
+            academicSubjectsList = [
+                { "idAcademicSubject": "1", "academicSubjectName": "HTML/CSS" },
+                { "idAcademicSubject": "2", "academicSubjectName": "JavaScript" },
+                { "idAcademicSubject": "3", "academicSubjectName": "Frameworks JavaScript (React, Vue.js)" },
+                { "idAcademicSubject": "4", "academicSubjectName": "Développement Backend (Node.js, PHP)" },
+                { "idAcademicSubject": "5", "academicSubjectName": "Bases de données (SQL, NoSQL)" },
+                { "idAcademicSubject": "6", "academicSubjectName": "UX/UI Design" },
+                { "idAcademicSubject": "7", "academicSubjectName": "Responsive Design et Mobile First" },
+                { "idAcademicSubject": "8", "academicSubjectName": "Gestion de projet web (Agile, Scrum)" },
+                { "idAcademicSubject": "9", "academicSubjectName": "Versioning (Git, GitHub)" },
+                { "idAcademicSubject": "10", "academicSubjectName": "Accessibilité web (WCAG)" },
+                { "idAcademicSubject": "11", "academicSubjectName": "SEO et Référencement" },
+                { "idAcademicSubject": "12", "academicSubjectName": "APIs et Services Web (REST, GraphQL)" }
+            ];
+            console.log("✅ Sujets académiques chargés :", academicSubjectsList);
+            
+            // Niveaux de compétence (intégrés directement)
+            skillsLevelList = [
+                { "idSkillsLevel": "1", "skillsLevel": "Débutant" },
+                { "idSkillsLevel": "2", "skillsLevel": "Intermédiaire" },
+                { "idSkillsLevel": "3", "skillsLevel": "Avancé" },
+                { "idSkillsLevel": "4", "skillsLevel": "Expert" }
+            ];
+            console.log("✅ Niveaux de compétence chargés :", skillsLevelList);
+            
+            // Niveaux de difficulté (intégrés directement)
+            difficultyRatingList = [
+                { "idDifficultyRating": "1", "difficultyRating": "Très facile" },
+                { "idDifficultyRating": "2", "difficultyRating": "Facile" },
+                { "idDifficultyRating": "3", "difficultyRating": "Moyen" },
+                { "idDifficultyRating": "4", "difficultyRating": "Difficile" },
+                { "idDifficultyRating": "5", "difficultyRating": "Très difficile" }
+            ];
+            console.log("✅ Niveaux de difficulté chargés :", difficultyRatingList);
+            
+            // Maintenant que tout est chargé, générer le tableau
+            generateTasksTable();
         }
         
         /**
@@ -529,15 +648,34 @@
                 const subjectLabel = subjectObj ? subjectObj.academicSubjectName : 'Non défini';
                 console.log(`  🔍 Sujet trouvé : ${subjectLabel}`);
                 
-                // Formater la date de création
+                // Formater la date de création (format jj/mm/aaaa uniquement)
                 const dateCreation = new Date(task.date_de_creation);
                 const dateFormatted = dateCreation.toLocaleDateString('fr-FR', {
                     day: '2-digit',
                     month: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
+                    year: 'numeric'
                 });
+                
+                // Trouver le niveau de compétence et la difficulté
+                let skillsLevel = skillsLevelList.find(s => s.idSkillsLevel == task.idSkillsLevel);
+                let skillsLabel = skillsLevel ? skillsLevel.skillsLevel : 'N/A';
+                
+                let difficulty = difficultyRatingList.find(d => d.idDifficultyRating == task.idDifficultyRating);
+                let difficultyLabel = difficulty ? difficulty.difficultyRating : 'N/A';
+                
+                // Fonction pour obtenir l'icône correspondant au statut
+                const getStatusIcon = (statusId) => {
+                    const icons = {
+                        '1': '📝', // Nouvelle tâche
+                        '2': '⏸️', // En attente
+                        '3': '▶️', // En cours
+                        '4': '🚫', // Bloqué
+                        '5': '✔️', // Validé
+                        '6': '✅', // Terminé
+                        '7': '📦'  // Archivé
+                    };
+                    return icons[statusId] || '❓';
+                };
                 
                 // Générer les boutons de statut
                 let statusButtons = '';
@@ -554,7 +692,7 @@
                             onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')"
                             ${disabled}
                             title="${status.taskProgressionStatus}">
-                            ${status.idTaskProgression}
+                            ${getStatusIcon(status.idTaskProgression)}
                         </button>
                     `;
                 });
@@ -563,10 +701,20 @@
                 // L'interpolation ${...} permet d'insérer des variables dynamiquement
                 htmlContent += `
                     <tr data-task-id="${task.id}">
-                        <td>${task.id}</td>
                         <td><strong>${task.libelle}</strong></td>
+                        <td class="description-cell">${task.description || 'Aucune description'}</td>
                         <td>${task.assignation}</td>
                         <td>${subjectLabel}</td>
+                        <td>
+                            <span class="badge skills-${task.idSkillsLevel}">
+                                ${skillsLabel}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge difficulty-${task.idDifficultyRating}">
+                                ${difficultyLabel}
+                            </span>
+                        </td>
                         <td>
                             <span class="badge priority-${task.idPriorite}">
                                 ${priorityLabel}
@@ -577,6 +725,7 @@
                                 ${progressLabel}
                             </span>
                         </td>
+                        <td>${task["compteur_de_temps_passe(mn)"] || 0} min</td>
                         <td>${dateFormatted}</td>
                         <td>
                             <div class="status-buttons">
@@ -594,6 +743,65 @@
             tbody.insertAdjacentHTML("beforeend", htmlContent);
             
             console.log("✅ Tableau inséré dans le DOM");
+            
+            // Générer le tableau des sous-tâches
+            generateSubtasksTable(filteredTasks);
+        }
+        
+        /**
+         * Génère et insère le tableau des sous-tâches
+         * @param {Array} tasks - Liste des tâches filtrées
+         */
+        function generateSubtasksTable(tasks) {
+            console.log("🏗️ Génération du tableau des sous-tâches");
+            
+            const subtasksTbody = document.getElementById('subtasksTableBody');
+            subtasksTbody.innerHTML = '';
+            
+            // Lire les sous-tâches depuis le localStorage séparé
+            let allSubtasks = [];
+            const storedSubtasks = localStorage.getItem("subtasksData");
+            if (storedSubtasks) {
+                allSubtasks = JSON.parse(storedSubtasks);
+                console.log("📦 Sous-tâches chargées depuis localStorage :", allSubtasks);
+            }
+            
+            let subtasksHtml = '';
+            let subtasksCount = 0;
+            
+            // Filtrer les sous-tâches pour n'afficher que celles des tâches filtrées
+            const taskIds = tasks.map(t => t.id);
+            const filteredSubtasks = allSubtasks.filter(st => taskIds.includes(st.taskId));
+            
+            filteredSubtasks.forEach(subtask => {
+                subtasksCount++;
+                
+                // Trouver la tâche principale
+                const parentTask = tasks.find(t => t.id === subtask.taskId);
+                const taskLibelle = parentTask ? parentTask.libelle : 'Tâche inconnue';
+                
+                subtasksHtml += `
+                    <tr>
+                        <td><strong>${taskLibelle}</strong></td>
+                        <td>${subtask.subTaskLibelle}</td>
+                        <td class="description-cell">${subtask.subTaskDescription || 'Aucune description'}</td>
+                    </tr>
+                `;
+            });
+            
+            if (subtasksCount === 0) {
+                subtasksHtml = `
+                    <tr>
+                        <td colspan="3" class="no-tasks">
+                            <div class="no-tasks-icon">📝</div>
+                            <p>Aucune sous-tâche enregistrée</p>
+                        </td>
+                    </tr>
+                `;
+            }
+            
+            subtasksTbody.insertAdjacentHTML("beforeend", subtasksHtml);
+            console.log(`✅ ${subtasksCount} sous-tâche(s) affichée(s)`);
         }
         
         /**
@@ -738,38 +946,63 @@
     </script>
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <h1>📋 Récapitulatif des Tâches</h1>
         
-        <div class="header-actions">
+        <header class="header-actions">
             <div class="task-count" id="taskCount">0 tâche(s) enregistrée(s)</div>
             <div class="filter-buttons">
                 <button class="filter-btn active" onclick="filterTasks('all')">Toutes</button>
                 <button class="filter-btn" onclick="filterTasks('6')">Terminées</button>
                 <button class="filter-btn" onclick="filterTasks('7')">Archivées</button>
-            </div>
-            <a href="Form-ToDoList.html" class="btn">+ Nouvelle tâche</a>
-        </div>
+            </div>            
+            <a href="../3B_Enregistrement_localStorage/Form-ToDoList-3B.html" class="btn">+ Nouvelle tâche</a>
+            <a href="./../../index.html" class="btn">vers l'index</a>
+        </header>
+        <article>
+            <h2>Tableau</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Assigné à</th>
+                            <th>Sujet</th>
+                            <th>Niveau</th>
+                            <th>Difficulté</th>
+                            <th>Priorité</th>
+                            <th>Statut</th>
+                            <th>Temps (min)</th>
+                            <th>Date création</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <!-- Le contenu sera inséré ici dynamiquement -->
+                    <tbody id="tasksTableBody">
+                        <!-- Les lignes seront générées par JavaScript -->
+                    </tbody>
+                </table>
+                <aside style="margin-top: 40px;">
+                    <h2 style="font-family: 'Playfair Display', serif; color: #2d5016; margin-bottom: 20px;">📋 Sous-tâches</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tâche principale</th>
+                                <th>Sous-tâche</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subtasksTableBody">
+                            <!-- Les sous-tâches seront générées par JavaScript -->
+                        </tbody>
+                    </table>
+                </aside>
+        </article>
+        
+        
         
         <!-- A) Structure de base du tableau HTML -->
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Titre</th>
-                    <th>Assigné à</th>
-                    <th>Sujet</th>
-                    <th>Priorité</th>
-                    <th>Statut</th>
-                    <th>Date de création</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <!-- Le contenu sera inséré ici dynamiquement -->
-            <tbody id="tasksTableBody">
-                <!-- Les lignes seront générées par JavaScript -->
-            </tbody>
-        </table>
-    </div>
+        
+    </main>
 </body>
 </html>

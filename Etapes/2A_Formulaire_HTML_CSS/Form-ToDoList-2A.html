@@ -171,10 +171,16 @@
         }
 
         /* Boutons de formulaire */
-        .btn-group {
+        .btn-group  {
             display: flex;
             gap: 15px;
             margin-top: 15px;
+        }
+        .btn{
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
         }
 
         input[type="submit"], input[type="reset"] {
@@ -224,6 +230,35 @@
 
         footer strong {
             color: #2d5016;
+        }
+
+        /* Styles pour les sous-tâches */
+        .subtask-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f9fff9;
+            border: 1px solid #d5e9d5;
+            border-radius: 8px;
+        }
+
+        .subtask-title {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .subtask-desc {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 0.95em;
+            resize: vertical;
+        }
+
+        .subtask-desc:focus {
+            border-color: #2d5016;
+            outline: none;
         }
 
         /* Responsive Design */
@@ -282,11 +317,19 @@
                 padding: 15px;
             }
         }
+
+        /* Texte d'information */
+        .info-text {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📋 Nouvelle Tâche</h1>
+        
         
         <form id="taskForm" action="#" method="POST" enctype="multipart/form-data">
             
@@ -331,7 +374,7 @@
             <fieldset>
                 <legend>⚙️ Configuration</legend>
 
-                <div class="form-group">
+                <fieldset class="form-group">
                     <label for="priorityStatus">Priorité <span class="required">*</span></label>
                     <select id="priorityStatus" name="priorityStatus" required>
                         <option value="">-- Sélectionnez une priorité --</option>
@@ -341,9 +384,9 @@
                         <option value="4">4 - Bas</option>
                         <option value="5">5 - Non important & Non urgent</option>
                     </select>
-                </div>
+                </fieldset>
 
-                <div class="form-group">
+                <fieldset class="form-group">
                     <label for="taskProgression">Statut de la tâche</label>
                     <select id="taskProgression" name="taskProgression">
                         <option value="1" selected>1 - Nouvelle tâche</option>
@@ -354,9 +397,9 @@
                         <option value="6">6 - Terminé</option>
                         <option value="7">7 - Archivé</option>
                     </select>
-                </div>
+                </fieldset>
 
-                <div class="form-group">
+                <fieldset class="form-group">
                     <label for="academicSubject">Sujet Académique</label>
                     <select id="academicSubject" name="academicSubject">
                         <option value="">-- Sélectionnez un sujet --</option>
@@ -371,9 +414,9 @@
                         <option value="9">SEO</option>
                         <option value="10">Cybersécurité</option>
                     </select>
-                </div>
+                </fieldset>
 
-                <div class="form-group">
+                <fieldset class="form-group">
                     <label for="skillsLevel">Niveau de compétence</label>
                     <select id="skillsLevel" name="skillsLevel">
                         <option value="1">1 - Débutant</option>
@@ -381,17 +424,17 @@
                         <option value="3">3 - Avancé</option>
                         <option value="4">4 - Expert</option>
                     </select>
-                </div>
+                </fieldset>
 
-                <div class="form-group">
+                <fieldset class="form-group">
                     <label for="difficultyRating">Difficulté estimée</label>
                     <select id="difficultyRating" name="difficultyRating">
                         <option value="1">1 - Facile</option>
-                        <option value="2" selected>2 - Moyen</option>
+                        <option value="2">2 - Moyen</option>
                         <option value="3">3 - Difficile</option>
                         <option value="4">4 - Très difficile</option>
                     </select>
-                </div>
+                </fieldset>
             </fieldset>
 
             <fieldset>
@@ -414,12 +457,34 @@
             </fieldset>
 
             <fieldset>
-                <legend>📎 Fichiers Joints</legend>
+                <legend>📋 Sous-tâches</legend>
+                
+                <div class="form-group subtask-item">
+                    <label for="subtask1">Sous-tâche 1</label>
+                    <input type="text" id="subtask1" name="subtask1" placeholder="Nom de la sous-tâche" class="subtask-title">
+                    <textarea id="subtaskDesc1" name="subtaskDesc1" placeholder="Description de la sous-tâche (optionnel)" rows="2" class="subtask-desc"></textarea>
+                </div>
+
+                <div class="form-group subtask-item">
+                    <label for="subtask2">Sous-tâche 2</label>
+                    <input type="text" id="subtask2" name="subtask2" placeholder="Nom de la sous-tâche" class="subtask-title">
+                    <textarea id="subtaskDesc2" name="subtaskDesc2" placeholder="Description de la sous-tâche (optionnel)" rows="2" class="subtask-desc"></textarea>
+                </div>
+
+                <div class="form-group subtask-item">
+                    <label for="subtask3">Sous-tâche 3</label>
+                    <input type="text" id="subtask3" name="subtask3" placeholder="Nom de la sous-tâche" class="subtask-title">
+                    <textarea id="subtaskDesc3" name="subtaskDesc3" placeholder="Description de la sous-tâche (optionnel)" rows="2" class="subtask-desc"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>�📎 Fichiers Joints</legend>
                 
                 <div class="file-upload-group">
                     <label for="fichiers">Télécharger des fichiers (PDF, images, documents)</label>
                     <input type="file" id="fichiers" name="fichiers" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                    <p class="info-text">
                         Formats acceptés : PDF, DOC, DOCX, JPG, PNG
                     </p>
                 </div>
@@ -428,11 +493,12 @@
             <div class="btn-group">
                 <input type="submit" value="Créer la tâche">
                 <input type="reset" value="Réinitialiser">
+                <a href="./../../index.html" class="btn">vers l'index</a>
             </div>
         </form>
 
         <footer>
-            <p><strong>&copy; 2025 Laurent Boyer</strong></p>
+            <p><strong>&copy; 2025 Catherine Braun et Laurent Boyer</strong></p>
             <p>Formation LPDWCA - UE 5.2.2</p>
             <p>Langages JS API et initiation Framework JS</p>
             <p>Projet To-Do List - Étape 2A (HTML/CSS uniquement)</p>

@@ -313,7 +313,7 @@ Projet éducatif - Formation Développement Web
 
 ## 👤 Auteur
 
-Laurent Boyer - Formation LPDWCA  
+Catherine Braun & Laurent Boyer - Formation LPDWCA  
 UE 5.2.2 - Langages JS API et initiation Framework JS
 
 ---

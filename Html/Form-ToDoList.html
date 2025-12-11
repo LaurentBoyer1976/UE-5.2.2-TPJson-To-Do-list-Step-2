@@ -237,6 +237,50 @@
             transform: translateY(-2px);
         }
 
+        /* Lien de retour à l'index */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #4a7c59;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2d5016;
+            text-decoration: underline;
+        }
+
+        /* Styles pour les sous-tâches */
+        .subtask-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f9fff9;
+            border: 1px solid #d5e9d5;
+            border-radius: 8px;
+        }
+
+        .subtask-title {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .subtask-desc {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 0.95em;
+            resize: vertical;
+        }
+
+        .subtask-desc:focus {
+            border-color: #2d5016;
+            outline: none;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -304,7 +348,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="../index.html" style="display:inline-block;margin-bottom:15px;color:#4a7c59;text-decoration:none;font-weight:600;">← Retour à l'index</a>
+        <a href="../index.html" class="back-link">← Retour à l'index</a>
         <h1>Nouvelle Tâche</h1>
         
         <!-- Lien vers la page de récapitulatif -->
@@ -326,37 +370,38 @@
                 </div>
             </fieldset>
 
-            <div class="form-group">
+            <fieldset class="form-group">
                 <label for="libelle">Nom de la tâche <span class="required">*</span></label>
                 <input type="text" id="libelle" name="libelle" required placeholder="Ex: TP HTML/CSS">
-            </div>
+            </fieldset>
 
-            <div class="form-group">
+            <fieldset class="form-group">
                 <label for="description">Description </label>
                 <textarea id="description" name="description" rows="4" placeholder="Décrivez ici les objectifs et les étapes cette nouvelle tâche..."></textarea>
-            </div>
+            </fieldset>
 
             <fieldset>
                 <legend>Planification et Échéance</legend>
                 
-                <div class="form-group">
+                <fieldset class="form-group">
                     <label for="date_echeance">Date d'échéance </label>
                     <input type="datetime-local" id="date_echeance" name="date_echeance">
-                </div>
+                </fieldset>
                 
-                <div class="form-group">
+                <fieldset class="form-group">
                     <label for="priorite">Priorité <span class="required">*</span></label>
-                    <select id="priorite" name="idPriorite"> 
+                    <select id="priorite" name="idPriorite">
+                        <option>Choisir une priorité</option> 
                         <optgroup label="Urgent">
                             <option value="1">Important & Urgent</option>
                             <option value="2">Haut</option>
                         </optgroup>
                         <optgroup label="Normal">
-                            <option value="3" selected>Moyen</option>
+                            <option value="3">Moyen</option>
                             <option value="4">Bas</option>
                         </optgroup>
                     </select>
-                </div>
+                </fieldset>
                 
                 <div class="form-group">
                     <label for="date_creation">Date de création</label>
@@ -369,7 +414,7 @@
                 </div>
             </fieldset>
 
-            <div class="form-group">
+            <fieldset class="form-group">
                 <label>Statut de progression <span class="required">*</span></label>
                 <div class="radio-group">
                     <div class="radio-item">
@@ -389,25 +434,82 @@
                         <label for="prog6">Terminé</label>
                     </div>
                 </div>
-            </div>
+            </fieldset>
 
-            <div class="form-group file-upload-group">
+            <fieldset>
+                <legend>Catégorisation</legend>
+                
+                <fieldset class="form-group">
+                    <label for="academic_subject">Sujet académique <span class="required">*</span></label>
+                    <select id="academic_subject" name="academic_subject" required>
+                        <option value="">-- Sélectionnez un sujet --</option>
+                        <option value="1">HTML/CSS</option>
+                        <option value="2">JavaScript</option>
+                        <option value="3">Frameworks JavaScript (React, Vue.js)</option>
+                        <option value="4">Développement Backend (Node.js, PHP)</option>
+                        <option value="5">Bases de données (SQL, NoSQL)</option>
+                        <option value="6">UX/UI Design</option>
+                        <option value="7">Responsive Design et Mobile First</option>
+                        <option value="8">Gestion de projet web (Agile, Scrum)</option>
+                        <option value="9">Versioning (Git, GitHub)</option>
+                        <option value="10">Accessibilité web (WCAG)</option>
+                        <option value="11">SEO et Référencement</option>
+                        <option value="12">APIs et Services Web (REST, GraphQL)</option>
+                    </select>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="skills_level">Niveau de compétence <span class="required">*</span></label>
+                    <select id="skills_level" name="skills_level" required>
+                        <option value="">-- Sélectionnez un niveau --</option>
+                        <option value="1">Débutant</option>
+                        <option value="2">Intermédiaire</option>
+                        <option value="3">Avancé</option>
+                        <option value="4">Expert</option>
+                    </select>
+                </fieldset>
+
+                <fieldset class="form-group">                    
+                    <label for="difficulty_rating">Difficulté estimée <span class="required">*</span></label>
+                    <select id="difficulty_rating" name="difficulty_rating" required>
+                        <option value="">-- Sélectionnez une difficulté --</option>
+                        <option value="1">Très facile</option>
+                        <option value="2">Facile</option>
+                        <option value="3">Moyen</option>
+                        <option value="4">Difficile</option>
+                        <option value="5">Très difficile</option>
+                    </select>
+                </fieldset>
+            </fieldset>
+
+            <fieldset class="form-group file-upload-group">
                 <label for="document_pdf">📥 Déposer un document PDF</label>
                 <input type="file" id="document_pdf" name="document_pdf[]" accept=".pdf" multiple>
-            </div>
+            </fieldset>
 
-            <div class="form-group">
+            <fieldset class="form-group">
+                <label>📋 Sous-tâches</label>
+                <div class="file-list" id="subtask-list">
+                    <div class="subtask-item">
+                        <input type="text" name="subtask[]" placeholder="Nom de la sous-tâche" class="subtask-title">
+                        <textarea name="subtaskDescription[]" placeholder="Description de la sous-tâche (optionnel)" rows="2" class="subtask-desc"></textarea>
+                    </div>
+                </div>
+                <button type="button" class="btn-add" onclick="ajouterSousTache()">+ Ajouter une sous-tâche</button>
+            </fieldset>
+
+            <fieldset class="form-group">
                 <label>Liens de documentation</label>
                 <div class="file-list" id="doc-list">
                     <input type="url" name="documentation[]" placeholder="https://exemple.com/doc1">
                 </div>
                 <button type="button" class="btn-add" onclick="ajouterDoc()">+ Ajouter un lien</button>
-            </div>
+            </fieldset>
 
-            <div class="btn-group">
+            <fieldset class="btn-group">
                 <input type="reset" value="Réinitialiser">
                 <button type="button" onclick="saveTask()">Créer la tâche</button>
-            </div>
+            </fieldset>
         </form>
     </div>
 
@@ -433,6 +535,35 @@
             docList.appendChild(newInput);
         }
 
+        function ajouterSousTache() {
+            const subtaskList = document.getElementById('subtask-list');
+            
+            // Créer un conteneur pour la sous-tâche
+            const subtaskItem = document.createElement('div');
+            subtaskItem.className = 'subtask-item';
+            
+            // Créer l'input pour le titre
+            const inputTitle = document.createElement('input');
+            inputTitle.type = 'text';
+            inputTitle.name = 'subtask[]';
+            inputTitle.placeholder = 'Nom de la sous-tâche';
+            inputTitle.className = 'subtask-title';
+            
+            // Créer le textarea pour la description
+            const inputDesc = document.createElement('textarea');
+            inputDesc.name = 'subtaskDescription[]';
+            inputDesc.placeholder = 'Description de la sous-tâche (optionnel)';
+            inputDesc.rows = 2;
+            inputDesc.className = 'subtask-desc';
+            
+            // Ajouter les éléments au conteneur
+            subtaskItem.appendChild(inputTitle);
+            subtaskItem.appendChild(inputDesc);
+            
+            // Ajouter le conteneur à la liste
+            subtaskList.appendChild(subtaskItem);
+        }
+
         /**
          * Fonction pour sauvegarder une tâche dans le localStorage
          * Étape 3B : Enregistrer une tâche dans le localStorage
@@ -454,6 +585,25 @@
             // Récupération de la valeur du bouton radio sélectionné pour la progression
             let idTaskProgression = document.querySelector('input[name="idTaskProgression"]:checked').value;
             
+            // Récupération des nouvelles catégories
+            let idAcademicSubject = document.getElementById('academic_subject').value;
+            let idSkillsLevel = document.getElementById('skills_level').value;
+            let idDifficultyRating = document.getElementById('difficulty_rating').value;
+            
+            // Récupération des sous-tâches avec leurs descriptions
+            let subtaskInputs = document.querySelectorAll('input[name="subtask[]"]');
+            let subtaskDescInputs = document.querySelectorAll('textarea[name="subtaskDescription[]"]');
+            let subtasks = [];
+            
+            subtaskInputs.forEach((input, index) => {
+                if (input.value.trim() !== '') {
+                    subtasks.push({
+                        subTaskLibelle: input.value.trim(),
+                        subTaskDescription: subtaskDescInputs[index] ? subtaskDescInputs[index].value.trim() : ''
+                    });
+                }
+            });
+            
             // Récupération des liens de documentation
             let documentationInputs = document.querySelectorAll('input[name="documentation[]"]');
             let documentation = [];
@@ -470,6 +620,10 @@
             console.log("  - Date création :", date_creation);
             console.log("  - Priorité :", idPriorite);
             console.log("  - Progression :", idTaskProgression);
+            console.log("  - Sujet académique :", idAcademicSubject);
+            console.log("  - Niveau de compétence :", idSkillsLevel);
+            console.log("  - Difficulté :", idDifficultyRating);
+            console.log("  - Sous-tâches :", subtasks);
             console.log("  - Documentation :", documentation);
             
             // 2. Initialiser la liste des tâches
@@ -500,6 +654,22 @@
             let dateCreationISO = new Date(date_creation).toISOString();
             
             // Créer l'objet représentant la nouvelle tâche
+            let subTaskIds = [];
+            
+            // Créer les sous-tâches autonomes avec leurs IDs
+            let subtasksToStore = subtasks.map((subtask, index) => {
+                const subtaskId = `${newId}-${index + 1}`;
+                subTaskIds.push(subtaskId);
+                
+                return {
+                    taskId: newId,
+                    subTaskId: `${index + 1}`,
+                    id: subtaskId,
+                    subTaskLibelle: subtask.subTaskLibelle,
+                    subTaskDescription: subtask.subTaskDescription
+                };
+            });
+            
             let newTask = {
                 id: newId,
                 libelle: libelle,
@@ -513,11 +683,12 @@
                 fichiers_joints: [],
                 idPriorite: idPriorite,
                 idTaskProgression: idTaskProgression,
-                // Valeurs par défaut pour les champs manquants dans le formulaire
-                idAcademicSubject: "1",
-                idSkillsLevel: "2",
-                idDifficultyRating: "2",
-                subTask_ids: []
+                // Valeurs récupérées des listes déroulantes
+                idAcademicSubject: idAcademicSubject,
+                idSkillsLevel: idSkillsLevel,
+                idDifficultyRating: idDifficultyRating,
+                subTask_ids: subTaskIds,
+                subtasks: subtasksToStore  // Sous-tâches complètes avec IDs
             };
             
             console.log("✨ Nouvelle tâche créée :");
@@ -539,6 +710,22 @@
             // Enregistrer dans le localStorage
             localStorage.setItem("tasksData", tasksJSON);
             console.log("✅ Données enregistrées dans le localStorage avec la clé 'tasksData'");
+            
+            // Enregistrer les sous-tâches séparément si elles existent
+            if (subtasksToStore.length > 0) {
+                let existingSubtasks = [];
+                const storedSubtasks = localStorage.getItem("subtasksData");
+                if (storedSubtasks) {
+                    existingSubtasks = JSON.parse(storedSubtasks);
+                }
+                
+                // Ajouter les nouvelles sous-tâches
+                existingSubtasks.push(...subtasksToStore);
+                
+                // Sauvegarder dans le localStorage
+                localStorage.setItem("subtasksData", JSON.stringify(existingSubtasks));
+                console.log(`✅ ${subtasksToStore.length} sous-tâche(s) enregistrée(s) séparément`);
+            }
             
             // 6. Réinitialiser le formulaire
             console.log("\n🔄 Étape 6 : Réinitialisation du formulaire");
