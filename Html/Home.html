@@ -8,6 +8,7 @@
     <meta name="keywords" content="TO do list, tâche, priorité, gestion de projet">
     <title>To-Do List - Accueil</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Style/responsive.css">
 
     <style>
         * {
@@ -25,6 +26,10 @@
             justify-content: center;
             padding: 20px;
             color: #333;
+            max-width: 2000px;
+            margin: 0 auto;
+            min-width: 320px;
+            width: 100%;
         }
 
         .container {
@@ -35,6 +40,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             padding: 60px 40px;
             text-align: center;
+            min-width: min(100%, 280px);
         }
 
         h1 {

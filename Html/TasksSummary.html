@@ -5,23 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Récapitulatif des Tâches - To-Do List</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Style/baseStyle.css">
+    <link rel="stylesheet" href="../Style/responsive.css">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            background: linear-gradient(145deg, #e7f7e7 0%, #d5e9d5 40%, #b8d4b8 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
-            margin: 0;
-        }
-
+        /* Styles spécifiques à la page de récapitulatif */
+        
         .container {
             max-width: 2000px;
             width: 100%;
@@ -31,11 +20,16 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             padding: 40px;
             box-sizing: border-box;
+            min-width: min(100%, 280px);
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
             color: #2d5016;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
             text-align: center;
             margin-bottom: 30px;
             font-size: 2.5em;
