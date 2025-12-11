@@ -169,7 +169,7 @@ L'application est **entièrement responsive** et s'adapte à :
 
 L'application affiche des **logs détaillés** dans la console :
 
-```
+```markdown
 🚀 Début de la fonction saveTask()
 📋 Étape 1 : Lecture des champs du formulaire
   - Libellé : TP HTML/CSS
