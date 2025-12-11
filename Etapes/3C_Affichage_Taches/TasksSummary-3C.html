@@ -280,73 +280,70 @@
             generateTasksTable();
         }
         
-        function generateTasksTable(filter = 'all') {
-            console.log(`🏗️ Génération du tableau HTML des tâches (filtre: ${filter})`);
-            
+       function generateTasksTable(filter = 'all') {
             const tbody = document.getElementById('tasksTableBody');
             const taskCount = document.getElementById('taskCount');
             
             let filteredTasks;
-            if (filter === 'all') {
-                filteredTasks = tasksList.filter(task => task.idTaskProgression != "7");
-            } else if (filter === '6') {
-                filteredTasks = tasksList.filter(task => task.idTaskProgression == "6");
-            } else if (filter === '7') {
-                filteredTasks = tasksList.filter(task => task.idTaskProgression == "7");
-            } else {
-                filteredTasks = tasksList;
-            }
+            if (filter === 'all') filteredTasks = tasksList.filter(task => task.idTaskProgression != "7");
+            else if (filter === '6') filteredTasks = tasksList.filter(task => task.idTaskProgression == "6");
+            else if (filter === '7') filteredTasks = tasksList.filter(task => task.idTaskProgression == "7");
+            else filteredTasks = tasksList;
             
-            const filterLabel = filter === 'all' ? 'active(s)' : 
-                               filter === '6' ? 'terminée(s)' : 
-                               filter === '7' ? 'archivée(s)' : '';
+            const filterLabel = filter === 'all' ? 'active(s)' : filter === '6' ? 'terminée(s)' : filter === '7' ? 'archivée(s)' : '';
             taskCount.textContent = `${filteredTasks.length} tâche(s) ${filterLabel} / ${tasksList.length} total`;
             
             tbody.innerHTML = '';
             
             if (filteredTasks.length === 0) {
-                const message = filter === 'all' ? 'Aucune tâche active' :
-                               filter === '6' ? 'Aucune tâche terminée' :
-                               filter === '7' ? 'Aucune tâche archivée' : 'Aucune tâche';
-                
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="10" class="empty-state">
-                            <div class="empty-state__icon">📋</div>
-                            <h2>${message}</h2>
-                            <p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>
-                            ${filter === 'all' ? '<a href="../3B_Enregistrement_localStorage/Form-ToDoList-3B.html"" class="btn-primary">Créer une tâche</a>' : ''}
-                        </td>
-                    </tr>
-                `;
+                const message = filter === 'all' ? 'Aucune tâche active' : filter === '6' ? 'Aucune tâche terminée' : 'Aucune tâche archivée';
+                // CORRECTION : colspan passe à 13 (Titre à Actions = 13 colonnes)
+                tbody.innerHTML = `<tr><td colspan="13" class="empty-state"><div class="empty-state__icon">📋</div><h2>${message}</h2><p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn-primary">Créer une tâche</a>' : ''}</td></tr>`;
                 return;
             }
             
             let htmlContent = '';
-            
-            filteredTasks.forEach((task, index) => {
+            filteredTasks.forEach((task) => {
                 const priorityObj = priorityList.find(e => e.idPriorite == task.idPriorite);
                 const priorityLabel = priorityObj ? priorityObj.priorite : 'Non défini';
-                
                 const progressObj = taskProgressionList.find(e => e.idTaskProgression == task.idTaskProgression);
                 const progressLabel = progressObj ? progressObj.taskProgressionStatus : 'Non défini';
-                
                 const subjectObj = academicSubjectsList.find(e => e.idAcademicSubject == task.idAcademicSubject);
                 const subjectLabel = subjectObj ? subjectObj.academicSubjectName : 'Non défini';
-                
                 const dateCreation = new Date(task.date_de_creation);
-                const dateFormatted = dateCreation.toLocaleDateString('fr-FR', {
-                    day: '2-digit', month: '2-digit', year: 'numeric'
-                });
-                
+                const dateFormatted = dateCreation.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
                 let skillsLevel = skillsLevelList.find(s => s.idSkillsLevel == task.idSkillsLevel);
                 let skillsLabel = skillsLevel ? skillsLevel.skillsLevel : 'N/A';
-                
                 let difficulty = difficultyRatingList.find(d => d.idDifficultyRating == task.idDifficultyRating);
                 let difficultyLabel = difficulty ? difficulty.difficultyRating : 'N/A';
                 
-                // Note : Pas de colonne "Actions" dans ce fichier
                 
+                // --- 1. GESTION DES BOUTONS D'ACTIONS (DÉPLACÉ AU DÉBUT) ---
+                let statusButtons = '';
+                taskProgressionList.forEach(status => {
+                    const isActive = status.idTaskProgression == task.idTaskProgression;
+                    const activeClass = isActive ? `active-${status.idTaskProgression}` : '';
+                    const disabled = isActive ? 'disabled' : '';
+                    statusButtons += `<button class="btn-icon ${activeClass}" data-task-id="${task.id}" data-status-id="${status.idTaskProgression}" onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')" ${disabled} title="${status.taskProgressionStatus}">${getStatusIcon(status.idTaskProgression)}</button>`;
+                });
+                
+                // --- 2. GESTION DES LIENS (Utilisation de classes CSS) ---
+                let linksHtml = '<span class="empty-content">-</span>';
+                if (task.documentation && task.documentation.length > 0) {
+                    linksHtml = task.documentation.map(link => 
+                        `<a href="${link}" target="_blank" class="doc-link" title="${link}">🔗 Lien</a>`
+                    ).join(''); 
+                }
+
+                // --- 3. GESTION DES FICHIERS (Utilisation de classes CSS) ---
+                let filesHtml = '<span class="empty-content">-</span>';
+                if (task.fichiers_joints && task.fichiers_joints.length > 0) {
+                    filesHtml = task.fichiers_joints.map(file => 
+                        `<span title="${file}" class="file-item">📄 ${file}</span>`
+                    ).join('');
+                }
+
+                // --- 4. GÉNÉRATION HTML (Une seule fois) ---
                 htmlContent += `
                     <tr data-task-id="${task.id}">
                         <td><strong>${task.libelle}</strong></td>
@@ -357,8 +354,11 @@
                         <td><span class="badge difficulty-${task.idDifficultyRating}">${difficultyLabel}</span></td>
                         <td><span class="badge priority-${task.idPriorite}">${priorityLabel}</span></td>
                         <td><span class="badge status-${task.idTaskProgression}">${progressLabel}</span></td>
-                        <td>${task["compteur_de_temps_passe(mn)"] || 0} min</td>
+                        <td>${task["compteur_de_temps_passe(mn)"] || 0} min</td>                        
+                        <td class="cell-small">${linksHtml}</td>
+                        <td class="cell-small">${filesHtml}</td>                        
                         <td>${dateFormatted}</td>
+                        <td><div class="actions-group">${statusButtons}</div></td>
                     </tr>
                 `;
             });

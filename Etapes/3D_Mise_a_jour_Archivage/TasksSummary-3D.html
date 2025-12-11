@@ -247,180 +247,98 @@
         }
     </style>
 
-    <script>
-        // Variables globales
-        let priorityList = [];
-        let taskProgressionList = [];
-        let academicSubjectsList = [];
-        let skillsLevelList = [];
-        let difficultyRatingList = [];
+  <script>
+        let priorityList = [], taskProgressionList = [], academicSubjectsList = [], skillsLevelList = [], difficultyRatingList = [];
         let currentFilter = 'all'; 
         let tasksList = [];
         
         console.log("🚀 Chargement de la page de récapitulatif des tâches");
         
         let storedTasks = localStorage.getItem("tasksData");
-        if (storedTasks) {
-            tasksList = JSON.parse(storedTasks);
-        }
+        if (storedTasks) tasksList = JSON.parse(storedTasks);
         
-        // Définition de l'icône en global pour qu'elle soit accessible partout
         const getStatusIcon = (statusId) => {
-            const icons = {
-                '1': '📝', // Nouvelle tâche
-                '2': '⏸️', // En attente
-                '3': '▶️', // En cours
-                '4': '🚫', // Bloqué
-                '5': '✔️', // Validé
-                '6': '✅', // Terminé
-                '7': '📦'  // Archivé
-            };
+            const icons = { '1': '📝', '2': '⏸️', '3': '▶️', '4': '🚫', '5': '✔️', '6': '✅', '7': '📦' };
             return icons[statusId] || '❓';
         };
 
         document.onreadystatechange = function() {
-            if (document.readyState === "complete") {
-                loadReferenceData();
-            }
+            if (document.readyState === "complete") loadReferenceData();
         };
         
         function loadReferenceData() {
-            priorityList = [
-                { "idPriorite": "1", "priorite": "Important" },
-                { "idPriorite": "2", "priorite": "Haut" },
-                { "idPriorite": "3", "priorite": "Moyen" },
-                { "idPriorite": "4", "priorite": "Bas" },
-                { "idPriorite": "5", "priorite": "Non important" }
-            ];
-            
-            taskProgressionList = [
-                { "idTaskProgression": "1", "taskProgressionStatus": "Nouvelle tâche" },
-                { "idTaskProgression": "2", "taskProgressionStatus": "conception" },
-                { "idTaskProgression": "3", "taskProgressionStatus": "en cours" },
-                { "idTaskProgression": "4", "taskProgressionStatus": "bloqué" },
-                { "idTaskProgression": "5", "taskProgressionStatus": "en attente de validation" },
-                { "idTaskProgression": "6", "taskProgressionStatus": "Terminé" },
-                { "idTaskProgression": "7", "taskProgressionStatus": "Archivé" }
-            ];
-            
-            academicSubjectsList = [
-                { "idAcademicSubject": "1", "academicSubjectName": "HTML/CSS" },
-                { "idAcademicSubject": "2", "academicSubjectName": "JavaScript" },
-                { "idAcademicSubject": "3", "academicSubjectName": "Frameworks JavaScript (React, Vue.js)" },
-                { "idAcademicSubject": "4", "academicSubjectName": "Développement Backend (Node.js, PHP)" },
-                { "idAcademicSubject": "5", "academicSubjectName": "Bases de données (SQL, NoSQL)" },
-                { "idAcademicSubject": "6", "academicSubjectName": "UX/UI Design" },
-                { "idAcademicSubject": "7", "academicSubjectName": "Responsive Design et Mobile First" },
-                { "idAcademicSubject": "8", "academicSubjectName": "Gestion de projet web (Agile, Scrum)" },
-                { "idAcademicSubject": "9", "academicSubjectName": "Versioning (Git, GitHub)" },
-                { "idAcademicSubject": "10", "academicSubjectName": "Accessibilité web (WCAG)" },
-                { "idAcademicSubject": "11", "academicSubjectName": "SEO et Référencement" },
-                { "idAcademicSubject": "12", "academicSubjectName": "APIs et Services Web (REST, GraphQL)" }
-            ];
-            
-            skillsLevelList = [
-                { "idSkillsLevel": "1", "skillsLevel": "Débutant" },
-                { "idSkillsLevel": "2", "skillsLevel": "Intermédiaire" },
-                { "idSkillsLevel": "3", "skillsLevel": "Avancé" },
-                { "idSkillsLevel": "4", "skillsLevel": "Expert" }
-            ];
-            
-            difficultyRatingList = [
-                { "idDifficultyRating": "1", "difficultyRating": "Très facile" },
-                { "idDifficultyRating": "2", "difficultyRating": "Facile" },
-                { "idDifficultyRating": "3", "difficultyRating": "Moyen" },
-                { "idDifficultyRating": "4", "difficultyRating": "Difficile" },
-                { "idDifficultyRating": "5", "difficultyRating": "Très difficile" }
-            ];
-            
+            priorityList = [{ "idPriorite": "1", "priorite": "Important" }, { "idPriorite": "2", "priorite": "Haut" }, { "idPriorite": "3", "priorite": "Moyen" }, { "idPriorite": "4", "priorite": "Bas" }, { "idPriorite": "5", "priorite": "Non important" }];
+            taskProgressionList = [{ "idTaskProgression": "1", "taskProgressionStatus": "Nouvelle tâche" }, { "idTaskProgression": "2", "taskProgressionStatus": "conception" }, { "idTaskProgression": "3", "taskProgressionStatus": "en cours" }, { "idTaskProgression": "4", "taskProgressionStatus": "bloqué" }, { "idTaskProgression": "5", "taskProgressionStatus": "en attente de validation" }, { "idTaskProgression": "6", "taskProgressionStatus": "Terminé" }, { "idTaskProgression": "7", "taskProgressionStatus": "Archivé" }];
+            academicSubjectsList = [{ "idAcademicSubject": "1", "academicSubjectName": "HTML/CSS" }, { "idAcademicSubject": "2", "academicSubjectName": "JavaScript" }, { "idAcademicSubject": "3", "academicSubjectName": "Frameworks JavaScript (React, Vue.js)" }, { "idAcademicSubject": "4", "academicSubjectName": "Développement Backend (Node.js, PHP)" }, { "idAcademicSubject": "5", "academicSubjectName": "Bases de données (SQL, NoSQL)" }, { "idAcademicSubject": "6", "academicSubjectName": "UX/UI Design" }, { "idAcademicSubject": "7", "academicSubjectName": "Responsive Design et Mobile First" }, { "idAcademicSubject": "8", "academicSubjectName": "Gestion de projet web (Agile, Scrum)" }, { "idAcademicSubject": "9", "academicSubjectName": "Versioning (Git, GitHub)" }, { "idAcademicSubject": "10", "academicSubjectName": "Accessibilité web (WCAG)" }, { "idAcademicSubject": "11", "academicSubjectName": "SEO et Référencement" }, { "idAcademicSubject": "12", "academicSubjectName": "APIs et Services Web (REST, GraphQL)" }];
+            skillsLevelList = [{ "idSkillsLevel": "1", "skillsLevel": "Débutant" }, { "idSkillsLevel": "2", "skillsLevel": "Intermédiaire" }, { "idSkillsLevel": "3", "skillsLevel": "Avancé" }, { "idSkillsLevel": "4", "skillsLevel": "Expert" }];
+            difficultyRatingList = [{ "idDifficultyRating": "1", "difficultyRating": "Très facile" }, { "idDifficultyRating": "2", "difficultyRating": "Facile" }, { "idDifficultyRating": "3", "difficultyRating": "Moyen" }, { "idDifficultyRating": "4", "difficultyRating": "Difficile" }, { "idDifficultyRating": "5", "difficultyRating": "Très difficile" }];
             generateTasksTable();
         }
         
-        function generateTasksTable(filter = 'all') {
-            console.log(`🏗️ Génération du tableau HTML des tâches (filtre: ${filter})`);
-            
+function generateTasksTable(filter = 'all') {
             const tbody = document.getElementById('tasksTableBody');
             const taskCount = document.getElementById('taskCount');
             
             let filteredTasks;
-            if (filter === 'all') {
-                filteredTasks = tasksList.filter(task => task.idTaskProgression != "7");
-            } else if (filter === '6') {
-                filteredTasks = tasksList.filter(task => task.idTaskProgression == "6");
-            } else if (filter === '7') {
-                filteredTasks = tasksList.filter(task => task.idTaskProgression == "7");
-            } else {
-                filteredTasks = tasksList;
-            }
+            if (filter === 'all') filteredTasks = tasksList.filter(task => task.idTaskProgression != "7");
+            else if (filter === '6') filteredTasks = tasksList.filter(task => task.idTaskProgression == "6");
+            else if (filter === '7') filteredTasks = tasksList.filter(task => task.idTaskProgression == "7");
+            else filteredTasks = tasksList;
             
-            const filterLabel = filter === 'all' ? 'active(s)' : 
-                               filter === '6' ? 'terminée(s)' : 
-                               filter === '7' ? 'archivée(s)' : '';
+            const filterLabel = filter === 'all' ? 'active(s)' : filter === '6' ? 'terminée(s)' : filter === '7' ? 'archivée(s)' : '';
             taskCount.textContent = `${filteredTasks.length} tâche(s) ${filterLabel} / ${tasksList.length} total`;
             
             tbody.innerHTML = '';
             
             if (filteredTasks.length === 0) {
-                const message = filter === 'all' ? 'Aucune tâche active' :
-                               filter === '6' ? 'Aucune tâche terminée' :
-                               filter === '7' ? 'Aucune tâche archivée' : 'Aucune tâche';
-                
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="11" class="empty-state">
-                            <div class="empty-state__icon">📋</div>
-                            <h2>${message}</h2>
-                            <p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>
-                            ${filter === 'all' ? '<a href="../3B_Enregistrement_localStorage/Form-ToDoList-3B.html" class="btn-primary">Créer une tâche</a>' : ''}
-                        </td>
-                    </tr>
-                `;
+                const message = filter === 'all' ? 'Aucune tâche active' : filter === '6' ? 'Aucune tâche terminée' : 'Aucune tâche archivée';
+                // CORRECTION : colspan passe à 13 (Titre à Actions = 13 colonnes)
+                tbody.innerHTML = `<tr><td colspan="13" class="empty-state"><div class="empty-state__icon">📋</div><h2>${message}</h2><p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn-primary">Créer une tâche</a>' : ''}</td></tr>`;
                 return;
             }
             
             let htmlContent = '';
-            
-            filteredTasks.forEach((task, index) => {
+            filteredTasks.forEach((task) => {
                 const priorityObj = priorityList.find(e => e.idPriorite == task.idPriorite);
                 const priorityLabel = priorityObj ? priorityObj.priorite : 'Non défini';
-                
                 const progressObj = taskProgressionList.find(e => e.idTaskProgression == task.idTaskProgression);
                 const progressLabel = progressObj ? progressObj.taskProgressionStatus : 'Non défini';
-                
                 const subjectObj = academicSubjectsList.find(e => e.idAcademicSubject == task.idAcademicSubject);
                 const subjectLabel = subjectObj ? subjectObj.academicSubjectName : 'Non défini';
-                
                 const dateCreation = new Date(task.date_de_creation);
-                const dateFormatted = dateCreation.toLocaleDateString('fr-FR', {
-                    day: '2-digit', month: '2-digit', year: 'numeric'
-                });
-                
+                const dateFormatted = dateCreation.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
                 let skillsLevel = skillsLevelList.find(s => s.idSkillsLevel == task.idSkillsLevel);
                 let skillsLabel = skillsLevel ? skillsLevel.skillsLevel : 'N/A';
-                
                 let difficulty = difficultyRatingList.find(d => d.idDifficultyRating == task.idDifficultyRating);
                 let difficultyLabel = difficulty ? difficulty.difficultyRating : 'N/A';
                 
-                // Génération des boutons avec la nouvelle classe btn-icon
+                
+                // --- 1. GESTION DES BOUTONS D'ACTIONS (DÉPLACÉ AU DÉBUT) ---
                 let statusButtons = '';
                 taskProgressionList.forEach(status => {
                     const isActive = status.idTaskProgression == task.idTaskProgression;
                     const activeClass = isActive ? `active-${status.idTaskProgression}` : '';
                     const disabled = isActive ? 'disabled' : '';
-                    
-                    statusButtons += `
-                        <button 
-                            class="btn-icon ${activeClass}" 
-                            data-task-id="${task.id}" 
-                            data-status-id="${status.idTaskProgression}"
-                            onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')"
-                            ${disabled}
-                            title="${status.taskProgressionStatus}">
-                            ${getStatusIcon(status.idTaskProgression)}
-                        </button>
-                    `;
+                    statusButtons += `<button class="btn-icon ${activeClass}" data-task-id="${task.id}" data-status-id="${status.idTaskProgression}" onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')" ${disabled} title="${status.taskProgressionStatus}">${getStatusIcon(status.idTaskProgression)}</button>`;
                 });
                 
+                // --- 2. GESTION DES LIENS (Utilisation de classes CSS) ---
+                let linksHtml = '<span class="empty-content">-</span>';
+                if (task.documentation && task.documentation.length > 0) {
+                    linksHtml = task.documentation.map(link => 
+                        `<a href="${link}" target="_blank" class="doc-link" title="${link}">🔗 Lien</a>`
+                    ).join(''); 
+                }
+
+                // --- 3. GESTION DES FICHIERS (Utilisation de classes CSS) ---
+                let filesHtml = '<span class="empty-content">-</span>';
+                if (task.fichiers_joints && task.fichiers_joints.length > 0) {
+                    filesHtml = task.fichiers_joints.map(file => 
+                        `<span title="${file}" class="file-item">📄 ${file}</span>`
+                    ).join('');
+                }
+
+                // --- 4. GÉNÉRATION HTML (Une seule fois) ---
                 htmlContent += `
                     <tr data-task-id="${task.id}">
                         <td><strong>${task.libelle}</strong></td>
@@ -431,13 +349,11 @@
                         <td><span class="badge difficulty-${task.idDifficultyRating}">${difficultyLabel}</span></td>
                         <td><span class="badge priority-${task.idPriorite}">${priorityLabel}</span></td>
                         <td><span class="badge status-${task.idTaskProgression}">${progressLabel}</span></td>
-                        <td>${task["compteur_de_temps_passe(mn)"] || 0} min</td>
+                        <td>${task["compteur_de_temps_passe(mn)"] || 0} min</td>                        
+                        <td class="cell-small">${linksHtml}</td>
+                        <td class="cell-small">${filesHtml}</td>                        
                         <td>${dateFormatted}</td>
-                        <td>
-                            <div class="actions-group">
-                                ${statusButtons}
-                            </div>
-                        </td>
+                        <td><div class="actions-group">${statusButtons}</div></td>
                     </tr>
                 `;
             });
@@ -449,12 +365,9 @@
         function generateSubtasksTable(tasks) {
             const subtasksTbody = document.getElementById('subtasksTableBody');
             subtasksTbody.innerHTML = '';
-            
             let allSubtasks = [];
             const storedSubtasks = localStorage.getItem("subtasksData");
-            if (storedSubtasks) {
-                allSubtasks = JSON.parse(storedSubtasks);
-            }
+            if (storedSubtasks) allSubtasks = JSON.parse(storedSubtasks);
             
             let subtasksHtml = '';
             let subtasksCount = 0;
@@ -465,27 +378,10 @@
                 subtasksCount++;
                 const parentTask = tasks.find(t => t.id === subtask.taskId);
                 const taskLibelle = parentTask ? parentTask.libelle : 'Tâche inconnue';
-                
-                subtasksHtml += `
-                    <tr>
-                        <td><strong>${taskLibelle}</strong></td>
-                        <td>${subtask.subTaskLibelle}</td>
-                        <td class="cell-description">${subtask.subTaskDescription || 'Aucune description'}</td>
-                    </tr>
-                `;
+                subtasksHtml += `<tr><td><strong>${taskLibelle}</strong></td><td>${subtask.subTaskLibelle}</td><td class="cell-description">${subtask.subTaskDescription || 'Aucune description'}</td></tr>`;
             });
             
-            if (subtasksCount === 0) {
-                subtasksHtml = `
-                    <tr>
-                        <td colspan="3" class="empty-state">
-                            <div class="empty-state__icon">📝</div>
-                            <p>Aucune sous-tâche enregistrée</p>
-                        </td>
-                    </tr>
-                `;
-            }
-            
+            if (subtasksCount === 0) subtasksHtml = `<tr><td colspan="3" class="empty-state"><div class="empty-state__icon">📝</div><p>Aucune sous-tâche enregistrée</p></td></tr>`;
             subtasksTbody.insertAdjacentHTML("beforeend", subtasksHtml);
         }
         
@@ -493,17 +389,11 @@
             let storedTasks = localStorage.getItem("tasksData");
             if (!storedTasks) return;
             tasksList = JSON.parse(storedTasks);
-            
             const taskToUpdate = tasksList.find(task => task.id == taskId);
             if (!taskToUpdate) return;
-            
             taskToUpdate.idTaskProgression = newStatusId;
             taskToUpdate.date_de_modification = new Date().toISOString();
-            
-            if (newStatusId == "6") {
-                taskToUpdate.date_de_completion = new Date().toISOString();
-            }
-            
+            if (newStatusId == "6") taskToUpdate.date_de_completion = new Date().toISOString();
             localStorage.setItem("tasksData", JSON.stringify(tasksList));
             
             if (newStatusId == "7") {
@@ -518,55 +408,32 @@
         }
         
         function updateTaskRow(taskId) {
-            console.log(`🔄 Mise à jour de la ligne de la tâche ${taskId}`);
-            
             const task = tasksList.find(t => t.id == taskId);
             if (!task) return;
-            
             const row = document.querySelector(`tr[data-task-id="${taskId}"]`);
             if (!row) return;
-            
             const statusObj = taskProgressionList.find(s => s.idTaskProgression == task.idTaskProgression);
             const statusLabel = statusObj ? statusObj.taskProgressionStatus : 'Non défini';
             
-            // CORRECTION INDEX : Statut est à l'index 7 (8ème colonne)
-            const statusCell = row.cells[7]; 
-            statusCell.innerHTML = `
-                <span class="badge status-${task.idTaskProgression}">
-                    ${statusLabel}
-                </span>
-            `;
+            // L'index du Statut est 7 (inchangé)
+            row.cells[7].innerHTML = `<span class="badge status-${task.idTaskProgression}">${statusLabel}</span>`;
             
-            // CORRECTION INDEX : Actions est à l'index 10 (11ème colonne)
-            const actionsCell = row.cells[12];
             let statusButtons = '';
-            
             taskProgressionList.forEach(status => {
                 const isActive = status.idTaskProgression == task.idTaskProgression;
                 const activeClass = isActive ? `active-${status.idTaskProgression}` : '';
                 const disabled = isActive ? 'disabled' : '';
-                
-                statusButtons += `
-                    <button 
-                        class="btn-icon ${activeClass}" 
-                        data-task-id="${task.id}" 
-                        data-status-id="${status.idTaskProgression}"
-                        onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')"
-                        ${disabled}
-                        title="${status.taskProgressionStatus}">
-                        ${getStatusIcon(status.idTaskProgression)}
-                    </button>
-                `;
+                statusButtons += `<button class="btn-icon ${activeClass}" data-task-id="${task.id}" data-status-id="${status.idTaskProgression}" onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')" ${disabled} title="${status.taskProgressionStatus}">${getStatusIcon(status.idTaskProgression)}</button>`;
             });
             
-            actionsCell.innerHTML = `<div class="actions-group">${statusButtons}</div>`;
+            // CORRECTION CRITIQUE : L'index de la colonne Actions est maintenant 12
+            // Colonnes : 0..8 (Temps), 9 (Liens), 10 (Fichiers), 11 (Date), 12 (Actions)
+            row.cells[12].innerHTML = `<div class="actions-group">${statusButtons}</div>`;
         }
         
         function filterTasks(filter) {
             currentFilter = filter;
-            document.querySelectorAll('.btn-filter').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             generateTasksTable(filter);
         }

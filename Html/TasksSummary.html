@@ -244,6 +244,38 @@
             .btn-filter { width: 100%; margin-bottom: 5px; }
             .data-table th, .data-table td { font-size: 0.85em; padding: 8px 5px; }
         }
+        /* --- NOUVEAU : Styles pour les colonnes Liens et Fichiers --- */
+        .cell-small { 
+            font-size: 0.85em; 
+            vertical-align: top;
+        }
+        .empty-content { 
+            color: #ccc; 
+            font-style: italic;
+        }
+        .doc-link { 
+            text-decoration: none; 
+            color: #2d5016; 
+            display: block; /* Met chaque lien sur une ligne */
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
+        .doc-link:hover { 
+            text-decoration: underline; 
+            color: #1f360e;
+        }
+        .file-item { 
+            font-size: 0.95em; 
+            display: block; /* Met chaque fichier sur une ligne */
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
     </style>
 
     <script>
@@ -274,7 +306,7 @@
             generateTasksTable();
         }
         
-        function generateTasksTable(filter = 'all') {
+      function generateTasksTable(filter = 'all') {
             const tbody = document.getElementById('tasksTableBody');
             const taskCount = document.getElementById('taskCount');
             
@@ -291,7 +323,8 @@
             
             if (filteredTasks.length === 0) {
                 const message = filter === 'all' ? 'Aucune tâche active' : filter === '6' ? 'Aucune tâche terminée' : 'Aucune tâche archivée';
-                tbody.innerHTML = `<tr><td colspan="11" class="empty-state"><div class="empty-state__icon">📋</div><h2>${message}</h2><p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn-primary">Créer une tâche</a>' : ''}</td></tr>`;
+                // CORRECTION : colspan passe de 11 à 13 (nombre total de colonnes)
+                tbody.innerHTML = `<tr><td colspan="13" class="empty-state"><div class="empty-state__icon">📋</div><h2>${message}</h2><p>${filter === 'all' ? 'Commencez par créer votre première tâche !' : 'Changez de filtre pour voir d\'autres tâches.'}</p>${filter === 'all' ? '<a href="Form-ToDoList.html" class="btn-primary">Créer une tâche</a>' : ''}</td></tr>`;
                 return;
             }
             
@@ -310,6 +343,23 @@
                 let difficulty = difficultyRatingList.find(d => d.idDifficultyRating == task.idDifficultyRating);
                 let difficultyLabel = difficulty ? difficulty.difficultyRating : 'N/A';
                 
+                // --- GESTION DES LIENS ---
+                let linksHtml = '<span class="empty-content">-</span>';
+                if (task.documentation && task.documentation.length > 0) {
+                    linksHtml = task.documentation.map(link => 
+                        `<a href="${link}" target="_blank" class="doc-link" title="${link}">🔗 Lien</a>`
+                    ).join(''); 
+                }
+
+                // --- GESTION DES FICHIERS ---
+                let filesHtml = '<span class="empty-content">-</span>';
+                if (task.fichiers_joints && task.fichiers_joints.length > 0) {
+                    filesHtml = task.fichiers_joints.map(file => 
+                        `<span title="${file}" class="file-item">📄 ${file}</span>`
+                    ).join('');
+                }
+
+                // --- GESTION DES BOUTONS D'ACTIONS ---
                 let statusButtons = '';
                 taskProgressionList.forEach(status => {
                     const isActive = status.idTaskProgression == task.idTaskProgression;
@@ -318,7 +368,26 @@
                     statusButtons += `<button class="btn-icon ${activeClass}" data-task-id="${task.id}" data-status-id="${status.idTaskProgression}" onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')" ${disabled} title="${status.taskProgressionStatus}">${getStatusIcon(status.idTaskProgression)}</button>`;
                 });
                 
-                htmlContent += `<tr data-task-id="${task.id}"><td><strong>${task.libelle}</strong></td><td class="cell-description">${task.description || 'Aucune description'}</td><td>${task.assignation}</td><td>${subjectLabel}</td><td><span class="badge skills-${task.idSkillsLevel}">${skillsLabel}</span></td><td><span class="badge difficulty-${task.idDifficultyRating}">${difficultyLabel}</span></td><td><span class="badge priority-${task.idPriorite}">${priorityLabel}</span></td><td><span class="badge status-${task.idTaskProgression}">${progressLabel}</span></td><td>${task["compteur_de_temps_passe(mn)"] || 0} min</td><td>${dateFormatted}</td><td><div class="actions-group">${statusButtons}</div></td></tr>`;
+                // --- GÉNÉRATION DU TR (13 colonnes) ---
+                htmlContent += `
+                    <tr data-task-id="${task.id}">
+                        <td><strong>${task.libelle}</strong></td>
+                        <td class="cell-description">${task.description || 'Aucune description'}</td>
+                        <td>${task.assignation}</td>
+                        <td>${subjectLabel}</td>
+                        <td><span class="badge skills-${task.idSkillsLevel}">${skillsLabel}</span></td>
+                        <td><span class="badge difficulty-${task.idDifficultyRating}">${difficultyLabel}</span></td>
+                        <td><span class="badge priority-${task.idPriorite}">${priorityLabel}</span></td>
+                        <td><span class="badge status-${task.idTaskProgression}">${progressLabel}</span></td>
+                        <td>${task["compteur_de_temps_passe(mn)"] || 0} min</td>                        
+                        <td class="cell-small">${linksHtml}</td>
+                        <td class="cell-small">${filesHtml}</td>                        
+                        <td>${dateFormatted}</td>
+                        <td><div class="actions-group">${statusButtons}</div></td>
+                    </tr>
+                `;
+
+                // NOTE: L'ancienne ligne incorrecte et redondante a été supprimée ici.
             });
             
             tbody.insertAdjacentHTML("beforeend", htmlContent);
@@ -388,7 +457,7 @@
                 const disabled = isActive ? 'disabled' : '';
                 statusButtons += `<button class="btn-icon ${activeClass}" data-task-id="${task.id}" data-status-id="${status.idTaskProgression}" onclick="updateTaskStatus(${task.id}, '${status.idTaskProgression}')" ${disabled} title="${status.taskProgressionStatus}">${getStatusIcon(status.idTaskProgression)}</button>`;
             });
-            row.cells[10].innerHTML = `<div class="actions-group">${statusButtons}</div>`;
+            row.cells[12].innerHTML = `<div class="actions-group">${statusButtons}</div>`;
         }
         
         function filterTasks(filter) {
