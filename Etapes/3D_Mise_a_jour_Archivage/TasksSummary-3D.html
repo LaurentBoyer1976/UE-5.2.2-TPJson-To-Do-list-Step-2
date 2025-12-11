@@ -538,7 +538,7 @@
             `;
             
             // CORRECTION INDEX : Actions est à l'index 10 (11ème colonne)
-            const actionsCell = row.cells[10];
+            const actionsCell = row.cells[12];
             let statusButtons = '';
             
             taskProgressionList.forEach(status => {
@@ -608,6 +608,8 @@
                             <th>Priorité</th>
                             <th>Statut</th>
                             <th>Temps (min)</th>
+                            <th>Liens</th>
+                            <th>Fichier</th>
                             <th>Date création</th>
                             <th>Actions</th>
                         </tr>

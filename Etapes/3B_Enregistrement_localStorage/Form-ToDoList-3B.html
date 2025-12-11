@@ -153,15 +153,7 @@
                     <div class="form-group">
                         <label for="priorite">Priorité <span class="required">*</span></label>
                         <select id="priorite" name="idPriorite">
-                            <option>Choisir une priorité</option> 
-                            <optgroup label="Urgent">
-                                <option value="1">Important & Urgent</option>
-                                <option value="2">Haut</option>
-                            </optgroup>
-                            <optgroup label="Normal">
-                                <option value="3" >Moyen</option>
-                                <option value="4">Bas</option>
-                            </optgroup>
+                            <option>Choisir une priorité</option>                                                      
                         </select>
                     </div>
                     
@@ -195,41 +187,20 @@
                         <label for="academic_subject">Sujet académique <span class="required">*</span></label>
                         <select id="academic_subject" name="academic_subject" required>
                             <option value="">-- Sélectionnez un sujet --</option>
-                            <option value="1">HTML/CSS</option>
-                            <option value="2">JavaScript</option>
-                            <option value="3">Frameworks JavaScript (React, Vue.js)</option>
-                            <option value="4">Développement Backend (Node.js, PHP)</option>
-                            <option value="5">Bases de données (SQL, NoSQL)</option>
-                            <option value="6">UX/UI Design</option>
-                            <option value="7">Responsive Design et Mobile First</option>
-                            <option value="8">Gestion de projet web (Agile, Scrum)</option>
-                            <option value="9">Versioning (Git, GitHub)</option>
-                            <option value="10">Accessibilité web (WCAG)</option>
-                            <option value="11">SEO et Référencement</option>
-                            <option value="12">APIs et Services Web (REST, GraphQL)</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="skills_level">Niveau de compétence <span class="required">*</span></label>
                         <select id="skills_level" name="skills_level" required>
-                            <option value="">-- Sélectionnez un niveau --</option>
-                            <option value="1">Débutant</option>
-                            <option value="2">Intermédiaire</option>
-                            <option value="3">Avancé</option>
-                            <option value="4">Expert</option>
+                            <option value="">-- Sélectionnez un niveau --</option>                            
                         </select>
                     </div>
 
                     <div class="form-group">                    
                         <label for="difficulty_rating">Difficulté estimée <span class="required">*</span></label>
                         <select id="difficulty_rating" name="difficulty_rating" required>
-                            <option value="">-- Sélectionnez une difficulté --</option>
-                            <option value="1">Très facile</option>
-                            <option value="2">Facile</option>
-                            <option value="3">Moyen</option>
-                            <option value="4">Difficile</option>
-                            <option value="5">Très difficile</option>
+                            <option value="">-- Sélectionnez un niveau --</option>                            
                         </select>
                     </div>
                 </div>
@@ -267,138 +238,292 @@
     </main>
 
     <script>
-        function setCreationDate() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            // MODIFICATION JS : Format AAAA-MM-JJ uniquement
-            document.getElementById('date_creation').value = `${year}-${month}-${day}`;
-        }
-        setCreationDate();
+    // ============================================================
+    // 1. DONNÉES JSON COMPLÈTES (Copiées-Collées de tes fichiers)
+    // ============================================================
 
-        function ajouterDoc() {
-            const docList = document.getElementById('doc-list');
-            const newInput = document.createElement('input');
-            newInput.type = 'url';
-            newInput.name = 'documentation[]';
-            newInput.placeholder = 'https://exemple.com/doc';
-            docList.appendChild(newInput);
-        }
+    // --- A. Données de Priorité (priorityStatus.json) ---
+    const rawPriorityData = {
+      "priorityStatus": [
+        { "idPriorite": 1, "priorite": "Important" },
+        { "idPriorite": 2, "priorite": "Haut" },
+        { "idPriorite": 3, "priorite": "Moyen" },
+        { "idPriorite": 4, "priorite": "Bas" },
+        { "idPriorite": 5, "priorite": "Non important" }
+      ]
+    };
 
-        function ajouterSousTache() {
-            const subtaskList = document.getElementById('subtask-list');
-            const subtaskItem = document.createElement('div');
-            subtaskItem.className = 'subtask-item';
-            const inputTitle = document.createElement('input');
-            inputTitle.type = 'text';
-            inputTitle.name = 'subtask[]';
-            inputTitle.placeholder = 'Nom de la sous-tâche';
-            inputTitle.className = 'subtask-title';
-            const inputDesc = document.createElement('textarea');
-            inputDesc.name = 'subtaskDescription[]';
-            inputDesc.placeholder = 'Description de la sous-tâche (optionnel)';
-            inputDesc.rows = 2;
-            inputDesc.className = 'subtask-desc';
-            subtaskItem.appendChild(inputTitle);
-            subtaskItem.appendChild(inputDesc);
-            subtaskList.appendChild(subtaskItem);
-        }
+    // --- B. Données des Sujets Académiques (academic_subjects.json) ---
+    // J'ai intégré les 40 sujets demandés
+    const rawSubjectsData = {
+      "academicConfiguration": {
+        "subjects": [
+          { "idAcademicSubject": "1", "academicSubjectName": "HTML/CSS" },
+          { "idAcademicSubject": "2", "academicSubjectName": "JavaScript" },
+          { "idAcademicSubject": "3", "academicSubjectName": "Frameworks JavaScript (React, Vue.js)" },
+          { "idAcademicSubject": "4", "academicSubjectName": "Développement Backend (Node.js, PHP)" },
+          { "idAcademicSubject": "5", "academicSubjectName": "Bases de données (SQL, NoSQL)" },
+          { "idAcademicSubject": "6", "academicSubjectName": "UX/UI Design" },
+          { "idAcademicSubject": "7", "academicSubjectName": "Responsive Design et Mobile First" },
+          { "idAcademicSubject": "8", "academicSubjectName": "Gestion de projet web (Agile, Scrum)" },
+          { "idAcademicSubject": "9", "academicSubjectName": "Versioning (Git, GitHub)" },
+          { "idAcademicSubject": "10", "academicSubjectName": "Accessibilité web (WCAG)" },
+          { "idAcademicSubject": "11", "academicSubjectName": "SEO et Référencement" },
+          { "idAcademicSubject": "12", "academicSubjectName": "APIs et Services Web (REST, GraphQL)" },
+          { "idAcademicSubject": "13", "academicSubjectName": "Tests unitaires et intégration continue" },
+          { "idAcademicSubject": "14", "academicSubjectName": "Sécurité web" },
+          { "idAcademicSubject": "15", "academicSubjectName": "CMS et e-commerce (WordPress, Shopify)" },
+          { "idAcademicSubject": "16", "academicSubjectName": "Hébergement et déploiement" },
+          { "idAcademicSubject": "17", "academicSubjectName": "Veille technologique" },
+          { "idAcademicSubject": "18", "academicSubjectName": "Droit du numérique et RGPD" },
+          { "idAcademicSubject": "19", "academicSubjectName": "Communication professionnelle" },
+          { "idAcademicSubject": "20", "academicSubjectName": "Anglais technique" },
+          { "idAcademicSubject": "21", "academicSubjectName": "Projet tuteuré" },
+          { "idAcademicSubject": "22", "academicSubjectName": "Stage en entreprise" },
+          { "idAcademicSubject": "23", "academicSubjectName": "Mémoire professionnel" },
+          { "idAcademicSubject": "24", "academicSubjectName": "Design graphique et logiciels (Photoshop, Illustrator)" },
+          { "idAcademicSubject": "25", "academicSubjectName": "Identité visuelle et branding" },
+          { "idAcademicSubject": "26", "academicSubjectName": "Théorie des couleurs et typographie" },
+          { "idAcademicSubject": "27", "academicSubjectName": "Création d'icônes et illustrations" },
+          { "idAcademicSubject": "28", "academicSubjectName": "Animation et motion design (After Effects)" },
+          { "idAcademicSubject": "29", "academicSubjectName": "Prototypage et maquettage (Figma, Sketch)" },
+          { "idAcademicSubject": "30", "academicSubjectName": "Photographie web et retouche d'images" },
+          { "idAcademicSubject": "31", "academicSubjectName": "Marketing digital et stratégie web" },
+          { "idAcademicSubject": "32", "academicSubjectName": "Réseaux sociaux et community management" },
+          { "idAcademicSubject": "33", "academicSubjectName": "Content marketing et rédaction web" },
+          { "idAcademicSubject": "34", "academicSubjectName": "E-mail marketing et automation" },
+          { "idAcademicSubject": "35", "academicSubjectName": "Publicité en ligne (Google Ads, Facebook Ads)" },
+          { "idAcademicSubject": "36", "academicSubjectName": "Analytics et mesure de performance (Google Analytics)" },
+          { "idAcademicSubject": "37", "academicSubjectName": "Conversion et optimisation UX" },
+          { "idAcademicSubject": "38", "academicSubjectName": "Influence marketing et partenariats" },
+          { "idAcademicSubject": "39", "academicSubjectName": "Growth hacking et acquisition client" },
+          { "idAcademicSubject": "40", "academicSubjectName": "Webmarketing et e-reputation" }
+        ]
+      }
+    };
 
-        function saveTask() {
-            console.log("🚀 Début de la fonction saveTask()");
+    // --- C. Données des Niveaux de Compétence (skills_evaluation.json) ---
+    const rawSkillsData = {
+      "skillsEvaluation": {
+        "skillsLevels": [
+          { "idSkillsLevel": "1", "level": "débutant"},
+          { "idSkillsLevel": "2", "level": "initié"},
+          { "idSkillsLevel": "3", "level": "intermédiaire"},
+          { "idSkillsLevel": "4", "level": "confirmé"},
+          { "idSkillsLevel": "5", "level": "avancé"},
+          { "idSkillsLevel": "6", "level": "expert"},
+          { "idSkillsLevel": "7", "level": "expert confirmé"},
+          { "idSkillsLevel": "8", "level": "maître"}
+        ]
+      }
+    };
+
+    // --- D. Données de Difficulté (difficultyRating.json) ---
+    const rawDifficultyData = {
+      "difficultyRatings": [
+        { "idDifficultyRating": "1", "estimatedDifficulty": "facile"},
+        { "idDifficultyRating": "2", "estimatedDifficulty": "moyen"},
+        { "idDifficultyRating": "3", "estimatedDifficulty": "difficile"},
+        { "idDifficultyRating": "4", "estimatedDifficulty": "très difficile"}
+      ]
+    };
+
+    // ============================================================
+    // 2. FONCTION DE GÉNÉRATION DYNAMIQUE (Le moteur)
+    // ============================================================
+    
+    function genererOptions(selectId, dataArray, keyId, keyLabel, keyDesc = null) {
+        // On récupère la balise <select> dans le HTML
+        const select = document.getElementById(selectId);
+        
+        // On parcourt chaque élément du tableau JSON
+        dataArray.forEach(item => {
+            // 1. Création du texte visible
+            let text = item[keyLabel];
+            // Si une description existe (ex: pour Skills ou Difficulté), on l'ajoute
+            if (keyDesc && item[keyDesc]) {
+                text += ` - ${item[keyDesc]}`;
+            }
+
+            // 2. Création de la balise <option>
+            const option = document.createElement('option');
+            option.value = item[keyId]; // La valeur envoyée (l'ID)
+            option.textContent = text;  // Ce que l'utilisateur voit
             
-            let libelle = document.getElementById('libelle').value;
-            let description = document.getElementById('description').value;
-            let assignation = document.getElementById('assignation').value;
-            let date_creation = document.getElementById('date_creation').value;
-            let temps_passe = document.getElementById('temps_passe').value;
-            let idPriorite = document.getElementById('priorite').value;
-            let idTaskProgression = document.querySelector('input[name="idTaskProgression"]:checked').value;
-            let idAcademicSubject = document.getElementById('academic_subject').value;
-            let idSkillsLevel = document.getElementById('skills_level').value;
-            let idDifficultyRating = document.getElementById('difficulty_rating').value;
-            
-            let subtaskInputs = document.querySelectorAll('input[name="subtask[]"]');
-            let subtaskDescInputs = document.querySelectorAll('textarea[name="subtaskDescription[]"]');
-            let subtasks = [];
-            
-            subtaskInputs.forEach((input, index) => {
-                if (input.value.trim() !== '') {
-                    subtasks.push({
-                        subTaskLibelle: input.value.trim(),
-                        subTaskDescription: subtaskDescInputs[index] ? subtaskDescInputs[index].value.trim() : ''
-                    });
-                }
-            });
-            
-            let documentationInputs = document.querySelectorAll('input[name="documentation[]"]');
-            let documentation = [];
-            documentationInputs.forEach(input => {
-                if (input.value.trim() !== '') {
-                    documentation.push(input.value.trim());
-                }
-            });
-            
-            let tasksList = [];
-            let existingTasks = localStorage.getItem("tasksData");
-            if (existingTasks) tasksList = JSON.parse(existingTasks);
-            
-            let newId = tasksList.length + 1;
-            let dateCreationISO = new Date(date_creation).toISOString();
-            
-            let subTaskIds = [];
-            let subtasksToStore = subtasks.map((subtask, index) => {
-                const subtaskId = `${newId}-${index + 1}`;
-                subTaskIds.push(subtaskId);
-                return {
-                    taskId: newId,
-                    subTaskId: `${index + 1}`,
-                    id: subtaskId,
-                    subTaskLibelle: subtask.subTaskLibelle,
-                    subTaskDescription: subtask.subTaskDescription
-                };
-            });
-            
-            let newTask = {
-                id: newId,
-                libelle: libelle,
-                date_de_creation: dateCreationISO,
-                date_de_modification: dateCreationISO,
-                date_de_completion: null,
-                "compteur_de_temps_passe(mn)": parseInt(temps_passe) || 0,
-                description: description,
-                assignation: assignation,
-                documentation: documentation,
-                fichiers_joints: [],
-                idPriorite: idPriorite,
-                idTaskProgression: idTaskProgression,
-                idAcademicSubject: idAcademicSubject,
-                idSkillsLevel: idSkillsLevel,
-                idDifficultyRating: idDifficultyRating,
-                subTask_ids: subTaskIds,
-                subtasks: subtasksToStore
+            // 3. Ajout dans le formulaire
+            select.appendChild(option);
+        });
+    }
+
+    // ============================================================
+    // 3. EXÉCUTION : REMPLISSAGE DES LISTES (Le démarrage)
+    // ============================================================
+
+    // Note importante : On doit aller chercher le tableau (Array) au bon endroit dans la structure JSON
+    
+    // A. Priorité
+    genererOptions('priorite', rawPriorityData.priorityStatus, 'idPriorite', 'priorite');
+
+    // B. Sujets Académiques (Attention : c'est dans .academicConfiguration.subjects)
+    genererOptions(
+        'academic_subject', 
+        rawSubjectsData.academicConfiguration.subjects, 
+        'idAcademicSubject', 
+        'academicSubjectName'
+    );
+
+    // C. Niveaux de Compétence (Dans .skillsEvaluation.skillsLevels)
+    genererOptions(
+        'skills_level', 
+        rawSkillsData.skillsEvaluation.skillsLevels, 
+        'idSkillsLevel', 
+        'level', 
+        'description'
+    );
+
+    // D. Difficulté (Directement dans .difficultyRatings)
+    genererOptions(
+        'difficulty_rating', 
+        rawDifficultyData.difficultyRatings, 
+        'idDifficultyRating', 
+        'estimatedDifficulty', 
+        'note'
+    );
+
+
+    // ============================================================
+    // 4. FONCTIONNALITÉS DU FORMULAIRE (Ton code existant)
+    // ============================================================
+
+    function setCreationDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        document.getElementById('date_creation').value = `${year}-${month}-${day}`;
+    }
+    setCreationDate();
+
+    function ajouterDoc() {
+        const docList = document.getElementById('doc-list');
+        const newInput = document.createElement('input');
+        newInput.type = 'url';
+        newInput.name = 'documentation[]';
+        newInput.placeholder = 'https://exemple.com/doc';
+        docList.appendChild(newInput);
+    }
+
+    function ajouterSousTache() {
+        const subtaskList = document.getElementById('subtask-list');
+        const subtaskItem = document.createElement('div');
+        subtaskItem.className = 'subtask-item';
+        const inputTitle = document.createElement('input');
+        inputTitle.type = 'text';
+        inputTitle.name = 'subtask[]';
+        inputTitle.placeholder = 'Nom de la sous-tâche';
+        inputTitle.className = 'subtask-title';
+        const inputDesc = document.createElement('textarea');
+        inputDesc.name = 'subtaskDescription[]';
+        inputDesc.placeholder = 'Description de la sous-tâche (optionnel)';
+        inputDesc.rows = 2;
+        inputDesc.className = 'subtask-desc';
+        subtaskItem.appendChild(inputTitle);
+        subtaskItem.appendChild(inputDesc);
+        subtaskList.appendChild(subtaskItem);
+    }
+
+    function saveTask() {
+        console.log("🚀 Début de la fonction saveTask()");
+        
+        let libelle = document.getElementById('libelle').value;
+        let description = document.getElementById('description').value;
+        let assignation = document.getElementById('assignation').value;
+        let date_creation = document.getElementById('date_creation').value;
+        let temps_passe = document.getElementById('temps_passe').value;
+        let idPriorite = document.getElementById('priorite').value;
+        let idTaskProgression = document.querySelector('input[name="idTaskProgression"]:checked').value;
+        let idAcademicSubject = document.getElementById('academic_subject').value;
+        let idSkillsLevel = document.getElementById('skills_level').value;
+        let idDifficultyRating = document.getElementById('difficulty_rating').value;
+        
+        let subtaskInputs = document.querySelectorAll('input[name="subtask[]"]');
+        let subtaskDescInputs = document.querySelectorAll('textarea[name="subtaskDescription[]"]');
+        let subtasks = [];
+        
+        subtaskInputs.forEach((input, index) => {
+            if (input.value.trim() !== '') {
+                subtasks.push({
+                    subTaskLibelle: input.value.trim(),
+                    subTaskDescription: subtaskDescInputs[index] ? subtaskDescInputs[index].value.trim() : ''
+                });
+            }
+        });
+        
+        let documentationInputs = document.querySelectorAll('input[name="documentation[]"]');
+        let documentation = [];
+        documentationInputs.forEach(input => {
+            if (input.value.trim() !== '') {
+                documentation.push(input.value.trim());
+            }
+        });
+        
+        let tasksList = [];
+        let existingTasks = localStorage.getItem("tasksData");
+        if (existingTasks) tasksList = JSON.parse(existingTasks);
+        
+        let newId = tasksList.length + 1;
+        let dateCreationISO = new Date(date_creation).toISOString();
+        
+        let subTaskIds = [];
+        let subtasksToStore = subtasks.map((subtask, index) => {
+            const subtaskId = `${newId}-${index + 1}`;
+            subTaskIds.push(subtaskId);
+            return {
+                taskId: newId,
+                subTaskId: `${index + 1}`,
+                id: subtaskId,
+                subTaskLibelle: subtask.subTaskLibelle,
+                subTaskDescription: subtask.subTaskDescription
             };
-            
-            tasksList.push(newTask);
-            localStorage.setItem("tasksData", JSON.stringify(tasksList));
-            
-            if (subtasksToStore.length > 0) {
-                let existingSubtasks = [];
-                const storedSubtasks = localStorage.getItem("subtasksData");
-                if (storedSubtasks) existingSubtasks = JSON.parse(storedSubtasks);
-                existingSubtasks.push(...subtasksToStore);
-                localStorage.setItem("subtasksData", JSON.stringify(existingSubtasks));
-            }
-            
-            document.getElementById('taskForm').reset();
-            setCreationDate();
-            
-            let viewTasks = confirm('✅ Tâche créée avec succès !\n\nID: ' + newId + '\nLibellé: ' + libelle + '\n\nVoulez-vous voir toutes les tâches ?');
-            if (viewTasks) {
-                window.location.href = '../3C_Affichage_Taches/TasksSummary-3C.html';
-            }
+        });
+        
+        let newTask = {
+            id: newId,
+            libelle: libelle,
+            date_de_creation: dateCreationISO,
+            date_de_modification: dateCreationISO,
+            date_de_completion: null,
+            "compteur_de_temps_passe(mn)": parseInt(temps_passe) || 0,
+            description: description,
+            assignation: assignation,
+            documentation: documentation,
+            fichiers_joints: [],
+            idPriorite: idPriorite,
+            idTaskProgression: idTaskProgression,
+            idAcademicSubject: idAcademicSubject,
+            idSkillsLevel: idSkillsLevel,
+            idDifficultyRating: idDifficultyRating,
+            subTask_ids: subTaskIds,
+            subtasks: subtasksToStore
+        };
+        
+        tasksList.push(newTask);
+        localStorage.setItem("tasksData", JSON.stringify(tasksList));
+        
+        if (subtasksToStore.length > 0) {
+            let existingSubtasks = [];
+            const storedSubtasks = localStorage.getItem("subtasksData");
+            if (storedSubtasks) existingSubtasks = JSON.parse(storedSubtasks);
+            existingSubtasks.push(...subtasksToStore);
+            localStorage.setItem("subtasksData", JSON.stringify(existingSubtasks));
         }
-    </script>
+        
+        document.getElementById('taskForm').reset();
+        setCreationDate();
+        
+        let viewTasks = confirm('✅ Tâche créée avec succès !\n\nID: ' + newId + '\nLibellé: ' + libelle + '\n\nVoulez-vous voir toutes les tâches ?');
+        if (viewTasks) window.location.href = './../3D_Mise_a_jour_Archivage/TasksSummary-3D.html';
+    }
+</script>
 </body>
 </html>
